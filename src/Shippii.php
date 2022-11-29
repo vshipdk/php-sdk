@@ -11,20 +11,6 @@ class Shippii
     use MakesHttpRequests;
 
     /**
-     * The Shippii API Key.
-     *
-     * @var string
-     */
-    protected $apiKey;
-
-    /**
-     * The Guzzle HTTP Client instance.
-     *
-     * @var \GuzzleHttp\Client
-     */
-    public $guzzle;
-
-    /**
      * Number of seconds a request is retried.
      *
      * @var int
@@ -32,60 +18,18 @@ class Shippii
     public $timeout = 30;
 
     /**
-     * Create a new Shippii instance.
+     * Create a new Forge instance.
      *
-     * @param  string|null  $apiKey
-     * @param  \GuzzleHttp\Client|null  $guzzle
-     * @return void
+     * @param string          $apiKey
+     * @param string          $apiHost
+     * @param HttpClient|null $guzzle
      */
-    public function __construct($apiKey = null, HttpClient $guzzle = null)
-    {
-        if (! is_null($apiKey)) {
-            $this->setApiKey($apiKey, $guzzle);
-        }
-
-        if (! is_null($guzzle)) {
-            $this->guzzle = $guzzle;
-        }
-    }
-
-    /**
-     * Transform the items of the collection to the given class.
-     *
-     * @param  array  $collection
-     * @param  string  $class
-     * @param  array  $extraData
-     * @return array
-     */
-    protected function transformCollection($collection, $class, $extraData = [])
-    {
-        return array_map(function ($data) use ($class, $extraData) {
-            return new $class($data + $extraData, $this);
-        }, $collection);
-    }
-
-    /**
-     * Set the api key and setup the guzzle request object.
-     *
-     * @param  string  $apiKey
-     * @param  \GuzzleHttp\Client|null  $guzzle
-     * @return $this
-     */
-    public function setApiKey($apiKey, $guzzle = null)
-    {
-        $this->apiKey = $apiKey;
-
-        $this->guzzle = $guzzle ?: new HttpClient([
-            'base_uri' => 'https://forge.laravel.com/api/v1/',
-            'http_errors' => false,
-            'headers' => [
-                'Authorization' => 'Bearer '.$this->apiKey,
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-            ],
-        ]);
-
-        return $this;
+    public function __construct(
+        protected string $apiKey,
+        protected string $apiHost,
+        public HttpClient|null $guzzle = null,
+    ) {
+        $this->setApiKey();
     }
 
     /**
@@ -114,10 +58,45 @@ class Shippii
     /**
      * Get an authenticated user instance.
      *
-     * @return \Shippii\Resources\User
+     * @return User
      */
     public function user()
     {
         return new User($this->get('user')['user']);
+    }
+
+    /**
+     * Set the api key and setup the guzzle request object.
+     *
+     * @return $this
+     */
+    protected function setApiKey()
+    {
+        $this->guzzle = $this->guzzle ?: new HttpClient([
+            'base_uri' => "{$this->apiHost}/v1/",
+            'http_errors' => false,
+            'headers' => [
+                'Authorization' => 'Bearer '.$this->apiKey,
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+            ],
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Transform the items of the collection to the given class.
+     *
+     * @param  array  $collection
+     * @param  string  $class
+     * @param  array  $extraData
+     * @return array
+     */
+    protected function transformCollection($collection, $class, $extraData = [])
+    {
+        return array_map(function ($data) use ($class, $extraData) {
+            return new $class($data + $extraData, $this);
+        }, $collection);
     }
 }
