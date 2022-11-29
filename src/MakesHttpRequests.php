@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Shippii;
 
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 use Shippii\Exceptions\FailedActionException;
 use Shippii\Exceptions\NotFoundException;
 use Shippii\Exceptions\RateLimitExceededException;
@@ -14,61 +15,103 @@ use Psr\Http\Message\ResponseInterface;
 trait MakesHttpRequests
 {
     /**
-     * Make a GET request to Shippii servers and return the response.
+     * Make a GET request to Shippii API and return the response.
      *
-     * @param  string  $uri
+     * @param string $uri
      * @return mixed
+     * @throws FailedActionException
+     * @throws GuzzleException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
-    public function get($uri)
+    public function get(string $uri): mixed
     {
         return $this->request('GET', $uri);
     }
 
     /**
-     * Make a POST request to Shippii servers and return the response.
+     * Make a POST request to Shippii API and return the response.
      *
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $uri
+     * @param array  $payload
      * @return mixed
+     * @throws FailedActionException
+     * @throws GuzzleException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
-    public function post($uri, array $payload = [])
+    public function post(string $uri, array $payload = []): mixed
     {
         return $this->request('POST', $uri, $payload);
     }
 
     /**
-     * Make a PUT request to Shippii servers and return the response.
+     * Make a PUT request to Shippii API and return the response.
      *
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $uri
+     * @param array  $payload
      * @return mixed
+     * @throws FailedActionException
+     * @throws GuzzleException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
-    public function put($uri, array $payload = [])
+    public function put(string $uri, array $payload = []): mixed
     {
         return $this->request('PUT', $uri, $payload);
     }
 
     /**
-     * Make a DELETE request to Shippii servers and return the response.
+     * Make a PATCH request to Shippii API and return the response.
      *
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $uri
+     * @param array  $payload
      * @return mixed
+     * @throws FailedActionException
+     * @throws GuzzleException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
-    public function delete($uri, array $payload = [])
+    public function patch(string $uri, array $payload = []): mixed
+    {
+        return $this->request('PATCH', $uri, $payload);
+    }
+
+    /**
+     * Make a DELETE request to Shippii API and return the response.
+     *
+     * @param string $uri
+     * @param array  $payload
+     * @return mixed
+     * @throws FailedActionException
+     * @throws GuzzleException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
+     */
+    public function delete(string $uri, array $payload = []): mixed
     {
         return $this->request('DELETE', $uri, $payload);
     }
 
     /**
-     * Make request to Shippii servers and return the response.
+     * Make request to Shippii API and return the response.
      *
-     * @param  string  $verb
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $verb
+     * @param string $uri
+     * @param array  $payload
      * @return mixed
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
+     * @throws GuzzleException
      */
-    protected function request($verb, $uri, array $payload = [])
+    protected function request(string $verb, string $uri, array $payload = []): mixed
     {
         if (isset($payload['json'])) {
             $payload = ['json' => $payload['json']];
@@ -81,7 +124,7 @@ trait MakesHttpRequests
         $statusCode = $response->getStatusCode();
 
         if ($statusCode < 200 || $statusCode > 299) {
-            return $this->handleRequestError($response);
+            $this->handleRequestError($response);
         }
 
         $responseBody = (string) $response->getBody();
@@ -92,16 +135,16 @@ trait MakesHttpRequests
     /**
      * Handle the request error.
      *
-     * @param  \Psr\Http\Message\ResponseInterface  $response
+     * @param ResponseInterface $response
      * @return void
      *
-     * @throws \Exception
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\ValidationException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws Exception
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws ValidationException
+     * @throws RateLimitExceededException
      */
-    protected function handleRequestError(ResponseInterface $response)
+    protected function handleRequestError(ResponseInterface $response): void
     {
         if ($response->getStatusCode() == 422) {
             throw new ValidationException(json_decode((string) $response->getBody(), true));
@@ -134,9 +177,9 @@ trait MakesHttpRequests
      * @param  int  $sleep
      * @return mixed
      *
-     * @throws \Shippii\Exceptions\TimeoutException
+     * @throws TimeoutException
      */
-    public function retry($timeout, $callback, $sleep = 5)
+    public function retry(int $timeout, callable $callback, int $sleep = 5): mixed
     {
         $start = time();
 

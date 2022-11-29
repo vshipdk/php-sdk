@@ -8,27 +8,13 @@ use Shippii\Shippii;
 class Resource
 {
     /**
-     * The resource attributes.
-     *
-     * @var array
-     */
-    public $attributes;
-
-    /**
-     * The Shippii SDK instance.
-     *
-     * @var \Shippii\Shippii|null
-     */
-    protected $shippii;
-
-    /**
      * Create a new resource instance.
      *
-     * @param  array                       $attributes
-     * @param  \Shippii\Shippii|null $shippii
+     * @param  array       $attributes
+     * @param Shippii|null $shippii
      * @return void
      */
-    public function __construct(array $attributes, Shippii $shippii = null)
+    public function __construct(public array $attributes, protected Shippii|null $shippii = null)
     {
         $this->attributes = $attributes;
         $this->shippii = $shippii;
