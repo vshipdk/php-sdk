@@ -14,11 +14,10 @@ class Resource
      * @param Shippii|null $shippii
      * @return void
      */
-    public function __construct(public array $attributes, protected Shippii|null $shippii = null)
-    {
-        $this->attributes = $attributes;
-        $this->shippii = $shippii;
-
+    public function __construct(
+        public array $attributes,
+        protected Shippii|null $shippii = null
+    ) {
         $this->fill();
     }
 
@@ -27,7 +26,7 @@ class Resource
      *
      * @return void
      */
-    protected function fill()
+    protected function fill(): void
     {
         foreach ($this->attributes as $key => $value) {
             $key = $this->camelCase($key);
@@ -42,7 +41,7 @@ class Resource
      * @param  string  $key
      * @return string
      */
-    protected function camelCase($key)
+    protected function camelCase(string $key): string
     {
         $parts = explode('_', $key);
 
@@ -63,7 +62,7 @@ class Resource
      * @param  array  $extraData
      * @return array
      */
-    protected function transformCollection(array $collection, $class, array $extraData = [])
+    protected function transformCollection(array $collection, string $class, array $extraData = []): array
     {
         return array_map(function ($data) use ($class, $extraData) {
             return new $class($data + $extraData, $this->shippii);
@@ -77,7 +76,7 @@ class Resource
      * @param  string|null  $separator
      * @return string
      */
-    protected function transformTags(array $tags, $separator = null)
+    protected function transformTags(array $tags, string|null $separator = null): string
     {
         $separator = $separator ?: ', ';
 

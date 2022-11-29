@@ -4,11 +4,12 @@ declare(strict_types=1);
 namespace Shippii;
 
 use GuzzleHttp\Client as HttpClient;
+use Shippii\Actions\ManageCountries;
 use Shippii\Resources\User;
 
 class Shippii
 {
-    use MakesHttpRequests;
+    use MakesHttpRequests, ManageCountries;
 
     /**
      * Number of seconds a request is retried.
