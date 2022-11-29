@@ -10,16 +10,13 @@
         }
     ],
     "require": {
-        "php": "^8.0|^8.1",
+        "php": "^8.0 || ^8.1",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.5.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.9",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-mock": "^1.0",
-        "phpstan/phpstan": "^1.8",
-        "symfony/var-dumper": "^6.1"
+        "friendsofphp/php-cs-fixer": "^3.13.0",
+        "phpstan/phpstan": "^1.9.2"
     },
     "autoload": {
         "psr-4": {
