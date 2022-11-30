@@ -4,16 +4,16 @@ namespace Shippii\Resources;
 
 class Shipment extends Resource
 {
-    public string $id;
-    public int $type;
-    public string $carrierId;
-    public array $sender;
-    public array $receiver;
-    public array $lines;
-    public array $carrierOptions;
-    public string $state;
+    public string|null $id;
+    public int|null $type;
+    public string|null $carrierId;
+    public array|null $sender;
+    public array|null $receiver;
+    public array|null $lines;
+    public array|null $carrierOptions;
+    public string|null $state;
 
-    public function index(string $parameters)
+    public function index(string $parameters = '')
     {
         return $this->shippii->listUserShipments($parameters);
     }
