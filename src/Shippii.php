@@ -8,6 +8,7 @@ use Shippii\Actions\ManageCarriers;
 use Shippii\Actions\ManageCarriersAccounts;
 use Shippii\Actions\ManageCountries;
 use Shippii\Actions\ManageLabels;
+use Shippii\Actions\ManageOrganisationObjects;
 use Shippii\Actions\ManageOrganisations;
 use Shippii\Actions\ManageShipments;
 use Shippii\Actions\ManageUsers;
@@ -21,7 +22,8 @@ class Shippii
         ManageCarriers,
         ManageUsers,
         ManageOrganisations,
-        ManageLabels;
+        ManageLabels,
+        ManageOrganisationObjects;
 
     /**
      * Number of seconds a request is retried.
