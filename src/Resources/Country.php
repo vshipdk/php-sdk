@@ -4,7 +4,7 @@ namespace Shippii\Resources;
 
 class Country extends Resource
 {
-    public function getAll()
+    public function index()
     {
         return $this->shippii->getCountries();
     }
