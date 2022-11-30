@@ -17,12 +17,12 @@ class ValidationException extends Exception
     /**
      * Create a new exception instance.
      *
-     * @param  array  $errors
-     * @return void
+     * @param array  $errors
+     * @param string $body
      */
-    public function __construct(array $errors)
+    public function __construct(array $errors, string $body)
     {
-        parent::__construct('The given data failed to pass validation.');
+        parent::__construct("The given data failed to pass validation. Response body: {$body}");
 
         $this->errors = $errors;
     }
