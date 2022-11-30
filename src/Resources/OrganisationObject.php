@@ -4,38 +4,41 @@ namespace Shippii\Resources;
 
 class OrganisationObject extends Resource
 {
-    public string|null $id;
+    public string $id;
     public string|null $name = null;
-    public string|null $organisationId = null;
+    public string $organisationId;
     public string|null $currency = null;
     public string|null $timezone = null;
     public array|null $settings = null;
-    public array|null $vatNumber = null;
-    public array|null $companyNumber = null;
-    public array|null $vatRegistered = null;
 
-    public function index(string $parameters = '')
+    public function index(array $parameters = [])
     {
+        $parameters = $this->prepareParameters($parameters);
+
         return $this->shippii->listOrganisationObjects($parameters);
     }
 
     public function create()
     {
-        return $this->shippii->createOrganisationObject($this);
+        $payload = $this->preparePayload(['name', 'organisationId', 'currency', 'timezone', 'settings']);
+
+        return $this->shippii->createOrganisationObject($payload);
     }
 
     public function get()
     {
-        return $this->shippii->getOrganisationObject($this);
+        return $this->shippii->getOrganisationObject($this->id);
     }
 
     public function update()
     {
-        return $this->shippii->updateOrganisationObject($this);
+        $payload = $this->preparePayload(['name', 'currency', 'timezone', 'settings']);
+
+        return $this->shippii->updateOrganisationObject($this->id, $payload);
     }
 
     public function delete()
     {
-        return $this->shippii->deleteOrganisationObject($this);
+        return $this->shippii->deleteOrganisationObject($this->id);
     }
 }

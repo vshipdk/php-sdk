@@ -11,6 +11,7 @@ use Shippii\Exceptions\RateLimitExceededException;
 use Shippii\Exceptions\TimeoutException;
 use Shippii\Exceptions\ValidationException;
 use Psr\Http\Message\ResponseInterface;
+use Shippii\Resources\Resource;
 
 trait MakesHttpRequests
 {
@@ -99,6 +100,43 @@ trait MakesHttpRequests
     }
 
     /**
+     * Retry the callback or fail after x seconds.
+     *
+     * @param  int  $timeout
+     * @param  callable  $callback
+     * @param  int  $sleep
+     * @return mixed
+     *
+     * @throws TimeoutException
+     */
+    public function retry(int $timeout, callable $callback, int $sleep = 5): mixed
+    {
+        $start = time();
+
+        beginning:
+
+        if ($output = $callback()) {
+            return $output;
+        }
+
+        if (time() - $start < $timeout) {
+            sleep($sleep);
+
+            goto beginning;
+        }
+
+        if ($output === null || $output === false) {
+            $output = [];
+        }
+
+        if (! is_array($output)) {
+            $output = [$output];
+        }
+
+        throw new TimeoutException($output);
+    }
+
+    /**
      * Make request to Shippii API and return the response.
      *
      * @param string $verb
@@ -168,42 +206,5 @@ trait MakesHttpRequests
         }
 
         throw new Exception((string) $response->getBody());
-    }
-
-    /**
-     * Retry the callback or fail after x seconds.
-     *
-     * @param  int  $timeout
-     * @param  callable  $callback
-     * @param  int  $sleep
-     * @return mixed
-     *
-     * @throws TimeoutException
-     */
-    public function retry(int $timeout, callable $callback, int $sleep = 5): mixed
-    {
-        $start = time();
-
-        beginning:
-
-        if ($output = $callback()) {
-            return $output;
-        }
-
-        if (time() - $start < $timeout) {
-            sleep($sleep);
-
-            goto beginning;
-        }
-
-        if ($output === null || $output === false) {
-            $output = [];
-        }
-
-        if (! is_array($output)) {
-            $output = [$output];
-        }
-
-        throw new TimeoutException($output);
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\OrganisationObject;
-
 trait ManageOrganisationObjects
 {
     public function listOrganisationObjects(string $parameters)
@@ -11,41 +9,23 @@ trait ManageOrganisationObjects
         return $this->get("organisation-object?{$parameters}");
     }
 
-    public function createOrganisationObject(OrganisationObject $organisationObject)
+    public function createOrganisationObject(array $payload)
     {
-        $payload = [
-            'name' => $organisationObject->name,
-            'organisation_id' => $organisationObject->organisationId,
-            'currency' => $organisationObject->currency,
-            'timezone' => $organisationObject->timezone,
-            'settings' => $organisationObject->settings,
-        ];
-
         return $this->post('organisation-object', $payload);
     }
 
-    public function getOrganisationObject(OrganisationObject $organisationObject)
+    public function getOrganisationObject(string $organisationObjectId)
     {
-        return $this->get("organisation-object?/{$organisationObject->id}");
+        return $this->get("organisation-object?/{$organisationObjectId}");
     }
 
-    public function updateOrganisationObject(OrganisationObject $organisationObject)
+    public function updateOrganisationObject(string $organisationObjectId, array $payload)
     {
-        $payload = [
-            'name' => $organisationObject->name,
-            'vat_number' => $organisationObject->vatNumber,
-            'company_number' => $organisationObject->companyNumber,
-            'vat_registered' => $organisationObject->vatRegistered,
-            'currency' => $organisationObject->currency,
-            'timezone' => $organisationObject->timezone,
-            'settings' => $organisationObject->settings,
-        ];
-
-        return $this->patch("organisation-object/{$organisationObject->id}", $payload);
+        return $this->patch("organisation-object/{$organisationObjectId}", $payload);
     }
 
-    public function deleteOrganisationObject(OrganisationObject $organisationObject)
+    public function deleteOrganisationObject(string $organisationObjectId)
     {
-        return $this->delete("organisation-object/{$organisationObject->id}");
+        return $this->delete("organisation-object/{$organisationObjectId}");
     }
 }

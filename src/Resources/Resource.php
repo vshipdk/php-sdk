@@ -55,31 +55,36 @@ class Resource
     }
 
     /**
-     * Transform the items of the collection to the given class.
+     * Prepare a payload data
      *
-     * @param  array  $collection
-     * @param  string  $class
-     * @param  array  $extraData
+     * @param array    $columns
      * @return array
      */
-    protected function transformCollection(array $collection, string $class, array $extraData = []): array
+    protected function preparePayload(array $columns): array
     {
-        return array_map(function ($data) use ($class, $extraData) {
-            return new $class($data + $extraData, $this->shippii);
-        }, $collection);
+        $payload = [];
+        foreach ($columns as $column) {
+            $property = $this->camelCase($column);
+            if ($this->$property !== null) {
+                $payload[$column] = $this->$property;
+            }
+        }
+
+        return $payload;
     }
 
     /**
-     * Transform the collection of tags to a string.
+     * Prepare query parameters string
      *
-     * @param  array  $tags
-     * @param  string|null  $separator
+     * @param array $parameters
      * @return string
      */
-    protected function transformTags(array $tags, string|null $separator = null): string
+    protected function prepareParameters(array $parameters): string
     {
-        $separator = $separator ?: ', ';
-
-        return implode($separator, array_column($tags ?? [], 'name'));
+        $queryParameters = '';
+        foreach ($parameters as $name => $value)
+        {
+            $queryParameters .= "{$name}={$value}&";
+        }
     }
 }
