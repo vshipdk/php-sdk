@@ -20,7 +20,7 @@ class OrganisationObject extends Resource
 
     public function create()
     {
-        $payload = $this->preparePayload(['name', 'organisationId', 'currency', 'timezone', 'settings']);
+        $payload = $this->preparePayload(['name', 'organisation_id', 'currency', 'timezone', 'settings']);
 
         return $this->shippii->createOrganisationObject($payload);
     }

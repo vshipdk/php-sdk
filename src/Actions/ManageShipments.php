@@ -2,8 +2,6 @@
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Shipment;
-
 trait ManageShipments
 {
     public function listUserShipments(string $parameters)
@@ -11,37 +9,23 @@ trait ManageShipments
         return $this->get("shipment?{$parameters}");
     }
 
-    public function createShipment(Shipment $shipment)
+    public function createShipment(array $payload)
     {
-        $payload = [
-            'type' => $shipment->type,
-            'carrier_id' => $shipment->carrierId,
-            'sender' => $shipment->sender,
-            'receiver' => $shipment->receiver,
-            'lines' => $shipment->lines,
-            'carrier_options' => $shipment->carrierOptions,
-        ];
-
         return $this->post('shipment', $payload);
     }
 
-    public function updateShipment(Shipment $shipment)
+    public function updateShipment(string $shipmentId, array $payload)
     {
-        $payload = [
-            'receiver' => $shipment->receiver,
-            'lines' => $shipment->lines,
-        ];
-
-        return $this->patch("shipment/{$shipment->id}", $payload);
+        return $this->patch("shipment/{$shipmentId}", $payload);
     }
 
-    public function updateShipmentState(Shipment $shipment)
+    public function updateShipmentState(string $shipmentId, string $shipmentState)
     {
-        return $this->post("shipment/{$shipment->id}/update-state/{$shipment->state}");
+        return $this->post("shipment/{$shipmentId}/update-state/{$shipmentState}");
     }
 
-    public function archiveShipment(Shipment $shipment)
+    public function archiveShipment(string $shipmentId)
     {
-        return $this->patch("shipment/archive/{$shipment->id}");
+        return $this->patch("shipment/archive/{$shipmentId}");
     }
 }

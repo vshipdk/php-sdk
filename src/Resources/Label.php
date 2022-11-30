@@ -4,10 +4,12 @@ namespace Shippii\Resources;
 
 class Label extends Resource
 {
-    public string|null $shipmentId;
+    public string $shipmentId;
 
-    public function fetchPrintShipmentLabel(string $parameters)
+    public function fetchPrintShipmentLabel(array $parameters)
     {
-        return $this->shippii->fetchPrintShipmentLabel($this, $parameters);
+        $parameters = $this->prepareParameters($parameters);
+
+        return $this->shippii->fetchPrintShipmentLabel($this->shipmentId, $parameters);
     }
 }

@@ -57,7 +57,7 @@ class Resource
     /**
      * Prepare a payload data
      *
-     * @param array    $columns
+     * @param array $columns
      * @return array
      */
     protected function preparePayload(array $columns): array
@@ -86,5 +86,7 @@ class Resource
         {
             $queryParameters .= "{$name}={$value}&";
         }
+
+        return $queryParameters;
     }
 }

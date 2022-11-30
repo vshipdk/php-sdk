@@ -4,37 +4,43 @@ namespace Shippii\Resources;
 
 class Shipment extends Resource
 {
-    public string|null $id;
-    public int|null $type;
-    public string|null $carrierId;
-    public array|null $sender;
-    public array|null $receiver;
-    public array|null $lines;
-    public array|null $carrierOptions;
-    public string|null $state;
+    public string $id;
+    public int $type;
+    public string $carrierId;
+    public array $sender;
+    public array|null $receiver = null;
+    public array|null $lines = null;
+    public array $carrierOptions;
+    public string $state;
 
-    public function index(string $parameters = '')
+    public function index(array $parameters = [])
     {
+        $parameters = $this->prepareParameters($parameters);
+
         return $this->shippii->listUserShipments($parameters);
     }
 
     public function create()
     {
-        return $this->shippii->createShipment($this);
+        $payload = $this->preparePayload(['type', 'carrier_id', 'sender', 'receiver', 'lines', 'carrier_options']);
+
+        return $this->shippii->createShipment($payload);
     }
 
     public function update()
     {
-        return $this->shippii->updateShipment($this);
+        $payload = $this->preparePayload(['receiver', 'lines']);
+
+        return $this->shippii->updateShipment($this->id, $payload);
     }
 
     public function updateState()
     {
-        return $this->shippii->updateShipmentState($this);
+        return $this->shippii->updateShipmentState($this->id, $this->state);
     }
 
     public function archive()
     {
-        return $this->shippii->archiveShipment($this);
+        return $this->shippii->archiveShipment($this->id);
     }
 }

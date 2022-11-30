@@ -14,33 +14,41 @@ class User extends Resource
     public string|null $timezone = null;
     public string|null $locale = null;
 
-    public function index(string $parameters = '')
+    public function index(array $parameters = [])
     {
+        $parameters = $this->prepareParameters($parameters);
+
         return $this->shippii->listUsers($parameters);
     }
 
     public function create()
     {
-        return $this->shippii->createUser($this);
+        $payload = $this->preparePayload(['first_name', 'last_name', 'email', 'phone', 'role', 'timezone', 'locale']);
+
+        return $this->shippii->createUser($payload);
     }
 
     public function get()
     {
-        return $this->shippii->getUser($this);
+        return $this->shippii->getUser($this->id);
     }
 
     public function update()
     {
-        return $this->shippii->updateUser($this);
+        $payload = $this->preparePayload(['first_name', 'last_name', 'email', 'phone', 'role', 'timezone', 'locale']);
+
+        return $this->shippii->updateUser($this->id, $payload);
     }
 
     public function delete()
     {
-        return $this->shippii->deleteUser($this);
+        return $this->shippii->deleteUser($this->id);
     }
 
     public function sendResetPasswordLink()
     {
-        return $this->shippii->sendResetUserPasswordLink($this);
+        $payload = $this->preparePayload(['email']);
+
+        return $this->shippii->sendResetUserPasswordLink($payload);
     }
 }

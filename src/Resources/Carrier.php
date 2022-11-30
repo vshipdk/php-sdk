@@ -4,35 +4,41 @@ namespace Shippii\Resources;
 
 class Carrier extends Resource
 {
-    public string|null $id;
-    public string|null $name;
-    public string|null $code;
-    public int|null $status;
-    public string|null $carrierAccountId;
+    public string $id;
+    public string|null $name = null;
+    public string|null $code = null;
+    public int|null $status = null;
+    public string $carrierAccountId;
     public array|null $settings = null;
 
-    public function index(string $parameters = '')
+    public function index(array $parameters = [])
     {
+        $parameters = $this->prepareParameters($parameters);
+
         return $this->shippii->listCarriers($parameters);
     }
 
     public function create()
     {
-        return $this->shippii->createCarrier($this);
+        $payload = $this->preparePayload(['name', 'code', 'status', 'carrier_account_id', 'settings']);
+
+        return $this->shippii->createCarrier($payload);
     }
 
     public function get()
     {
-        return $this->shippii->getCarrier($this);
+        return $this->shippii->getCarrier($this->id);
     }
 
     public function update()
     {
-        return $this->shippii->updateCarrier($this);
+        $payload = $this->preparePayload(['name', 'code', 'status', 'settings']);
+
+        return $this->shippii->updateCarrier($this->id, $payload);
     }
 
     public function delete()
     {
-        return $this->shippii->deleteCarrier($this);
+        return $this->shippii->deleteCarrier($this->id);
     }
 }

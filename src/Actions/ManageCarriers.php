@@ -2,8 +2,6 @@
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Carrier;
-
 trait ManageCarriers
 {
     public function listCarriers(string $parameters)
@@ -11,38 +9,23 @@ trait ManageCarriers
         return $this->get("carrier?{$parameters}");
     }
 
-    public function createCarrier(Carrier $carrier)
+    public function createCarrier(array $payload)
     {
-        $payload = [
-            'name' => $carrier->name,
-            'code' => $carrier->code,
-            'status' => $carrier->status,
-            'carrier_account_id' => $carrier->carrierAccountId,
-            'settings' => $carrier->settings,
-        ];
-
         return $this->post('carrier', $payload);
     }
 
-    public function getCarrier(Carrier $carrier)
+    public function getCarrier(string $carrierId)
     {
-        return $this->get("carrier/{$carrier->id}");
+        return $this->get("carrier/{$carrierId}");
     }
 
-    public function updateCarrier(Carrier $carrier)
+    public function updateCarrier(string $carrierId, array $payload)
     {
-        $payload = [
-            'name' => $carrier->name,
-            'code' => $carrier->code,
-            'status' => $carrier->status,
-            'settings' => $carrier->settings,
-        ];
-
-        return $this->patch("carrier/{$carrier->id}", $payload);
+        return $this->patch("carrier/{$carrierId}", $payload);
     }
 
-    public function deleteCarrier(Carrier $carrier)
+    public function deleteCarrier(string $carrierId)
     {
-        return $this->delete("carrier/{$carrier->id}");
+        return $this->delete("carrier/{$carrierId}");
     }
 }

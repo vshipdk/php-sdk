@@ -2,8 +2,6 @@
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\CarrierAccount;
-
 trait ManageCarriersAccounts
 {
     public function listCarriersAccounts(string $parameters)
@@ -11,47 +9,28 @@ trait ManageCarriersAccounts
         return $this->get("carrier-account?{$parameters}");
     }
 
-    public function createCarrierAccount(CarrierAccount $carrierAccount)
+    public function createCarrierAccount(array $payload)
     {
-        $payload = [
-            'carrier_code' => $carrierAccount->carrierCode,
-            'name' => $carrierAccount->name,
-            'purpose' => $carrierAccount->purpose,
-            'status' => $carrierAccount->status,
-            'organisation_id' => $carrierAccount->organisationId,
-            'data' => $carrierAccount->data,
-            'expires_at' => $carrierAccount->expiresAt,
-        ];
-
         return $this->post('carrier-account', $payload);
     }
 
-    public function getCarrierAccount(CarrierAccount $carrierAccount)
+    public function getCarrierAccount(string $carrierAccountId)
     {
-        return $this->get("carrier-account/{$carrierAccount->id}");
+        return $this->get("carrier-account/{$carrierAccountId}");
     }
 
-    public function updateCarrierAccount(CarrierAccount $carrierAccount)
+    public function updateCarrierAccount(string $carrierAccountId, array $payload)
     {
-        $payload = [
-            'carrier_code' => $carrierAccount->carrierCode,
-            'name' => $carrierAccount->name,
-            'purpose' => $carrierAccount->purpose,
-            'status' => $carrierAccount->status,
-            'data' => $carrierAccount->data,
-            'expires_at' => $carrierAccount->expiresAt,
-        ];
-
-        return $this->patch("carrier-account/{$carrierAccount->id}", $payload);
+        return $this->patch("carrier-account/{$carrierAccountId}", $payload);
     }
 
-    public function deleteCarrierAccount(CarrierAccount $carrierAccount)
+    public function deleteCarrierAccount(string $carrierAccountId)
     {
-        return $this->delete("carrier-account/{$carrierAccount->id}");
+        return $this->delete("carrier-account/{$carrierAccountId}");
     }
 
-    public function getCarrierAccountFields(CarrierAccount $carrierAccount)
+    public function getCarrierAccountFields(string $carrierCode)
     {
-        return $this->get("carrier-account/fields/{$carrierAccount->carrierCode}");
+        return $this->get("carrier-account/fields/{$carrierCode}");
     }
 }

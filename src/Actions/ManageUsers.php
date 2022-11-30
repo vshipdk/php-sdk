@@ -2,9 +2,6 @@
 
 namespace Shippii\Actions;
 
-use http\Exception\BadUrlException;
-use Shippii\Resources\User;
-
 trait ManageUsers
 {
     public function listUsers(string $parameters)
@@ -12,52 +9,28 @@ trait ManageUsers
         return $this->get("user?{$parameters}");
     }
 
-    public function createUser(User $user)
+    public function createUser(array $payload)
     {
-        $payload = [
-            'first_name' => $user->firstName,
-            'last_name' => $user->lastName,
-            'email' => $user->email,
-            'phone' => $user->phone,
-            'role' => $user->role,
-            'timezone' => $user->timezone,
-            'locale' => $user->locale,
-        ];
-
         return $this->post('user', $payload);
     }
 
-    public function getUser(User $user)
+    public function getUser(string $userId)
     {
-        return $this->get("user/{$user->id}");
+        return $this->get("user/{$userId}");
     }
 
-    public function updateUser(User $user)
+    public function updateUser(string $userId, array $payload)
     {
-        $payload = [
-            'email' => $user->email,
-        ];
-
-        return $this->patch("user/{$user->id}", $payload);
+        return $this->patch("user/{$userId}", $payload);
     }
 
-    public function deleteUser(User $user)
+    public function deleteUser(string $userId)
     {
-        return $this->delete("user/{$user->id}");
+        return $this->delete("user/{$userId}");
     }
 
-    public function sendResetUserPasswordLink(User $user)
+    public function sendResetUserPasswordLink(array $payload)
     {
-        $payload = [
-            'first_name' => $user->firstName,
-            'last_name' => $user->lastName,
-            'email' => $user->email,
-            'phone' => $user->phone,
-            'role' => $user->role,
-            'timezone' => $user->timezone,
-            'locale' => $user->locale,
-        ];
-
         return $this->post("user-password/reset", $payload);
     }
 }

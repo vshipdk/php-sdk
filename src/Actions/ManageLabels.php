@@ -2,12 +2,10 @@
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Label;
-
 trait ManageLabels
 {
-    public function fetchPrintShipmentLabel(Label $label, string $parameters)
+    public function fetchPrintShipmentLabel(string $shipmentId, string $parameters)
     {
-        return $this->get("label/{$label->shipmentId}?{$parameters}");
+        return $this->get("label/{$shipmentId}?{$parameters}");
     }
 }

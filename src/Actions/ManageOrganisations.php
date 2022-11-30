@@ -2,8 +2,6 @@
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Organisation;
-
 trait ManageOrganisations
 {
     public function listOrganisations(string $parameters)
@@ -11,43 +9,23 @@ trait ManageOrganisations
         return $this->get("organisation?{$parameters}");
     }
     
-    public function createOrganisation(Organisation $organisation)
+    public function createOrganisation(array $payload)
     {
-        $payload = [
-            'name' => $organisation->name,
-            'vat_number' => $organisation->vatNumber,
-            'company_number' => $organisation->companyNumber,
-            'vat_registered' => $organisation->vatRegistered,
-            'currency' => $organisation->currency,
-            'timezone' => $organisation->timezone,
-            'settings' => $organisation->settings,
-        ];
-
         return $this->post('organisation', $payload);
     }
 
-    public function getOrganisation(Organisation $organisation)
+    public function getOrganisation(string $organisationId)
     {
-        return $this->get("organisation/{$organisation->id}");
+        return $this->get("organisation/{$organisationId}");
     }
     
-    public function updateOrganisation(Organisation $organisation)
+    public function updateOrganisation(string $organisationId, array $payload)
     {
-        $payload = [
-            'name' => $organisation->name,
-            'vat_number' => $organisation->vatNumber,
-            'company_number' => $organisation->companyNumber,
-            'vat_registered' => $organisation->vatRegistered,
-            'currency' => $organisation->currency,
-            'timezone' => $organisation->timezone,
-            'settings' => $organisation->settings,
-        ];
-
-        return $this->patch("organisation/{$organisation->id}", $payload);
+        return $this->patch("organisation/{$organisationId}", $payload);
     }
 
-    public function deleteOrganisation(Organisation $organisation)
+    public function deleteOrganisation(string $organisationId)
     {
-        return $this->delete("organisation/{$organisation->id}");
+        return $this->delete("organisation/{$organisationId}");
     }
 }

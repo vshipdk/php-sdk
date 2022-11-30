@@ -4,7 +4,7 @@ namespace Shippii\Resources;
 
 class Organisation extends Resource
 {
-    public string|null $id;
+    public string $id;
     public string|null $name = null;
     public string|null $vatNumber = null;
     public string|null $companyNumber = null;
@@ -13,28 +13,34 @@ class Organisation extends Resource
     public string|null $timezone = null;
     public array|null $settings = null;
 
-    public function index(string $parameters = '')
+    public function index(array $parameters = [])
     {
+        $parameters = $this->prepareParameters($parameters);
+
         return $this->shippii->listOrganisations($parameters);
     }
 
     public function create()
     {
-        return $this->shippii->createOrganisation($this);
+        $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
+
+        return $this->shippii->createOrganisation($payload);
     }
 
     public function get()
     {
-        return $this->shippii->getOrganisation($this);
+        return $this->shippii->getOrganisation($this->id);
     }
 
     public function update()
     {
-        return $this->shippii->updateOrganisation($this);
+        $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
+
+        return $this->shippii->updateOrganisation($this->id, $payload);
     }
 
     public function delete()
     {
-        return $this->shippii->deleteOrganisation($this);
+        return $this->shippii->deleteOrganisation($this->id);
     }
 }
