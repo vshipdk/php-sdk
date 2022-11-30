@@ -8,7 +8,7 @@ use Shippii\Actions\ManageCarriers;
 use Shippii\Actions\ManageCarriersAccounts;
 use Shippii\Actions\ManageCountries;
 use Shippii\Actions\ManageShipments;
-use Shippii\Resources\User;
+use Shippii\Actions\ManageUsers;
 
 class Shippii
 {
@@ -16,7 +16,8 @@ class Shippii
         ManageCountries,
         ManageShipments,
         ManageCarriersAccounts,
-        ManageCarriers;
+        ManageCarriers,
+        ManageUsers;
 
     /**
      * Number of seconds a request is retried.
@@ -61,16 +62,6 @@ class Shippii
     public function getTimeout()
     {
         return $this->timeout;
-    }
-
-    /**
-     * Get an authenticated user instance.
-     *
-     * @return User
-     */
-    public function user()
-    {
-        return new User($this->get('user')['user']);
     }
 
     /**
