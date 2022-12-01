@@ -1,4 +1,4 @@
-# SHIPPII API v4 PHP SDK (0.2.0)
+# SHIPPII API v4 PHP SDK (0.3.0)
 
 <a href="https://packagist.org/packages/shippii-tech/php-sdk"><img src="https://img.shields.io/packagist/dt/shippii-tech/php-sdk" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/shippii-tech/php-sdk"><img src="https://img.shields.io/packagist/v/shippii-tech/php-sdk" alt="Latest Stable Version"></a>
