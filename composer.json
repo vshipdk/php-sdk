@@ -1,7 +1,7 @@
 {
-    "name": "shippi/sdk",
-    "license": "proprietary",
-    "description": "SDK for Shippii API v4",
+    "name": "shippii/sdk",
+    "license": "MIT",
+    "description": "SDK For shippii.com",
     "type": "library",
     "authors": [
         {
