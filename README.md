@@ -4,6 +4,10 @@
 <a href="https://packagist.org/packages/shippii-tech/php-sdk"><img src="https://img.shields.io/packagist/v/shippii-tech/php-sdk" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/shippii-tech/php-sdk"><img src="https://img.shields.io/packagist/l/shippii-tech/php-sdk" alt="License"></a>
 
+## Introduction
+
+This package provides an expressive interface for interacting with Shippii API v4.
+
 ## Official Documentation
 
 ### Installation
@@ -31,31 +35,59 @@ Initialize Shippii client:
 Send a request through the client:
 ```php
     $shippii->getCarrier('car_2IGXIoELZX4Bga45tOxo52sbpJY');
-    
-    $shippii->listCarriers('filter[withArchived]=1');
 ```
+Shippii client returns Resource\Resource instance when requests API resource.
+<br><br>
 
-Initialize Resource:
+Send a request with query parameters through the client:
+```php 
+    $shippii->listCarriers([
+        'filter[name]' => 'Carrier name',
+    ]);
+```
+Shippii client returns array that contains Resource\Resource instances and meta data when requests multiple API resources.
+<br><br>
+
+Send a request with body to create API resource through the client:
+```php 
+    $response = $shippii->createOrganisation([
+    'id' => 'org_2IGCAq2gnsVaPzhLGSEH53ZaoTh',
+    'name' => 'test 5222ee5511232ff31rr33',
+    'vat_number' => '123423rr4 ',
+    'company_number' => 'bhifgrvbhief',
+    'vat_registered' => false,
+    'currency' => 'EUR',
+    'timezone' => 'Europe/Copenhagen',
+    'settings' => [],
+]);
+```
+Shippii client returns Resource\Resource instance when sends a request to create or update API resource.
+<br><br>
+
+Initialize Resource instance:
 ```php
     $carrierResource = new \Shippii\Resources\Carrier(
         attributes: ['id' => 'car_2IGXIoELZX4Bga45tOxo52sbpJY'],
         shippii: $shippii,
     );
 ```
+<br>
 
 Send a request through a resource:
 ```php
     $carrierResource->get()
 ```
+<br>
 
-Send query parameters through a resource:
+Send a request with query parameters through a resource:
 ```php
     $shipmentResource->index([
         'filter[withArchived]' => 1,
     ]);
 ```
+<br>
 
-Send a request to create API resource:
+Send a request with body to create API resource:
 ```php
     $resource = new OrganisationObject(
         attributes: [
@@ -71,79 +103,86 @@ Send a request to create API resource:
 
     $resource->create();
 ```
-### API Reference:
-#### SHIPPII CLIENT:
+<br>
+
+## API Reference:
+<br>
+
+### Shippii client:
 ```php
-    public function listCarriers(array $parameters);
+    public function listCarriers(array $parameters = []): array;
 
-    public function createCarrier(array $payload);
+    public function createCarrier(array $payload): Carrier;
 
-    public function getCarrier(string $carrierId);
+    public function getCarrier(string $carrierId): Carrier;
 
-    public function updateCarrier(string $carrierId, array $payload);
+    public function updateCarrier(string $carrierId, array $payload): Carrier;
 
-    public function deleteCarrier(string $carrierId);
+    public function deleteCarrier(string $carrierId): void;
 
-    public function listCarriersAccounts(array $parameters);
+    public function listCarriersAccounts(array $parameters = []): array;
 
-    public function createCarrierAccount(array $payload);
+    public function createCarrierAccount(array $payload): CarrierAccount;
 
-    public function getCarrierAccount(string $carrierAccountId);
+    public function getCarrierAccount(string $carrierAccountId): CarrierAccount;
 
-    public function updateCarrierAccount(string $carrierAccountId, array $payload);
+    public function updateCarrierAccount(string $carrierAccountId, array $payload): CarrierAccount;
 
-    public function deleteCarrierAccount(string $carrierAccountId);
+    public function deleteCarrierAccount(string $carrierAccountId): void;
 
-    public function getCarrierAccountFields(string $carrierCode);
+    public function getCarrierAccountFields(string $carrierCode): CarrierAccount;
 
-    public function getCountries();
+    public function getCountries(): array;
 
-    public function fetchPrintShipmentLabel(string $shipmentId, array $parameters);
+    public function fetchPrintShipmentLabel(string $shipmentId, array $parameters): array;
 
-    public function listOrganisationObjects(array $parameters);
+    public function listOrganisationObjects(array $parameters): array;
 
-    public function createOrganisationObject(array $payload);
+    public function createOrganisationObject(array $payload): OrganisationObject;
 
-    public function getOrganisationObject(string $organisationObjectId);
+    public function getOrganisationObject(string $organisationObjectId): OrganisationObject;
 
-    public function updateOrganisationObject(string $organisationObjectId, array $payload);
+    public function updateOrganisationObject(string $organisationObjectId, array $payload): OrganisationObject;
 
-    public function deleteOrganisationObject(string $organisationObjectId);
+    public function deleteOrganisationObject(string $organisationObjectId): void;
 
-    public function listOrganisations(array $parameters);
-
-    public function createOrganisation(array $payload);
-
-    public function getOrganisation(string $organisationId);
+    public function listOrganisations(array $parameters): array;
     
-    public function updateOrganisation(string $organisationId, array $payload);
+    public function createOrganisation(array $payload): Organisation;
 
-    public function deleteOrganisation(string $organisationId);
+    public function getOrganisation(string $organisationId): Organisation;
+    
+    public function updateOrganisation(string $organisationId, array $payload): Organisation;
 
-    public function listUserShipments(array $parameters);
+    public function deleteOrganisation(string $organisationId): void;
 
-    public function createShipment(array $payload);
+    public function listUserShipments(array $parameters): array;
 
-    public function updateShipment(string $shipmentId, array $payload);
+    public function createShipment(array $payload): Shipment;
 
-    public function updateShipmentState(string $shipmentId, string $shipmentState);
+    public function updateShipment(string $shipmentId, array $payload): Shipment;
 
-    public function archiveShipment(string $shipmentId);
+    public function updateShipmentState(string $shipmentId, string $shipmentState): void;
 
-    public function listUsers(array $parameters);
+    public function archiveShipment(string $shipmentId): void;
 
-    public function createUser(array $payload);
+    public function listUsers(array $parameters): array;
 
-    public function getUser(string $userId);
+    public function createUser(array $payload): User;
 
-    public function updateUser(string $userId, array $payload);
+    public function getUser(string $userId): User;
 
-    public function deleteUser(string $userId);
+    public function updateUser(string $userId, array $payload): User;
 
-    public function sendResetUserPasswordLink(array $payload);
+    public function deleteUser(string $userId): void;
+
+    public function sendResetUserPasswordLink(array $payload): void;
 ```
+<br>
 
-#### RESOURCES:
+#### Resources:
+<br>
+
 #### Carrier:
 ```php
     public string $id;
@@ -158,16 +197,17 @@ Send a request to create API resource:
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = []);
+    public function index(array $parameters = []): array;
 
-    public function create();
+    public function create(): self;
 
-    public function get();
+    public function get(): self;
 
-    public function update();
+    public function update(): self;
 
-    public function delete();
+    public function delete(): void;
 ```
+<br>
 
 #### CarrierAccount:
 ```php
@@ -184,18 +224,19 @@ Send a request to create API resource:
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = []);
+    public function index(array $parameters = []): array;
 
-    public function create();
+    public function create(): self;
 
-    public function get();
+    public function get(): self;
 
-    public function update();
+    public function update(): self;
 
-    public function delete();
+    public function delete(): void;
 
-    public function getFields();
+    public function getFields(): self;
 ```
+<br>
 
 #### Country:
 ```php
@@ -205,8 +246,9 @@ Send a request to create API resource:
     public string|null $alpha3Code;
     public string|null $numericCode;
 
-    public function index();
+    public function index(): array;
 ```
+<br>
 
 #### Label:
 ```php
@@ -217,8 +259,11 @@ Send a request to create API resource:
     public string|null $owner;
     public string|null $url;
     public string|null $createdAt;
-    public function fetchPrintShipmentLabel(array $parameters);
+    
+    public function fetchPrintShipmentLabel(array $parameters): array;
 ```
+<br>
+
 #### Organization:
 ```php
     public string $id;
@@ -230,16 +275,18 @@ Send a request to create API resource:
     public string|null $timezone = null;
     public array|null $settings = null;
 
-    public function index(array $parameters = []);
+    public function index(array $parameters = []): array;
 
-    public function create();
+    public function create(): self;
 
-    public function get();
+    public function get(): self;
 
-    public function update();
+    public function update(): self;
 
-    public function delete();
+    public function delete(): void;
 ```
+<br>
+
 #### OrganisationObject:
 ```php
     public string $id;
@@ -252,16 +299,18 @@ Send a request to create API resource:
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = []);
+    public function index(array $parameters = []): array;
 
-    public function create();
+    public function create(): self;
 
-    public function get();
+    public function get(): self;
 
-    public function update();
+    public function update(): self;
 
-    public function delete();
+    public function delete(): void;
 ```
+<br>
+
 #### Shipment:
 ```php
     public string $id;
@@ -284,16 +333,18 @@ Send a request to create API resource:
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = []);
+    public function index(array $parameters = []): array;
 
-    public function create();
+    public function create(): self;
 
-    public function update();
+    public function update(): self;
 
-    public function updateState();
+    public function updateState(): void;
 
-    public function archive();
+    public function archive(): void;
 ```
+<br>
+
 #### User:
 ```php
     public string|null $id;
@@ -310,15 +361,15 @@ Send a request to create API resource:
     public string|null $createdAt;
     public string|null $updateAt;
 
-    public function index(array $parameters = []);
+    public function index(array $parameters = []): array;
 
-    public function create();
+    public function create(): self;
 
-    public function get();
+    public function get(): self;
 
-    public function update();
+    public function update(): self;
 
-    public function delete();
+    public function delete(): void;
 
-    public function sendResetPasswordLink();
+    public function sendResetPasswordLink(): void;
 ```
