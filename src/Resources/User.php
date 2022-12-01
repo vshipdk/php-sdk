@@ -16,8 +16,6 @@ class User extends Resource
 
     public function index(array $parameters = [])
     {
-        $parameters = $this->prepareParameters($parameters);
-
         return $this->shippii->listUsers($parameters);
     }
 

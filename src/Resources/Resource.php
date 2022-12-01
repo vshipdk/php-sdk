@@ -36,25 +36,6 @@ class Resource
     }
 
     /**
-     * Convert the key name to camel case.
-     *
-     * @param  string  $key
-     * @return string
-     */
-    protected function camelCase(string $key): string
-    {
-        $parts = explode('_', $key);
-
-        foreach ($parts as $i => $part) {
-            if ($i !== 0) {
-                $parts[$i] = ucfirst($part);
-            }
-        }
-
-        return str_replace(' ', '', implode(' ', $parts));
-    }
-
-    /**
      * Prepare a payload data
      *
      * @param array $columns
@@ -74,19 +55,21 @@ class Resource
     }
 
     /**
-     * Prepare query parameters string
+     * Convert the key name to camel case.
      *
-     * @param array $parameters
+     * @param  string  $key
      * @return string
      */
-    protected function prepareParameters(array $parameters): string
+    protected function camelCase(string $key): string
     {
-        $queryParameters = '';
-        foreach ($parameters as $name => $value)
-        {
-            $queryParameters .= "{$name}={$value}&";
+        $parts = explode('_', $key);
+
+        foreach ($parts as $i => $part) {
+            if ($i !== 0) {
+                $parts[$i] = ucfirst($part);
+            }
         }
 
-        return $queryParameters;
+        return str_replace(' ', '', implode(' ', $parts));
     }
 }

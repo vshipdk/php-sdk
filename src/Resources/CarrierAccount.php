@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Shippii\Resources;
 
@@ -15,8 +16,6 @@ class CarrierAccount extends Resource
 
     public function index(array $parameters = [])
     {
-        $parameters = $this->prepareParameters($parameters);
-
         return $this->shippii->listCarriersAccounts($parameters);
     }
 

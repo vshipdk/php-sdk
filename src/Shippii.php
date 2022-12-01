@@ -35,9 +35,8 @@ class Shippii
     /**
      * Create a new Forge instance.
      *
-     * @param string          $apiKey
-     * @param string          $apiHost
-     * @param HttpClient|null $guzzle
+     * @param string $apiKey
+     * @param string $apiHost
      */
     public function __construct(
         protected string $apiKey,
@@ -102,5 +101,22 @@ class Shippii
         return array_map(function ($data) use ($class, $extraData) {
             return new $class($data + $extraData, $this);
         }, $collection);
+    }
+
+    /**
+     * Prepare query parameters string
+     *
+     * @param array $parameters
+     * @return string
+     */
+    protected function prepareRequestParameters(array $parameters): string
+    {
+        $queryParameters = '';
+        foreach ($parameters as $name => $value)
+        {
+            $queryParameters .= "{$name}={$value}&";
+        }
+
+        return $queryParameters;
     }
 }

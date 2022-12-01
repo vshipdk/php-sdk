@@ -1,11 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace Shippii\Actions;
 
 trait ManageShipments
 {
-    public function listUserShipments(string $parameters)
+    public function listUserShipments(array $parameters)
     {
+        $parameters = $this->prepareRequestParameters($parameters);
+
         return $this->get("shipment?{$parameters}");
     }
 

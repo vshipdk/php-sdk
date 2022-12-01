@@ -1,11 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace Shippii\Actions;
 
 trait ManageCarriers
 {
-    public function listCarriers(string $parameters)
+    public function listCarriers(array $parameters)
     {
+        $parameters = $this->prepareRequestParameters($parameters);
+
         return $this->get("carrier?{$parameters}");
     }
 

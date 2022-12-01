@@ -1,11 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace Shippii\Actions;
 
 trait ManageOrganisations
 {
-    public function listOrganisations(string $parameters)
+    public function listOrganisations(array $parameters)
     {
+        $parameters = $this->prepareRequestParameters($parameters);
+
         return $this->get("organisation?{$parameters}");
     }
     

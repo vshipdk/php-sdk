@@ -1,11 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace Shippii\Actions;
 
 trait ManageCarriersAccounts
 {
-    public function listCarriersAccounts(string $parameters)
+    public function listCarriersAccounts(array $parameters)
     {
+        $parameters = $this->prepareRequestParameters($parameters);
+
         return $this->get("carrier-account?{$parameters}");
     }
 

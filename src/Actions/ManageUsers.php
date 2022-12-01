@@ -1,11 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace Shippii\Actions;
 
 trait ManageUsers
 {
-    public function listUsers(string $parameters)
+    public function listUsers(array $parameters)
     {
+        $parameters = $this->prepareRequestParameters($parameters);
+
         return $this->get("user?{$parameters}");
     }
 

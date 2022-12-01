@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Shippii\Resources;
 
@@ -8,8 +9,6 @@ class Label extends Resource
 
     public function fetchPrintShipmentLabel(array $parameters)
     {
-        $parameters = $this->prepareParameters($parameters);
-
         return $this->shippii->fetchPrintShipmentLabel($this->shipmentId, $parameters);
     }
 }
