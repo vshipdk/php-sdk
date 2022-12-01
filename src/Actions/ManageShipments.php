@@ -7,7 +7,7 @@ use Shippii\Resources\Shipment;
 
 trait ManageShipments
 {
-    public function listUserShipments(array $parameters)
+    public function listUserShipments(array $parameters): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("shipment?{$parameters}");
@@ -19,23 +19,23 @@ trait ManageShipments
         );
     }
 
-    public function createShipment(array $payload)
+    public function createShipment(array $payload): Shipment
     {
         return new Shipment($this->post('shipment', $payload)['data'], $this);
     }
 
-    public function updateShipment(string $shipmentId, array $payload)
+    public function updateShipment(string $shipmentId, array $payload): Shipment
     {
         return new Shipment($this->patch("shipment/{$shipmentId}", $payload)['data'], $this);
     }
 
-    public function updateShipmentState(string $shipmentId, string $shipmentState)
+    public function updateShipmentState(string $shipmentId, string $shipmentState): void
     {
-        return $this->post("shipment/{$shipmentId}/update-state/{$shipmentState}");
+        $this->post("shipment/{$shipmentId}/update-state/{$shipmentState}");
     }
 
-    public function archiveShipment(string $shipmentId)
+    public function archiveShipment(string $shipmentId): void
     {
-        return $this->patch("shipment/archive/{$shipmentId}");
+        $this->patch("shipment/archive/{$shipmentId}");
     }
 }

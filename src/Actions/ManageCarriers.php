@@ -7,7 +7,7 @@ use Shippii\Resources\Carrier;
 
 trait ManageCarriers
 {
-    public function listCarriers(array $parameters = [])
+    public function listCarriers(array $parameters = []): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("carrier?{$parameters}");
@@ -19,23 +19,23 @@ trait ManageCarriers
         );
     }
 
-    public function createCarrier(array $payload)
+    public function createCarrier(array $payload): Carrier
     {
         return new Carrier($this->post('carrier', $payload), $this);
     }
 
-    public function getCarrier(string $carrierId)
+    public function getCarrier(string $carrierId): Carrier
     {
         return new Carrier($this->get("carrier/{$carrierId}")['data'], $this);
     }
 
-    public function updateCarrier(string $carrierId, array $payload)
+    public function updateCarrier(string $carrierId, array $payload): Carrier
     {
         return new Carrier($this->patch("carrier/{$carrierId}", $payload), $this);
     }
 
-    public function deleteCarrier(string $carrierId)
+    public function deleteCarrier(string $carrierId): void
     {
-        return $this->delete("carrier/{$carrierId}");
+        $this->delete("carrier/{$carrierId}");
     }
 }

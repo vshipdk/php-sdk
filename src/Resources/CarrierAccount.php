@@ -18,36 +18,36 @@ class CarrierAccount extends Resource
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = [])
+    public function index(array $parameters = []): array
     {
         return $this->shippii->listCarriersAccounts($parameters);
     }
 
-    public function create()
+    public function create(): self
     {
         $payload = $this->preparePayload(['carrier_code', 'name', 'purpose', 'status', 'organisation_id', 'data', 'expires_at']);
 
         return $this->shippii->createCarrierAccount($payload);
     }
 
-    public function get()
+    public function get(): self
     {
         return $this->shippii->getCarrierAccount($this->id);
     }
 
-    public function update()
+    public function update(): self
     {
         $payload = $this->preparePayload(['carrier_code', 'name', 'purpose', 'status', 'organisation_id', 'data', 'expires_at']);
 
         return $this->shippii->updateCarrierAccount($this->id, $payload);
     }
 
-    public function delete()
+    public function delete(): void
     {
-        return $this->shippii->deleteCarrierAccount($this->id);
+        $this->shippii->deleteCarrierAccount($this->id);
     }
 
-    public function getFields()
+    public function getFields(): self
     {
         return $this->shippii->getCarrierAccountFields($this->carrierCode);
     }

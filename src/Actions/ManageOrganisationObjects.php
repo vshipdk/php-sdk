@@ -7,7 +7,7 @@ use Shippii\Resources\OrganisationObject;
 
 trait ManageOrganisationObjects
 {
-    public function listOrganisationObjects(array $parameters)
+    public function listOrganisationObjects(array $parameters): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("organisation-object?{$parameters}");
@@ -19,23 +19,23 @@ trait ManageOrganisationObjects
         );
     }
 
-    public function createOrganisationObject(array $payload)
+    public function createOrganisationObject(array $payload): OrganisationObject
     {
         return new OrganisationObject($this->post('organisation-object', $payload)['data'], $this);
     }
 
-    public function getOrganisationObject(string $organisationObjectId)
+    public function getOrganisationObject(string $organisationObjectId): OrganisationObject
     {
         return new OrganisationObject($this->get("organisation-object/{$organisationObjectId}")['data'], $this);
     }
 
-    public function updateOrganisationObject(string $organisationObjectId, array $payload)
+    public function updateOrganisationObject(string $organisationObjectId, array $payload): OrganisationObject
     {
         return new OrganisationObject($this->patch("organisation-object/{$organisationObjectId}", $payload)['data'], $this);
     }
 
-    public function deleteOrganisationObject(string $organisationObjectId)
+    public function deleteOrganisationObject(string $organisationObjectId): void
     {
-        return $this->delete("organisation-object/{$organisationObjectId}");
+        $this->delete("organisation-object/{$organisationObjectId}");
     }
 }

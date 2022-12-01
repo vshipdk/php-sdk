@@ -17,32 +17,32 @@ class Carrier extends Resource
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = [])
+    public function index(array $parameters = []): array
     {
         return $this->shippii->listCarriers($parameters);
     }
 
-    public function create()
+    public function create(): self
     {
         $payload = $this->preparePayload(['name', 'code', 'status', 'carrier_account_id', 'settings']);
 
         return $this->shippii->createCarrier($payload);
     }
 
-    public function get()
+    public function get(): self
     {
         return $this->shippii->getCarrier($this->id);
     }
 
-    public function update()
+    public function update(): self
     {
         $payload = $this->preparePayload(['name', 'code', 'status', 'settings']);
 
         return $this->shippii->updateCarrier($this->id, $payload);
     }
 
-    public function delete()
+    public function delete(): void
     {
-        return $this->shippii->deleteCarrier($this->id);
+        $this->shippii->deleteCarrier($this->id);
     }
 }

@@ -7,7 +7,7 @@ use Shippii\Resources\User;
 
 trait ManageUsers
 {
-    public function listUsers(array $parameters)
+    public function listUsers(array $parameters): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("user?{$parameters}");
@@ -19,28 +19,28 @@ trait ManageUsers
         );
     }
 
-    public function createUser(array $payload)
+    public function createUser(array $payload): User
     {
         return new User($this->post('user', $payload)['data'], $this);
     }
 
-    public function getUser(string $userId)
+    public function getUser(string $userId): User
     {
         return new User($this->get("user/{$userId}")['data'], $this);
     }
 
-    public function updateUser(string $userId, array $payload)
+    public function updateUser(string $userId, array $payload): User
     {
         return new User($this->patch("user/{$userId}", $payload)['data'], $this);
     }
 
-    public function deleteUser(string $userId)
+    public function deleteUser(string $userId): void
     {
-        return $this->delete("user/{$userId}");
+        $this->delete("user/{$userId}");
     }
 
-    public function sendResetUserPasswordLink(array $payload)
+    public function sendResetUserPasswordLink(array $payload): void
     {
-        return $this->post("user-password/reset", $payload);
+        $this->post("user-password/reset", $payload);
     }
 }

@@ -91,12 +91,13 @@ class Shippii
     /**
      * Transform the items of the collection to the given class.
      *
-     * @param  array  $collection
-     * @param  string  $class
-     * @param  array  $extraData
+     * @param array  $collection
+     * @param string $class
+     * @param array  $extraData
+     * @param array  $meta
      * @return array
      */
-    protected function transformCollection($collection, $class, $extraData = [], $meta = [])
+    protected function transformCollection($collection, $class, $extraData = [], $meta = []): array
     {
         $collection = array_map(function ($data) use ($class, $extraData) {
             if (is_array($data)) {

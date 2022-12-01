@@ -7,7 +7,7 @@ use Shippii\Resources\Label;
 
 trait ManageLabels
 {
-    public function fetchPrintShipmentLabel(string $shipmentId, array $parameters)
+    public function fetchPrintShipmentLabel(string $shipmentId, array $parameters): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("label/{$shipmentId}?{$parameters}");

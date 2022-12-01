@@ -11,7 +11,7 @@ class Country extends Resource
     public string|null $alpha3Code;
     public string|null $numericCode;
 
-    public function index()
+    public function index(): array
     {
         return $this->shippii->getCountries();
     }

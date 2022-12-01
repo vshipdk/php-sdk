@@ -7,7 +7,7 @@ use Shippii\Resources\Country;
 
 trait ManageCountries
 {
-    public function getCountries()
+    public function getCountries(): array
     {
         return $this->transformCollection(
             collection: ['data'],
