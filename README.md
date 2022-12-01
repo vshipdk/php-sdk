@@ -110,6 +110,8 @@ Send a request with body to create API resource:
 
 ### Shippii client:
 ```php
+    /Shippii/Shippii
+
     public function listCarriers(array $parameters = []): array;
 
     public function createCarrier(array $payload): Carrier;
@@ -185,6 +187,8 @@ Send a request with body to create API resource:
 
 #### Carrier:
 ```php
+    \Shippii\Resources\Carrier
+
     public string $id;
     public string|null $name = null;
     public string|null $code = null;
@@ -211,6 +215,8 @@ Send a request with body to create API resource:
 
 #### CarrierAccount:
 ```php
+    \Shippii\Resources\CarrierAccount
+
     public string $id;
     public string|null $carrierCode = null;
     public string|null $name = null;
@@ -240,6 +246,8 @@ Send a request with body to create API resource:
 
 #### Country:
 ```php
+    \Shippii\Resources\Country
+
     public string|null $name;
     public string|null $officialStateName;
     public string|null $alpha2Code;
@@ -252,6 +260,8 @@ Send a request with body to create API resource:
 
 #### Label:
 ```php
+    \Shippii\Resources\Label
+
     public string|null $id;
     public string $shipmentId;
     public string|null $format;
@@ -266,6 +276,8 @@ Send a request with body to create API resource:
 
 #### Organization:
 ```php
+    \Shippii\Resources\Organization
+
     public string $id;
     public string|null $name = null;
     public string|null $vatNumber = null;
@@ -289,6 +301,8 @@ Send a request with body to create API resource:
 
 #### OrganisationObject:
 ```php
+    \Shippii\Resources\OrganisationObject
+
     public string $id;
     public string|null $name = null;
     public string $organisationId;
@@ -313,6 +327,8 @@ Send a request with body to create API resource:
 
 #### Shipment:
 ```php
+    \Shippii\Resources\Shipment
+
     public string $id;
     public int $type;
     public string $carrierId;
@@ -347,6 +363,8 @@ Send a request with body to create API resource:
 
 #### User:
 ```php
+    \Shippii\Resources\User
+
     public string|null $id;
     public string|null $firstName = null;
     public string|null $lastName = null;
