@@ -42,7 +42,6 @@ class Shippii
     public function __construct(
         protected string $apiKey,
         protected string $apiHost,
-        public HttpClient|null $guzzle = null,
     ) {
         $this->setApiKey();
     }
@@ -77,7 +76,7 @@ class Shippii
      */
     protected function setApiKey()
     {
-        $this->guzzle = $this->guzzle ?: new HttpClient([
+        $this->guzzle = new HttpClient([
             'base_uri' => "{$this->apiHost}/v1/",
             'http_errors' => false,
             'headers' => [
