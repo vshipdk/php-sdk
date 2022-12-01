@@ -99,7 +99,9 @@ class Shippii
     protected function transformCollection($collection, $class, $extraData = [])
     {
         return array_map(function ($data) use ($class, $extraData) {
-            return new $class($data + $extraData, $this);
+            if (is_array($data)) {
+                return new $class($data + $extraData, $this);
+            }
         }, $collection);
     }
 

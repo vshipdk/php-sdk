@@ -13,6 +13,17 @@ class Shipment extends Resource
     public array|null $lines = null;
     public array $carrierOptions;
     public string $state;
+    public string|null $rateId;
+    public string|null $creatorId;
+    public string|null $creatorType;
+    public string|null $sendableId;
+    public string|null $sendableAddressId;
+    public string|null $receivableId;
+    public string|null $receivableAddressId;
+    public string|null $sendableReference;
+    public string|null $carrierIdentification;
+    public string|null $createdAt;
+    public string|null $updatedAt;
 
     public function index(array $parameters = [])
     {

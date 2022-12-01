@@ -8,9 +8,12 @@ class OrganisationObject extends Resource
     public string $id;
     public string|null $name = null;
     public string $organisationId;
+    public array $organisation;
     public string|null $currency = null;
     public string|null $timezone = null;
     public array|null $settings = null;
+    public string|null $createdAt;
+    public string|null $updatedAt;
 
     public function index(array $parameters = [])
     {

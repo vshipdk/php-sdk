@@ -13,6 +13,11 @@ class User extends Resource
     public string|null $role = null;
     public string|null $timezone = null;
     public string|null $locale = null;
+    public string|null $mobileRaw;
+    public string|null $mobileE164;
+    public string|null $mobileNational;
+    public string|null $createdAt;
+    public string|null $updateAt;
 
     public function index(array $parameters = [])
     {

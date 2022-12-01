@@ -13,6 +13,10 @@ class CarrierAccount extends Resource
     public string $organisationId;
     public array|null $data = null;
     public string|null $expiresAt = null;
+    public array|null $fields;
+    public array|null $carriers;
+    public string|null $createdAt;
+    public string|null $updatedAt;
 
     public function index(array $parameters = [])
     {

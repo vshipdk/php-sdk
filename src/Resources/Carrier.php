@@ -11,6 +11,11 @@ class Carrier extends Resource
     public int|null $status = null;
     public string $carrierAccountId;
     public array|null $settings = null;
+    public string|null $ownerType;
+    public string|null $ownerId;
+    public array|null $account;
+    public string|null $createdAt;
+    public string|null $updatedAt;
 
     public function index(array $parameters = [])
     {
