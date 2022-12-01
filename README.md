@@ -74,7 +74,7 @@ Send a request to create API resource:
 ### API Reference:
 #### SHIPPII CLIENT:
 ```php
-    public function listCarriers(string $parameters);
+    public function listCarriers(array $parameters);
 
     public function createCarrier(array $payload);
 
@@ -84,7 +84,7 @@ Send a request to create API resource:
 
     public function deleteCarrier(string $carrierId);
 
-    public function listCarriersAccounts(string $parameters);
+    public function listCarriersAccounts(array $parameters);
 
     public function createCarrierAccount(array $payload);
 
@@ -98,9 +98,9 @@ Send a request to create API resource:
 
     public function getCountries();
 
-    public function fetchPrintShipmentLabel(string $shipmentId, string $parameters);
+    public function fetchPrintShipmentLabel(string $shipmentId, array $parameters);
 
-    public function listOrganisationObjects(string $parameters);
+    public function listOrganisationObjects(array $parameters);
 
     public function createOrganisationObject(array $payload);
 
@@ -110,7 +110,7 @@ Send a request to create API resource:
 
     public function deleteOrganisationObject(string $organisationObjectId);
 
-    public function listOrganisations(string $parameters);
+    public function listOrganisations(array $parameters);
 
     public function createOrganisation(array $payload);
 
@@ -120,7 +120,7 @@ Send a request to create API resource:
 
     public function deleteOrganisation(string $organisationId);
 
-    public function listUserShipments(string $parameters);
+    public function listUserShipments(array $parameters);
 
     public function createShipment(array $payload);
 
@@ -130,7 +130,7 @@ Send a request to create API resource:
 
     public function archiveShipment(string $shipmentId);
 
-    public function listUsers(string $parameters);
+    public function listUsers(array $parameters);
 
     public function createUser(array $payload);
 
@@ -152,6 +152,11 @@ Send a request to create API resource:
     public int|null $status = null;
     public string $carrierAccountId;
     public array|null $settings = null;
+    public string|null $ownerType;
+    public string|null $ownerId;
+    public array|null $account;
+    public string|null $createdAt;
+    public string|null $updatedAt;
 
     public function index(array $parameters = []);
 
@@ -174,6 +179,10 @@ Send a request to create API resource:
     public string $organisationId;
     public array|null $data = null;
     public string|null $expiresAt = null;
+    public array|null $fields;
+    public array|null $carriers;
+    public string|null $createdAt;
+    public string|null $updatedAt;
 
     public function index(array $parameters = []);
 
@@ -190,13 +199,24 @@ Send a request to create API resource:
 
 #### Country:
 ```php
+    public string|null $name;
+    public string|null $officialStateName;
+    public string|null $alpha2Code;
+    public string|null $alpha3Code;
+    public string|null $numericCode;
+
     public function index();
 ```
 
 #### Label:
 ```php
+    public string|null $id;
     public string $shipmentId;
-
+    public string|null $format;
+    public string|null $metadata;
+    public string|null $owner;
+    public string|null $url;
+    public string|null $createdAt;
     public function fetchPrintShipmentLabel(array $parameters);
 ```
 #### Organization:
@@ -225,9 +245,12 @@ Send a request to create API resource:
     public string $id;
     public string|null $name = null;
     public string $organisationId;
+    public array $organisation;
     public string|null $currency = null;
     public string|null $timezone = null;
     public array|null $settings = null;
+    public string|null $createdAt;
+    public string|null $updatedAt;
 
     public function index(array $parameters = []);
 
@@ -249,6 +272,17 @@ Send a request to create API resource:
     public array|null $lines = null;
     public array $carrierOptions;
     public string $state;
+    public string|null $rateId;
+    public string|null $creatorId;
+    public string|null $creatorType;
+    public string|null $sendableId;
+    public string|null $sendableAddressId;
+    public string|null $receivableId;
+    public string|null $receivableAddressId;
+    public string|null $sendableReference;
+    public string|null $carrierIdentification;
+    public string|null $createdAt;
+    public string|null $updatedAt;
 
     public function index(array $parameters = []);
 
@@ -270,6 +304,11 @@ Send a request to create API resource:
     public string|null $role = null;
     public string|null $timezone = null;
     public string|null $locale = null;
+    public string|null $mobileRaw;
+    public string|null $mobileE164;
+    public string|null $mobileNational;
+    public string|null $createdAt;
+    public string|null $updateAt;
 
     public function index(array $parameters = []);
 
