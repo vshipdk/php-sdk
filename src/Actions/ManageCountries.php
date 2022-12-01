@@ -10,7 +10,7 @@ trait ManageCountries
     public function getCountries()
     {
         return $this->transformCollection(
-            collection: $this->get('country')['data'],
+            collection: ['data'],
             class: Country::class,
         );
     }

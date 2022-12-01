@@ -10,10 +10,12 @@ trait ManageUsers
     public function listUsers(array $parameters)
     {
         $parameters = $this->prepareRequestParameters($parameters);
+        $response = $this->get("user?{$parameters}");
 
         return $this->transformCollection(
-            collection: $this->get("user?{$parameters}")['data'],
+            collection: $response['data'],
             class: User::class,
+            meta: $response['meta'],
         );
     }
 
@@ -34,11 +36,11 @@ trait ManageUsers
 
     public function deleteUser(string $userId)
     {
-        $this->delete("user/{$userId}");
+        return $this->delete("user/{$userId}");
     }
 
     public function sendResetUserPasswordLink(array $payload)
     {
-        $this->post("user-password/reset", $payload);
+        return $this->post("user-password/reset", $payload);
     }
 }

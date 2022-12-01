@@ -10,10 +10,12 @@ trait ManageLabels
     public function fetchPrintShipmentLabel(string $shipmentId, array $parameters)
     {
         $parameters = $this->prepareRequestParameters($parameters);
+        $response = $this->get("label/{$shipmentId}?{$parameters}");
 
         return $this->transformCollection(
-            collection: $this->get("label/{$shipmentId}?{$parameters}")['data'],
+            collection: $response['data'],
             class: Label::class,
+            meta: $response['meta'],
         );
     }
 }

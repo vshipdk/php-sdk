@@ -10,10 +10,12 @@ trait ManageShipments
     public function listUserShipments(array $parameters)
     {
         $parameters = $this->prepareRequestParameters($parameters);
+        $response = $this->get("shipment?{$parameters}");
 
         return $this->transformCollection(
-            collection: $this->get("shipment?{$parameters}")['data'],
+            collection: $response['data'],
             class: Shipment::class,
+            meta: $response['meta'],
         );
     }
 
@@ -29,11 +31,11 @@ trait ManageShipments
 
     public function updateShipmentState(string $shipmentId, string $shipmentState)
     {
-        return new Shipment($this->post("shipment/{$shipmentId}/update-state/{$shipmentState}")['data'], $this);
+        return $this->post("shipment/{$shipmentId}/update-state/{$shipmentState}");
     }
 
     public function archiveShipment(string $shipmentId)
     {
-        $this->patch("shipment/archive/{$shipmentId}");
+        return $this->patch("shipment/archive/{$shipmentId}");
     }
 }

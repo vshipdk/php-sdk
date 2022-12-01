@@ -10,10 +10,12 @@ trait ManageOrganisations
     public function listOrganisations(array $parameters)
     {
         $parameters = $this->prepareRequestParameters($parameters);
+        $response = $this->get("organisation?{$parameters}");
 
         return $this->transformCollection(
-            collection: $this->get("organisation?{$parameters}")['data'],
+            collection: $response['data'],
             class: Organisation::class,
+            meta: $response['meta'],
         );
     }
     
@@ -34,6 +36,6 @@ trait ManageOrganisations
 
     public function deleteOrganisation(string $organisationId)
     {
-        $this->delete("organisation/{$organisationId}");
+        return $this->delete("organisation/{$organisationId}");
     }
 }

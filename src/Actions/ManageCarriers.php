@@ -10,10 +10,12 @@ trait ManageCarriers
     public function listCarriers(array $parameters = [])
     {
         $parameters = $this->prepareRequestParameters($parameters);
+        $response = $this->get("carrier?{$parameters}");
 
         return $this->transformCollection(
-            collection: $this->get("carrier?{$parameters}")['data'],
+            collection: $response['data'],
             class: Carrier::class,
+            meta: $response['meta'],
         );
     }
 
@@ -34,6 +36,6 @@ trait ManageCarriers
 
     public function deleteCarrier(string $carrierId)
     {
-        $this->delete("carrier/{$carrierId}");
+        return $this->delete("carrier/{$carrierId}");
     }
 }

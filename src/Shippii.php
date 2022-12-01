@@ -96,13 +96,17 @@ class Shippii
      * @param  array  $extraData
      * @return array
      */
-    protected function transformCollection($collection, $class, $extraData = [])
+    protected function transformCollection($collection, $class, $extraData = [], $meta = [])
     {
-        return array_map(function ($data) use ($class, $extraData) {
+        $collection = array_map(function ($data) use ($class, $extraData) {
             if (is_array($data)) {
                 return new $class($data + $extraData, $this);
             }
         }, $collection);
+
+        $collection['meta'] = $meta;
+
+        return $collection;
     }
 
     /**
