@@ -1,5 +1,5 @@
 {
-    "name": "shippii-tech/sdk",
+    "name": "shippii-tech/php-sdk",
     "license": "MIT",
     "description": "SDK For shippii.com",
     "type": "library",
