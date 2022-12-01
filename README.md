@@ -1,33 +1,62 @@
-# SHIPPII API v4 - PHP SDK (0.1.0)
+# SHIPPII API v4 PHP SDK (0.2.0)
 
-## How to use
+<a href="https://packagist.org/packages/shippii-tech/php-sdk"><img src="https://img.shields.io/packagist/dt/shippii-tech/php-sdk" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/shippii-tech/php-sdk"><img src="https://img.shields.io/packagist/v/shippii-tech/php-sdk" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/shippii-tech/php-sdk"><img src="https://img.shields.io/packagist/l/shippii-tech/php-sdk" alt="License"></a>
 
-### Initialize Shippii client:
+## Official Documentation
+
+### Installation
+
+To install the SDK in your project you need to require the package via composer:
+
+```bash
+composer require shippii-tech/php-sdk
+```
+
+### Upgrading
+
+When upgrading to a new major version of SHIPPII API v4 PHP SDK, it's important that you carefully review [the upgrade guide](https://github.com/Shippii-Tech/php-sdk/blob/master/UPGRADE.md).
+
+### Basic Usage
+
+Initialize Shippii client:
+```php
     $shippii = new \Shippii\Shippii(
         apiKey: { Your API key }, 
-        apiHost: { API host }
+        apiHost: { API host },
     );
+```
 
-### Send a request through the client
+Send a request through the client:
+```php
     $shippii->getCarrier('car_2IGXIoELZX4Bga45tOxo52sbpJY');
     
     $shippii->listCarriers('filter[withArchived]=1');
+```
 
-### Initialize Resource:
+Initialize Resource:
+```php
     $carrierResource = new \Shippii\Resources\Carrier(
         attributes: ['id' => 'car_2IGXIoELZX4Bga45tOxo52sbpJY'],
-        shippii: $shippii
+        shippii: $shippii,
     );
+```
 
-### Send a request through a resource:
+Send a request through a resource:
+```php
     $carrierResource->get()
+```
 
-### Send query parameters through a resource:
+Send query parameters through a resource:
+```php
     $shipmentResource->index([
-        'filter[withArchived]' => 1
+        'filter[withArchived]' => 1,
     ]);
+```
 
-### Send a request to create a API resource:
+Send a request to create API resource:
+```php
     $resource = new OrganisationObject(
         attributes: [
             'id' => 'obj_2IH2viqHnZomAtz4iHmzCwTGgJm',
@@ -37,13 +66,14 @@
             'timezone' => 'Europe/Paris',
             'settings' => [],
         ],
-        shippii: $shippii
+        shippii: $shippii,
     );
 
     $resource->create();
-
+```
 ### API Reference:
 #### SHIPPII CLIENT:
+```php
     public function listCarriers(string $parameters);
 
     public function createCarrier(array $payload);
@@ -111,9 +141,11 @@
     public function deleteUser(string $userId);
 
     public function sendResetUserPasswordLink(array $payload);
+```
 
 #### RESOURCES:
 #### Carrier:
+```php
     public string $id;
     public string|null $name = null;
     public string|null $code = null;
@@ -130,8 +162,10 @@
     public function update();
 
     public function delete();
+```
 
 #### CarrierAccount:
+```php
     public string $id;
     public string|null $carrierCode = null;
     public string|null $name = null;
@@ -152,16 +186,21 @@
     public function delete();
 
     public function getFields();
+```
 
 #### Country:
+```php
     public function index();
+```
 
 #### Label:
+```php
     public string $shipmentId;
 
     public function fetchPrintShipmentLabel(array $parameters);
-
+```
 #### Organization:
+```php
     public string $id;
     public string|null $name = null;
     public string|null $vatNumber = null;
@@ -180,8 +219,9 @@
     public function update();
 
     public function delete();
-
+```
 #### OrganisationObject:
+```php
     public string $id;
     public string|null $name = null;
     public string $organisationId;
@@ -198,8 +238,9 @@
     public function update();
 
     public function delete();
-
+```
 #### Shipment:
+```php
     public string $id;
     public int $type;
     public string $carrierId;
@@ -218,8 +259,9 @@
     public function updateState();
 
     public function archive();
-
+```
 #### User:
+```php
     public string|null $id;
     public string|null $firstName = null;
     public string|null $lastName = null;
@@ -240,3 +282,4 @@
     public function delete();
 
     public function sendResetPasswordLink();
+```
