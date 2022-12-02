@@ -7,7 +7,7 @@ use Shippii\Resources\OrganisationObject;
 
 trait ManageOrganisationObjects
 {
-    public function listOrganisationObjects(array $parameters): array
+    public function listOrganisationObjects(array $parameters = []): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("organisation-object?{$parameters}");

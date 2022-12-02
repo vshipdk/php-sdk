@@ -1,4 +1,5 @@
 .idea
 /vendor/
 index.php
+test.php
 .php-cs-fixer.cache

@@ -138,7 +138,7 @@ Send a request with body to create API resource:
 
     public function fetchPrintShipmentLabel(string $shipmentId, array $parameters): array;
 
-    public function listOrganisationObjects(array $parameters): array;
+    public function listOrganisationObjects(array $parameters = []): array;
 
     public function createOrganisationObject(array $payload): OrganisationObject;
 
@@ -148,7 +148,7 @@ Send a request with body to create API resource:
 
     public function deleteOrganisationObject(string $organisationObjectId): void;
 
-    public function listOrganisations(array $parameters): array;
+    public function listOrganisations(array $parameters = []): array;
     
     public function createOrganisation(array $payload): Organisation;
 
@@ -158,7 +158,7 @@ Send a request with body to create API resource:
 
     public function deleteOrganisation(string $organisationId): void;
 
-    public function listUserShipments(array $parameters): array;
+    public function listUserShipments(array $parameters = []): array;
 
     public function createShipment(array $payload): Shipment;
 
@@ -168,7 +168,7 @@ Send a request with body to create API resource:
 
     public function archiveShipment(string $shipmentId): void;
 
-    public function listUsers(array $parameters): array;
+    public function listUsers(array $parameters = []): array;
 
     public function createUser(array $payload): User;
 
@@ -331,7 +331,7 @@ Send a request with body to create API resource:
 
     public string $id;
     public int $type;
-    public string $carrierId;
+    public string|null $carrierId;
     public array $sender;
     public array|null $receiver = null;
     public array|null $lines = null;

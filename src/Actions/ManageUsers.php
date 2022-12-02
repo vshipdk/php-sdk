@@ -7,7 +7,7 @@ use Shippii\Resources\User;
 
 trait ManageUsers
 {
-    public function listUsers(array $parameters): array
+    public function listUsers(array $parameters = []): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("user?{$parameters}");

@@ -7,7 +7,7 @@ use Shippii\Resources\Shipment;
 
 trait ManageShipments
 {
-    public function listUserShipments(array $parameters): array
+    public function listUserShipments(array $parameters = []): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("shipment?{$parameters}");

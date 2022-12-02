@@ -7,7 +7,7 @@ class Shipment extends Resource
 {
     public string $id;
     public int $type;
-    public string $carrierId;
+    public string|null $carrierId;
     public array $sender;
     public array|null $receiver = null;
     public array|null $lines = null;
