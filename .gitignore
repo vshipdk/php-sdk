@@ -3,3 +3,4 @@
 index.php
 test.php
 .php-cs-fixer.cache
+src/Test.php
