@@ -12,9 +12,4 @@ class Label extends Resource
     public string|null $owner;
     public string|null $url;
     public string|null $createdAt;
-
-    public function fetchPrintShipmentLabel(array $parameters): array
-    {
-        return $this->shippii->fetchPrintShipmentLabel($this->shipmentId, $parameters);
-    }
 }

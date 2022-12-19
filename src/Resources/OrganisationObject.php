@@ -15,32 +15,52 @@ class OrganisationObject extends Resource
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = []): array
-    {
-        return $this->shippii->listOrganisationObjects($parameters);
-    }
-
-    public function create(): self
+    /**
+     * Create Organisation Object
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function create(): array
     {
         $payload = $this->preparePayload(['name', 'organisation_id', 'currency', 'timezone', 'settings']);
 
         return $this->shippii->createOrganisationObject($payload);
     }
 
-    public function get(): self
-    {
-        return $this->shippii->getOrganisationObject($this->id);
-    }
-
-    public function update(): self
+    /**
+     * Update organisation object
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function update(): array
     {
         $payload = $this->preparePayload(['name', 'currency', 'timezone', 'settings']);
 
         return $this->shippii->updateOrganisationObject($this->id, $payload);
     }
 
-    public function delete(): void
+    /**
+     * Delete Organisation Object
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function delete(): array
     {
-        $this->shippii->deleteOrganisationObject($this->id);
+        return $this->shippii->deleteOrganisationObject($this->id);
     }
 }

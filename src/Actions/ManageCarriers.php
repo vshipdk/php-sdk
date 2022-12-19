@@ -7,10 +7,21 @@ use Shippii\Resources\Carrier;
 
 trait ManageCarriers
 {
-    public function listCarriers(array $parameters = []): array
+    /**
+     * Get All Carriers
+     *
+     * @param array $queryParams
+     * @return array
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function getCarriers(array $queryParams = []): array
     {
-        $parameters = $this->prepareRequestParameters($parameters);
-        $response = $this->get("carrier?{$parameters}");
+        $parameters = $this->prepareRequestParameters($queryParams);
+        $response = $this->get("v1/carrier?{$parameters}");
 
         return $this->transformCollection(
             collection: $response['data'],
@@ -19,23 +30,71 @@ trait ManageCarriers
         );
     }
 
-    public function createCarrier(array $payload): Carrier
-    {
-        return new Carrier($this->post('carrier', $payload), $this);
-    }
-
+    /**
+     * Get Single Carrier by ID
+     *
+     * @param string $carrierId
+     * @return Carrier
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
     public function getCarrier(string $carrierId): Carrier
     {
-        return new Carrier($this->get("carrier/{$carrierId}")['data'], $this);
+        return new Carrier(
+            $this->get("v1/carrier/{$carrierId}")['data'],
+            $this
+        );
     }
 
-    public function updateCarrier(string $carrierId, array $payload): Carrier
+    /**
+     * Create new Carrier
+     *
+     * @param array $payload
+     * @return array
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function createCarrier(array $payload): array
     {
-        return new Carrier($this->patch("carrier/{$carrierId}", $payload), $this);
+        return $this->post("v1/carrier", $payload);
     }
 
-    public function deleteCarrier(string $carrierId): void
+    /**
+     * Update Carrier by ID
+     *
+     * @param string $carrierId
+     * @param array $payload
+     * @return array
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function updateCarrier(string $carrierId, array $payload): array
     {
-        $this->delete("carrier/{$carrierId}");
+        return $this->patch("v1/carrier/{$carrierId}", $payload);
+    }
+
+    /**
+     * Delete Carrier by ID
+     *
+     * @param string $carrierId
+     * @return array
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function deleteCarrier(string $carrierId): array
+    {
+        return $this->delete("v1/carrier/{$carrierId}");
     }
 }
