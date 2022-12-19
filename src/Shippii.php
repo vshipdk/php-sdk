@@ -30,19 +30,36 @@ class Shippii
      *
      * @var int
      */
-    public $timeout = 30;
+    public int $timeout = 30;
+
+    /**
+     * The Shippii Key
+     *
+     * @var string
+     */
+    public string $apiKey;
+
+    /**
+     * The Guzzle HTTP Client instance.
+     *
+     * @var \GuzzleHttp\Client
+     */
+    public HttpClient $guzzle;
 
     /**
      * Create a new Forge instance.
      *
-     * @param string $apiKey
-     * @param string $apiHost
+     * @param string|null $apiKey
      */
-    public function __construct(
-        protected string $apiKey,
-        protected string $apiHost,
-    ) {
-        $this->setApiKey();
+    public function __construct(string $apiKey = null, HttpClient $guzzle = null)
+    {
+        if ($apiKey !== null) {
+            $this->setApiKey($apiKey, $guzzle);
+        }
+
+        if (! is_null($guzzle)) {
+            $this->guzzle = $guzzle;
+        }
     }
 
     /**
@@ -73,13 +90,16 @@ class Shippii
      *
      * @return $this
      */
-    protected function setApiKey()
+    public function setApiKey(string $apiKey, $guzzle = null)
     {
-        $this->guzzle = new HttpClient([
-            'base_uri' => "{$this->apiHost}/v1/",
+        $this->apiKey = $apiKey;
+        // $host = 'https://api.shippii.dev/';
+        $host = 'http://shippii.test/';
+        $this->guzzle = $guzzle ?: new HttpClient([
+            'base_uri' => $host,
             'http_errors' => false,
             'headers' => [
-                'Authorization' => 'Bearer '.$this->apiKey,
+                'Authorization' => 'Bearer ' . $apiKey,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
             ],

@@ -25,32 +25,67 @@ class Shipment extends Resource
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = []): array
-    {
-        return $this->shippii->listUserShipments($parameters);
-    }
-
-    public function create(): self
+    /**
+     * Create shipment
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function create(): array
     {
         $payload = $this->preparePayload(['type', 'carrier_id', 'sender', 'receiver', 'lines', 'carrier_options']);
 
         return $this->shippii->createShipment($payload);
     }
 
-    public function update(): self
+    /**
+     * Update Shipment
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function update(): array
     {
         $payload = $this->preparePayload(['receiver', 'lines']);
 
         return $this->shippii->updateShipment($this->id, $payload);
     }
 
-    public function updateState(): void
+    /**
+     * Update the state of a shipment
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function updateState(): array
     {
-        $this->shippii->updateShipmentState($this->id, $this->state);
+        return $this->shippii->updateShipmentState($this->id, $this->state);
     }
 
-    public function archive(): void
+    /**
+     * Archive shipment
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function archive(): array
     {
-        $this->shippii->archiveShipment($this->id);
+        return $this->shippii->archiveShipment($this->id);
     }
 }

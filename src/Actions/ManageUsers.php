@@ -7,10 +7,21 @@ use Shippii\Resources\User;
 
 trait ManageUsers
 {
-    public function listUsers(array $parameters = []): array
+    /**
+     * Get All Users
+     *
+     * @param array $parameters
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function getUsers(array $parameters = []): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
-        $response = $this->get("user?{$parameters}");
+        $response = $this->get("v1/user?{$parameters}");
 
         return $this->transformCollection(
             collection: $response['data'],
@@ -19,28 +30,19 @@ trait ManageUsers
         );
     }
 
-    public function createUser(array $payload): User
-    {
-        return new User($this->post('user', $payload)['data'], $this);
-    }
-
+    /**
+     * Get Single User
+     *
+     * @param string $userId
+     * @return User
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
     public function getUser(string $userId): User
     {
-        return new User($this->get("user/{$userId}")['data'], $this);
-    }
-
-    public function updateUser(string $userId, array $payload): User
-    {
-        return new User($this->patch("user/{$userId}", $payload)['data'], $this);
-    }
-
-    public function deleteUser(string $userId): void
-    {
-        $this->delete("user/{$userId}");
-    }
-
-    public function sendResetUserPasswordLink(array $payload): void
-    {
-        $this->post("user-password/reset", $payload);
+        return new User($this->get("v1/user/{$userId}")['data'], $this);
     }
 }

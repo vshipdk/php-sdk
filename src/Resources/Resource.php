@@ -8,6 +8,19 @@ use Shippii\Shippii;
 class Resource
 {
     /**
+     * The resource attributes.
+     *
+     * @var array
+     */
+    public array $attributes;
+
+    /**
+     * Shippii attribute
+     * @var Shippii|null
+     */
+    protected Shippii $shippii;
+
+    /**
      * Create a new resource instance.
      *
      * @param  array       $attributes
@@ -15,9 +28,12 @@ class Resource
      * @return void
      */
     public function __construct(
-        public array $attributes,
-        protected Shippii|null $shippii = null
+        array $attributes,
+        Shippii|null $shippii = null
     ) {
+        $this->attributes = $attributes;
+        $this->shippii = $shippii;
+
         $this->fill();
     }
 

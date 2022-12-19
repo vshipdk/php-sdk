@@ -17,32 +17,51 @@ class Carrier extends Resource
     public string|null $createdAt;
     public string|null $updatedAt;
 
-    public function index(array $parameters = []): array
+    /**
+     * Create new Carrier
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function create(): array
     {
-        return $this->shippii->listCarriers($parameters);
-    }
-
-    public function create(): self
-    {
-        $payload = $this->preparePayload(['name', 'code', 'status', 'carrier_account_id', 'settings']);
-
+        $payload = $this->preparePayload(['name', 'code', 'carrier_account_id', 'status', 'settings']);
         return $this->shippii->createCarrier($payload);
     }
 
-    public function get(): self
-    {
-        return $this->shippii->getCarrier($this->id);
-    }
 
-    public function update(): self
+    /**
+     * Update Carrier
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function update(): array
     {
         $payload = $this->preparePayload(['name', 'code', 'status', 'settings']);
-
         return $this->shippii->updateCarrier($this->id, $payload);
     }
 
-    public function delete(): void
+    /**
+     * Delete Carrier
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function delete(): array
     {
-        $this->shippii->deleteCarrier($this->id);
+        return $this->shippii->deleteCarrier($this->id);
     }
 }

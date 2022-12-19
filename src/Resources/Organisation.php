@@ -14,32 +14,52 @@ class Organisation extends Resource
     public string|null $timezone = null;
     public array|null $settings = null;
 
-    public function index(array $parameters = []): array
-    {
-        return $this->shippii->listOrganisations($parameters);
-    }
-
-    public function create(): self
+    /**
+     * Create organisation
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function create(): array
     {
         $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
 
         return $this->shippii->createOrganisation($payload);
     }
 
-    public function get(): self
-    {
-        return $this->shippii->getOrganisation($this->id);
-    }
-
-    public function update(): self
+    /**
+     * Update organisation
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function update(): array
     {
         $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
 
         return $this->shippii->updateOrganisation($this->id, $payload);
     }
 
-    public function delete(): void
+    /**
+     * Delete organisation
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function delete(): array
     {
-        $this->shippii->deleteOrganisation($this->id);
+        return $this->shippii->deleteOrganisation($this->id);
     }
 }
