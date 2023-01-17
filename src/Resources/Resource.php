@@ -7,7 +7,7 @@ use Shippii\Shippii;
 use AllowDynamicProperties;
 
 #[AllowDynamicProperties]
-class Resource
+class  Resource
 {
     /**
      * The resource attributes.
@@ -95,7 +95,7 @@ class Resource
     {
         $objectType = $payload['data']['object_type'];
         $data = $payload['data'][$objectType];
-        $objectType = "Shippii\\Resources\\" . $objectType . "Webhook";
+        $objectType = "Shippii\\Resources\\" . $objectType;
         unset($data['object_type']);
 
         $obj = new static($data, $shippii);
