@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Label;
+use Shippii\Util\Util;
+use Shippii\Models\Label\Label;
 
 trait ManageLabels
 {
@@ -22,12 +23,8 @@ trait ManageLabels
     public function fetchPrintShipmentLabel(string $shipmentId, array $queryParams): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
-        $response = $this->get("v1/label/{$shipmentId}?{$parameters}");
+        $response = $this->get("v1/label/{$shipmentId}?{$parameters}")['data'];
 
-        return $this->transformCollection(
-            collection: $response['data'],
-            class: Label::class,
-            meta: $response['meta'],
-        );
+        return Util::convertToShippiObject(Label::class, $response);
     }
 }

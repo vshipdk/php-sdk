@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Carrier;
+use Shippii\Util\Util;
+use Shippii\Models\Carrier\Carrier;
 
 trait ManageCarriers
 {
@@ -11,58 +12,52 @@ trait ManageCarriers
      * Get All Carriers
      *
      * @param array $queryParams
-     * @return array
+     * @return mixed
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getCarriers(array $queryParams = []): array
+    public function getCarriers(array $queryParams = []): mixed
     {
         $parameters = $this->prepareRequestParameters($queryParams);
-        $response = $this->get("v1/carrier?{$parameters}");
-
-        return $this->transformCollection(
-            collection: $response['data'],
-            class: Carrier::class,
-            meta: $response['meta'],
-        );
+        $response = $this->get("v1/carrier?{$parameters}")['data'];
+        return Util::convertToShippiObjectCollection(Carrier::class, $response);
     }
 
     /**
      * Get Single Carrier by ID
      *
      * @param string $carrierId
-     * @return Carrier
+     * @return mixed
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getCarrier(string $carrierId): Carrier
+    public function getCarrier(string $carrierId): mixed
     {
-        return new Carrier(
-            $this->get("v1/carrier/{$carrierId}")['data'],
-            $this
-        );
+        $response = $this->get("v1/carrier/{$carrierId}")['data'];
+        return Util::convertToShippiObject(Carrier::class, $response);
     }
 
     /**
      * Create new Carrier
      *
      * @param array $payload
-     * @return array
+     * @return mixed
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function createCarrier(array $payload): array
+    public function createCarrier(array $payload): mixed
     {
-        return $this->post("v1/carrier", $payload);
+        $response = $this->post("v1/carrier", $payload)['data'];
+        return Util::convertToShippiObject(Carrier::class, $response);
     }
 
     /**
@@ -70,31 +65,34 @@ trait ManageCarriers
      *
      * @param string $carrierId
      * @param array $payload
-     * @return array
+     * @return mixed
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function updateCarrier(string $carrierId, array $payload): array
+    public function updateCarrier(string $carrierId, array $payload): mixed
     {
-        return $this->patch("v1/carrier/{$carrierId}", $payload);
+        $response = $this->patch("v1/carrier/{$carrierId}", $payload)['data'];
+        return Util::convertToShippiObject(Carrier::class, $response);
     }
 
     /**
      * Delete Carrier by ID
      *
      * @param string $carrierId
-     * @return array
+     * @return mixed
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function deleteCarrier(string $carrierId): array
+    public function deleteCarrier(string $carrierId): mixed
     {
-        return $this->delete("v1/carrier/{$carrierId}");
+        $response = $this->delete("v1/carrier/{$carrierId}")['data'];
+
+        return Util::convertToShippiObject(Carrier::class, $response);
     }
 }
