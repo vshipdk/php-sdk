@@ -7,6 +7,7 @@ use GuzzleHttp\Client as HttpClient;
 use Shippii\Actions\ManageCarriers;
 use Shippii\Actions\ManageCarriersAccounts;
 use Shippii\Actions\ManageCountries;
+use Shippii\Actions\ManageInvoices;
 use Shippii\Actions\ManageLabels;
 use Shippii\Actions\ManageOrganisationObjects;
 use Shippii\Actions\ManageOrganisations;
@@ -23,7 +24,8 @@ class Shippii
         ManageUsers,
         ManageOrganisations,
         ManageLabels,
-        ManageOrganisationObjects;
+        ManageOrganisationObjects,
+        ManageInvoices;
 
     /**
      * Number of seconds a request is retried.

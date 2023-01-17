@@ -185,6 +185,8 @@ Send a request with body to create API resource:
     public function deleteUser(string $userId): array;
 
     public function sendResetUserPasswordLink(array $payload): void;
+
+    public function createInvoice(array $payload): array;
 ```
 
 <br>
@@ -379,4 +381,21 @@ Send a request with body to create API resource:
     public string|null $mobileNational;
     public string|null $createdAt;
     public string|null $updateAt;
+```
+
+<br>
+
+#### Invoice
+
+```php
+    \Shippii\Resources\Invoice
+
+    public array $shipments;
+    public float|null $discount;
+    public array $senderData;
+    public array $vatAgent;
+    public string $invoiceLanguage;
+    public string $declarationOfOrigin;
+
+    public function create(): array;
 ```
