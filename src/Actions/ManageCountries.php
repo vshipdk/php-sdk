@@ -3,27 +3,24 @@ declare(strict_types=1);
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Country;
+use Shippii\Util\Util;
+use Shippii\Models\Country\Country;
 
 trait ManageCountries
 {
     /**
      * Get Countries
      *
-     * @return array
+     * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getCountries(): array
+    public function getCountries(): mixed
     {
         $response = $this->get('v1/country')['data'];
-
-        return $this->transformCollection(
-            collection: $response, 
-            class: Country::class
-        );
+        return Util::convertToShippiObjectCollection(Country::class, $response);
     }
 }
