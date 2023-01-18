@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Shippii\Models\Label;
 
+use Shippii\Models\Label\Owner;
+
 final class Label
 {
     public string|null $id = null;

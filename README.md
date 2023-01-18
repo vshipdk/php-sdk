@@ -50,8 +50,7 @@ Send a request with query parameters through the client:
     ]);
 ```
 
-Shippii client returns array that contains Resource\Resource instances and meta data when requests multiple API resources.
-<br><br>
+<br>
 
 Send a request with body to create API resource through the client:
 
@@ -67,156 +66,250 @@ Send a request with body to create API resource through the client:
     ]);
 ```
 
-<br>
 
-Initialize Resource instance:
-
-```php
-    $carrierResource = new \Shippii\Resources\Carrier(
-        attributes: ['id' => 'car_2IGXIoELZX4Bga45tOxo52sbpJY'],
-        shippii: $shippii,
-    );
-```
-
-<br>
-
-Send a request with body to create API resource:
-
-```php
-    $resource = new OrganisationObject(
-        attributes: [
-            'name' => 'test 123',
-            'organisation_id' => 'org_2IGiLMvDCeGR2DioJmhyHxK7qJR',
-            'currency' => 'USD',
-            'timezone' => 'Europe/Paris',
-            'settings' => [],
-        ],
-        shippii: $shippii,
-    );
-
-    $resource->create();
-```
-
-```php
-    $resource = new OrganisationObject([], $shippii);
-    $resource->name = "Object Name";
-    $resource->organisation_id = "org_2IGiLMvDCeGR2DioJmhyHxK7qJR";
-    $resource->currency = "EUR";
-    $resource->timezone = "Europe/Copenhagen";
-
-    $resource->create();
-```
-
-<br>
 
 ## API Reference
 
 <br>
 
-### Shippii client
+## Shippii client
+
+# Carriers
+
+> [Get All Carriers](https://api.shippii.dev/docs.html#/paths/v1-carrier/get)
 
 ```php
-    /Shippii/Shippii
+    $shippii->getCarriers(array queryParameters = []): Carrier[]
+```
 
-    public function getCarriers(array $parameters = []): array;
+> [Get Single Carrier](https://api.shippii.dev/docs.html#/paths/v1-carrier-carrier/get)
 
-    public function getCarrier(string $carrierId): Carrier;
+```php
+    $shippii->getCarrier(string $carrierId): Carrier
+```
 
-    public function createCarrier(array $payload): array;
+> [Create Carrier](https://api.shippii.dev/docs.html#/paths/v1-carrier/post)
 
-    public function updateCarrier(string $carrierId, array $payload): array;
+```php
+    $shippii->createCarrier(array $payload): Carrier
+```
 
-    public function deleteCarrier(string $carrierId): array;
+> [Update Carrier](https://api.shippii.dev/docs.html#/paths/v1-carrier-carrier/patch)
 
-    public function getCarrierAccounts(array $parameters = []): array;
+```php
+    $shippii->updateCarrier(string $carrierId, array $payload): Carrier
+```
 
-    public function getCarrierAccount(string $carrierAccountId): CarrierAccount;
+> [Delete Carrier](https://api.shippii.dev/docs.html#/paths/v1-carrier-carrier/delete)
 
-    public function createCarrierAccount(array $payload): array;
+```php
+    $shippii->deleteCarrier(string $carrierId): Carrier
+```
 
-    public function updateCarrierAccount(string $carrierAccountId, array $payload): array;
+# Carrier Accounts
 
-    public function deleteCarrierAccount(string $carrierAccountId): array;
 
-    public function getCarrierAccountFields(string $carrierCode): array;
+> [Get All Carrier Accounts](https://api.shippii.dev/docs.html#/paths/v1-carrier-account/get)
 
-    public function getCountries(): array;
+```php
+    $shippii->getCarrierAccounts(array $queryParameters = []): CarrierAccount[]
+```
 
-    public function fetchPrintShipmentLabel(string $shipmentId, array $parameters): array;
+> [Get Single Carrier Account](https://api.shippii.dev/docs.html#/paths/v1-carrier-account-carrierAccount/get)
 
-    public function getOrganisationObjects(array $parameters = []): array;
+```php
+    $shippii->getCarrierAccount(string $carrierAccountId): CarrierAccount
+```
 
-    public function getOrganisationObject(string $organisationObjectId): OrganisationObject;
+> [Create Carrier Account](https://api.shippii.dev/docs.html#/paths/v1-carrier-account/post)
 
-    public function createOrganisationObject(array $payload): array;
+```php
+    $shippii->createCarrierAccount(array $payload): CarrierAccount
+```
 
-    public function updateOrganisationObject(string $organisationObjectId, array $payload): array;
+> [Update Carrier Account](https://api.shippii.dev/docs.html#/paths/v1-carrier-account-carrierAccount/patch)
 
-    public function deleteOrganisationObject(string $organisationObjectId): array;
+```php
+    $shippii->updateCarrierAccount(string $carrierAccountId, array $payload): CarrierAccount
+```
 
-    public function getOrganisations(array $parameters = []): array;
+> [Delete Carrier Account](https://api.shippii.dev/docs.html#/paths/v1-carrier-account-carrierAccount/delete)
 
-    public function getOrganisation(string $organisationId): Organisation;
-    
-    public function createOrganisation(array $payload): array;
+```php
+    $shippii->deleteCarrierAccount(string $carrierAccountId): CarrierAccount
+```
 
-    public function updateOrganisation(string $organisationId, array $payload): array;
+> [Get Carrier Account Fields](https://api.shippii.dev/docs.html#/paths/v1-carrier-account-fields-carrierCode/get)
 
-    public function deleteOrganisation(string $organisationId): array;
+```php
+    $shippii->getCarrierAccountFields(string $carrierCode): CarrierAccountFields
+```
 
-    public function getShipments(array $parameters = []): array;
+# Countries
 
-    public function createShipment(array $payload): array;
+> [Get All Countries](https://api.shippii.dev/docs.html#/paths/v1-country/get)
 
-    public function updateShipment(string $shipmentId, array $payload): array;
+```php
+    $shippii->getCountries(): Country
+```
 
-    public function updateShipmentState(string $shipmentId, string $shipmentState): array;
+# Labels
 
-    public function archiveShipment(string $shipmentId): array;
+> [Fetch or/and print shipment labels](https://api.shippii.dev/docs.html#/paths/v1-label-shipment/get)
 
-    public function getUsers(array $parameters = []): array;
+```php
+    $shippii->fetchPrintShipmentLabel(string $shipmentId, array $parameters): Label
+```
 
-    public function getUser(string $userId): User;
+# Organisation Objects
 
-    public function createUser(array $payload): array;
+> [Get All Organisation Objects](https://api.shippii.dev/docs.html#/paths/v1-organisation-object/get)
 
-    public function updateUser(string $userId, array $payload): array;
+```php
+    $shippii->getOrganisationObjects(array $queryParameters = []): OrganisationObject[]
+```
 
-    public function deleteUser(string $userId): array;
+> [Get Single Organisation Object](https://api.shippii.dev/docs.html#/paths/v1-organisation-object-object/get)
 
-    public function sendResetUserPasswordLink(array $payload): void;
+```php
+    $shippii->getOrganisationObject(string $organisationObjectId): OrganisationObject
+```
 
-    public function createInvoice(array $payload): array;
+> [Create Organisation Object](https://api.shippii.dev/docs.html#/paths/v1-organisation-object/post)
+
+```php
+    $shippii->createOrganisationObject(array $payload): OrganisationObject
+```
+
+> [Update Organisation Object](https://api.shippii.dev/docs.html#/paths/v1-organisation-object-object/patch)
+
+```php
+    $shippii->updateOrganisationObject(string $organisationObjectId, array $payload): OrganisationObject
+```
+
+> [Delete Organisation Object](https://api.shippii.dev/docs.html#/paths/v1-organisation-object-object/delete)
+
+```php
+    $shippii->deleteOrganisationObject(string $organisationObjectId): OrganisationObject
+```
+
+# Organisations
+
+> [Get All Organisation](https://api.shippii.dev/docs.html#/paths/v1-organisation/get)
+
+```php
+    $shippii->getOrganisations(array $queryParameters = []): Organisation[]
+```
+
+> [Get Single Organisation](https://api.shippii.dev/docs.html#/paths/v1-organisation-organisation/get)
+
+```php
+    $shippii->getOrganisation(string $organisationId): Organisation
+```
+
+> [Create Organisation](https://api.shippii.dev/docs.html#/paths/v1-organisation/post)
+
+```php
+    $shippii->createOrganisation(array $payload): Organisation
+```
+
+> [Update Organisation](https://api.shippii.dev/docs.html#/paths/v1-organisation-organisation/patch)
+
+```php
+    $shippii->updateOrganisation(string $organisationId, array $payload): Organisation
+```
+
+> [Delete Organisation](https://api.shippii.dev/docs.html#/paths/v1-organisation-organisation/delete)
+
+```php
+    $shippii->deleteOrganisation($organisationId): Organisation
+```
+
+# Shipments
+
+> [Get All Shipments](https://api.shippii.dev/docs.html#/paths/v1-shipment/get)
+
+```php
+    $shippii->getShipments(array $queryParameters = []): Shipment[]
+```
+
+> [Create Shipment](https://api.shippii.dev/docs.html#/paths/v1-shipment/post)
+
+```php
+    $shippii->createShipment(array $payload): Shipment
+```
+
+> [Update Shipment](https://api.shippii.dev/docs.html#/paths/v1-shipment-shipment/patch)
+
+```php
+    $shippii->updateShipment(string $shipmentId, array $payload): Shipment
+```
+
+> [Update Shipment State](https://api.shippii.dev/docs.html#/paths/v1-shipment-shipment--update-state--state/post)
+
+```php
+    $shippii->updateShipmentState(string shipmentId, string $shipmentState): Shipment
+```
+
+> [Archive Shipment](https://api.shippii.dev/docs.html#/paths/v1-shipment-archive-shipment/patch)
+
+```php
+    $shippii->archiveShipment(string $shipmentId): Shipment
+```
+
+# Users
+
+> [Get All Users](https://api.shippii.dev/docs.html#/paths/v1-user/get)
+
+```php
+    $shippii->getUsers(array $queryParameters = []): User[]
+```
+
+> [Get Single User](https://api.shippii.dev/docs.html#/paths/v1-user-user/get)
+
+```php
+    $shippii->getUser(string $userId): User
+```
+
+# Consolidate Invoices
+
+> [Create Consolidate Invoice](https://api.shippii.dev/docs.html#/paths/v1-invoices-consolidate/post)
+
+```php
+    $shippii->createConsolidateInvoice(array $payload): Invoice
 ```
 
 <br>
 
-#### Resources
+#### Model properties
 
 <br>
 
 #### Carrier
 
 ```php
-    \Shippii\Resources\Carrier
-
-    public string $id;
+    public string|null $id = null;
+    public Owner|null $owner = null;
     public string|null $name = null;
+    public CarrierAccount|null $account = null;
     public string|null $code = null;
+    public CarrierSettings|null $settings = null;
     public int|null $status = null;
-    public string $carrierAccountId;
-    public array|null $settings = null;
-    public string|null $ownerType;
-    public string|null $ownerId;
-    public array|null $account;
-    public string|null $createdAt;
-    public string|null $updatedAt;
+    public string|null $created_at = null;
+    public string|null $updated_at = null;
+```
 
-    public function create(): array;
+### Carrier Owner
 
-    public function update(): array;
+```php
+    public string|null $owner_type = null;
+    public string|null $owner_id = null;
+```
 
-    public function delete(): array;
+### Carrier Settings
+
+```php
+    public string|null $data = null;
 ```
 
 <br>
@@ -224,28 +317,18 @@ Send a request with body to create API resource:
 #### CarrierAccount
 
 ```php
-    \Shippii\Resources\CarrierAccount
-
-    public string $id;
-    public string|null $carrierCode = null;
+    public string|null $id = null;
     public string|null $name = null;
-    public string|null $purpose = null;
+    /** @var CarrierAccountFields[]|null */
+    public array|null $fields = null;
+    public string|null $carrier_code = null;
     public string|null $status = null;
-    public string $organisationId;
-    public array|null $data = null;
-    public string|null $expiresAt = null;
-    public array|null $fields;
-    public array|null $carriers;
-    public string|null $createdAt;
-    public string|null $updatedAt;
-
-    public function create(): array;
-
-    public function update(): array;
-
-    public function delete(): array;
-
-    public function getFields(): array;
+    public string|null $purpose = null;
+    /** @var Carrier[]|null */
+    public array|null $carriers = null;
+    public string|null $expires_at = null;
+    public string|null $created_at = null;
+    public string|null $updated_at = null;
 ```
 
 <br>
@@ -253,13 +336,11 @@ Send a request with body to create API resource:
 #### Country
 
 ```php
-    \Shippii\Resources\Country
-
-    public string|null $name;
-    public string|null $officialStateName;
-    public string|null $alpha2Code;
-    public string|null $alpha3Code;
-    public string|null $numericCode;
+    public string|null $name = null;
+    public string|null $official_state_name = null;
+    public string|null $alpha_2_code = null;
+    public string|null $alpha_3_code = null;
+    public string|null $numeric_code = null;
 ```
 
 <br>
@@ -267,15 +348,13 @@ Send a request with body to create API resource:
 #### Label
 
 ```php
-    \Shippii\Resources\Label
-
-    public string|null $id;
-    public string $shipmentId;
-    public string|null $format;
-    public string|null $metadata;
-    public string|null $owner;
-    public string|null $url;
-    public string|null $createdAt;
+    public string|null $id = null;
+    public string|null $shipmentId = null;
+    public string|null $format = null;
+    public string|null $metadata = null;
+    public Owner|null $owner = null;
+    public string|null $url = null;
+    public string|null $createdAt = null;
 ```
 
 <br>
@@ -283,22 +362,19 @@ Send a request with body to create API resource:
 #### Organization
 
 ```php
-    \Shippii\Resources\Organization
-
-    public string $id;
+    public string|null $id = null;
+    public Owner|null $owner = null;
     public string|null $name = null;
-    public string|null $vatNumber = null;
-    public string|null $companyNumber = null;
-    public bool|null $vatRegistered = null;
+    public string|null $vat_number = null;
+    public string|null $company_number = null;
+    public bool|null $vat_registered = null;
     public string|null $currency = null;
     public string|null $timezone = null;
-    public array|null $settings = null;
-
-    public function create(): array;
-
-    public function update(): array;
-
-    public function delete(): array;
+    public OrganisationSettings|null $settings = null;
+    public string|null $created_at = null;
+    public string|null $updated_at = null;
+    /** @var Address[]|null */
+    public array|null $addresses = null;
 ```
 
 <br>
@@ -306,23 +382,16 @@ Send a request with body to create API resource:
 #### OrganisationObject
 
 ```php
-    \Shippii\Resources\OrganisationObject
-
-    public string $id;
+    public string|null $id = null;
     public string|null $name = null;
-    public string $organisationId;
-    public array $organisation;
+    public Organisation|null $organisation = null;
     public string|null $currency = null;
     public string|null $timezone = null;
-    public array|null $settings = null;
-    public string|null $createdAt;
-    public string|null $updatedAt;
-
-    public function create(): array;
-
-    public function update(): array;
-
-    public function delete(): array;
+    public OrganisationObjectSettings|null $settings = null;
+    public string|null $created_at = null;
+    public string|null $updated_at = null;
+    /** @var Address[]|null */
+    public array|null $addresses = null;
 ```
 
 <br>
@@ -330,8 +399,6 @@ Send a request with body to create API resource:
 #### Shipment
 
 ```php
-    \Shippii\Resources\Shipment
-
     public string $id;
     public int $type;
     public string|null $carrierId;
@@ -351,14 +418,6 @@ Send a request with body to create API resource:
     public string|null $carrierIdentification;
     public string|null $createdAt;
     public string|null $updatedAt;
-
-    public function create(): array;
-
-    public function update(): array;
-
-    public function updateState(): array;
-
-    public function archive(): array;
 ```
 
 <br>
@@ -366,8 +425,6 @@ Send a request with body to create API resource:
 #### User
 
 ```php
-    \Shippii\Resources\User
-
     public string|null $id;
     public string|null $firstName = null;
     public string|null $lastName = null;
@@ -388,14 +445,10 @@ Send a request with body to create API resource:
 #### Invoice
 
 ```php
-    \Shippii\Resources\Invoice
-
     public array $shipments;
     public float|null $discount;
     public array $senderData;
     public array $vatAgent;
     public string $invoiceLanguage;
     public string $declarationOfOrigin;
-
-    public function create(): array;
 ```
