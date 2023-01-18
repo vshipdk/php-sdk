@@ -104,16 +104,15 @@ trait ManageShipments
      * Archive shipment
      *
      * @param string $shipmentId
-     * @return Shipment
+     * @return void
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function archiveShipment(string $shipmentId): Shipment
+    public function archiveShipment(string $shipmentId): void
     {
-        $response = $this->patch("v1/shipment/archive/{$shipmentId}");
-        return Util::convertToShippiiObject(Shipment::class, $response);
+        $this->patch("v1/shipment/archive/{$shipmentId}");
     }
 }
