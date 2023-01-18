@@ -9,14 +9,12 @@ use CuyZ\Valinor\Mapper\Tree\Message\Messages;
 abstract class Util
 {
     /**
-     * Converts a response from the Shippii API to the corresponding PHP object.
-     *
-     * @param array $response the response from the Shippii API
-     * @param array $options
-     *
-     * @return array
+     * @template T
+     * @param class-string<T> $targetClass, the class to map to
+     * @param array $data
+     * @return T
      */
-    public static function convertToShippiObject($targetClass, $data)
+    public static function convertToShippiObject($targetClass, $data): mixed
     {
         try {
             $mapper = (new MapperBuilder)->mapper();
@@ -36,7 +34,13 @@ abstract class Util
         return $data;
     }
 
-    public static function convertToShippiObjectCollection($targetClass, $data)
+    /**
+     * @template T
+     * @param class-string<T> $targetClass, the class to map to
+     * @param array $data
+     * @return T
+     */
+    public static function convertToShippiObjectCollection($targetClass, $data): mixed
     {
         $mapper = (new MapperBuilder)->mapper();
         foreach ($data as $key => $datum) {

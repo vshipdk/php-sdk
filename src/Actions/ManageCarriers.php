@@ -12,14 +12,14 @@ trait ManageCarriers
      * Get All Carriers
      *
      * @param array $queryParams
-     * @return mixed
+     * @return Carrier
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getCarriers(array $queryParams = []): mixed
+    public function getCarriers(array $queryParams = []): Carrier
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/carrier?{$parameters}")['data'];
@@ -30,14 +30,14 @@ trait ManageCarriers
      * Get Single Carrier by ID
      *
      * @param string $carrierId
-     * @return mixed
+     * @return Carrier
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getCarrier(string $carrierId): mixed
+    public function getCarrier(string $carrierId): Carrier
     {
         $response = $this->get("v1/carrier/{$carrierId}")['data'];
         return Util::convertToShippiObject(Carrier::class, $response);
@@ -47,14 +47,14 @@ trait ManageCarriers
      * Create new Carrier
      *
      * @param array $payload
-     * @return mixed
+     * @return Carrier
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function createCarrier(array $payload): mixed
+    public function createCarrier(array $payload): Carrier
     {
         $response = $this->post("v1/carrier", $payload)['data'];
         return Util::convertToShippiObject(Carrier::class, $response);
@@ -65,14 +65,14 @@ trait ManageCarriers
      *
      * @param string $carrierId
      * @param array $payload
-     * @return mixed
+     * @return Carrier
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function updateCarrier(string $carrierId, array $payload): mixed
+    public function updateCarrier(string $carrierId, array $payload): Carrier
     {
         $response = $this->patch("v1/carrier/{$carrierId}", $payload)['data'];
         return Util::convertToShippiObject(Carrier::class, $response);

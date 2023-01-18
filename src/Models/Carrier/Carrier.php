@@ -3,8 +3,8 @@
 namespace Shippii\Models\Carrier;
 
 use Shippii\Models\Carrier\Owner;
-use Shippii\Resources\CarrierAccount;
 use Shippii\Models\Carrier\CarrierSettings;
+use Shippii\Models\CarrierAccount\CarrierAccount;
 
 final class Carrier
 {
