@@ -18,6 +18,6 @@ final class Organisation
     public OrganisationSettings|null $settings = null;
     public string|null $created_at = null;
     public string|null $updated_at = null;
-    /** @var Address[]|null */
     public array|null $addresses = null;
+    /** @var Address[]|null */
 }
