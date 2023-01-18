@@ -41,6 +41,7 @@ abstract class Util
      */
     public static function convertToShippiObjectCollection($targetClass, $data): mixed
     {
+        $result = [];
         try {
             $mapper = (new MapperBuilder)->enableFlexibleCasting()->mapper();
             foreach ($data as $key => $datum) {
