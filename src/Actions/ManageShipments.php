@@ -12,7 +12,7 @@ trait ManageShipments
      * Get Shipments
      *
      * @param array $queryParams
-     * @return array
+     * @return Shipment[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
@@ -24,21 +24,21 @@ trait ManageShipments
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/shipment?{$parameters}")['data'];
 
-        return Util::convertToShippiObject(Shipment::class, $response);
+        return Util::convertToShippiObjectCollection(Shipment::class, $response);
     }
 
     /**
      * Get Shipments
      *
      * @param string $shipmentId
-     * @return array
+     * @return Shipment
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getShipment(string $shipmentId): array
+    public function getShipment(string $shipmentId): Shipment
     {
         $response = $this->get("v1/shipment/{$shipmentId}")['data'];
 
@@ -49,14 +49,14 @@ trait ManageShipments
      * Create shipment
      *
      * @param array $payload
-     * @return array
+     * @return Shipment
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function createShipment(array $payload): array
+    public function createShipment(array $payload): Shipment
     {
         $response = $this->post('v1/shipment', $payload)['data'];
 
@@ -68,14 +68,14 @@ trait ManageShipments
      *
      * @param string $shipmentId
      * @param array $payload
-     * @return array
+     * @return Shipment
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function updateShipment(string $shipmentId, array $payload): array
+    public function updateShipment(string $shipmentId, array $payload): Shipment
     {
         $response = $this->patch("v1/shipment/{$shipmentId}", $payload)['data'];
 
@@ -87,14 +87,14 @@ trait ManageShipments
      *
      * @param string $shipmentId
      * @param string $shipmentState
-     * @return array
+     * @return Shipment
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function updateShipmentState(string $shipmentId, string $shipmentState): array
+    public function updateShipmentState(string $shipmentId, string $shipmentState): Shipment
     {
         $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}");
         return Util::convertToShippiObject(Shipment::class, $response);
@@ -104,14 +104,14 @@ trait ManageShipments
      * Archive shipment
      *
      * @param string $shipmentId
-     * @return array
+     * @return Shipment
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function archiveShipment(string $shipmentId): array
+    public function archiveShipment(string $shipmentId): Shipment
     {
         $response = $this->patch("v1/shipment/archive/{$shipmentId}");
         return Util::convertToShippiObject(Shipment::class, $response);

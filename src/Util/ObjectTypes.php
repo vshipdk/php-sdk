@@ -7,6 +7,6 @@ class ObjectTypes
 {
     const mapping = [
         \Shippii\Models\Carrier\Carrier::OBJECT_NAME => \Shippii\Models\Carrier::class,
-        \Shippii\Resources\Shipment::OBJECT_NAME => \Shippii\Resources\Shipment::class
+        \Shippii\Models\Shipment\Shipment::OBJECT_NAME => \Shippii\Models\Shipment\Shipment::class,
     ];
 }

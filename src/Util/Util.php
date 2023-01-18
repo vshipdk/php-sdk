@@ -37,7 +37,7 @@ abstract class Util
      * @template T
      * @param class-string<T> $targetClass, the class to map to
      * @param array $data
-     * @return T
+     * @return array<T>
      */
     public static function convertToShippiObjectCollection($targetClass, $data): mixed
     {

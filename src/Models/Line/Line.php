@@ -10,11 +10,11 @@ final class Line
     public string|null $sku = null;
     public float|null $qty = null;
     public float|null $weight = null;
-    public float|null $totalWeight = null;
+    public float|null $total_weight = null;
     public float|null $volume = null;
-    public float|null $totalVolume = null;
-    public string|null $tariffCode = null;
-    public string|null $harmonizationCode = null;
-    public string|null $countryOfOrigin = null;
-    public string|null $countryOfDeclaration = null;
+    public float|null $total_volume = null;
+    public string|null $tariff_code = null;
+    public string|null $harmonization_code = null;
+    public string|null $country_of_origin = null;
+    public string|null $country_of_declaration = null;
 }

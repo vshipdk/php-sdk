@@ -12,7 +12,7 @@ trait ManageUsers
      * Get All Users
      *
      * @param array $parameters
-     * @return array
+     * @return User[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
@@ -23,8 +23,7 @@ trait ManageUsers
     {
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("v1/user?{$parameters}")['data'];
-
-        return Util::convertToShippiObject(User::class, $response);
+        return Util::convertToShippiObjectCollection(User::class, $response);
     }
 
     /**
@@ -38,7 +37,7 @@ trait ManageUsers
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getUser(string $userId): array
+    public function getUser(string $userId): User
     {
         $response = $this->get("v1/user/{$userId}")['data'];
 

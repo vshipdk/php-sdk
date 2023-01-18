@@ -8,17 +8,17 @@ use Shippii\Models\Organisation\Organisation;
 final class User
 {
     public string|null $id = null;
-    public string|null $firstName = null;
-    public string|null $lastName = null;
+    public string|null $first_name = null;
+    public string|null $last_name = null;
     public string|null $email = null;
-    public string|null $mobileE164 = null;
-    public string|null $mobileNational = null;
-    public string|null $mobileRaw = null;
+    public string|null $mobile_e164 = null;
+    public string|null $mobile_national = null;
+    public string|null $mobile_raw = null;
     public string|null $role = null;
     public string|null $timezone = null;
     public string|null $locale = null;
-    public string|null $createdAt = null;
-    public string|null $updatedAt = null;
+    public string|null $created_at = null;
+    public string|null $update_at = null;
     /** @var Organisation[]|null  */
     public array|null $organisations = null;
 }
