@@ -21,6 +21,6 @@ trait ManageCountries
     public function getCountries(): array
     {
         $response = $this->get('v1/country')['data'];
-        return Util::convertToShippiObjectCollection(Country::class, $response);
+        return Util::convertToShippiiObjectCollection(Country::class, $response);
     }
 }

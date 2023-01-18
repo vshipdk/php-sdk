@@ -25,7 +25,7 @@ trait ManageCarriersAccounts
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/carrier-account?{$parameters}")['data'];
 
-        return Util::convertToShippiObjectCollection(CarrierAccount::class, $response);
+        return Util::convertToShippiiObjectCollection(CarrierAccount::class, $response);
     }
 
     /**
@@ -43,7 +43,7 @@ trait ManageCarriersAccounts
     {
         $response = $this->get("v1/carrier-account/{$carrierAccountId}")['data'];
         // dd($response);
-        return Util::convertToShippiObject(CarrierAccount::class, $response);
+        return Util::convertToShippiiObject(CarrierAccount::class, $response);
     }
 
     /**
@@ -60,7 +60,7 @@ trait ManageCarriersAccounts
     public function createCarrierAccount(array $payload): CarrierAccount
     {
         $response = $this->post("v1/carrier-account", $payload)['data'];
-        return Util::convertToShippiObject(CarrierAccount::class, $response);
+        return Util::convertToShippiiObject(CarrierAccount::class, $response);
     }
 
     /**
@@ -78,7 +78,7 @@ trait ManageCarriersAccounts
     public function updateCarrierAccount(string $carrierAccountId, array $payload): CarrierAccount
     {
         $response = $this->patch("v1/carrier-account/{$carrierAccountId}")['data'];
-        return Util::convertToShippiObject(CarrierAccount::class, $response);
+        return Util::convertToShippiiObject(CarrierAccount::class, $response);
     }
 
     /**
@@ -95,7 +95,7 @@ trait ManageCarriersAccounts
     public function deleteCarrierAccount(string $carrierAccountId): CarrierAccount
     {
         $response = $this->delete("v1/carrier-account/{$carrierAccountId}")['data'];
-        return Util::convertToShippiObject(CarrierAccount::class, $response);
+        return Util::convertToShippiiObject(CarrierAccount::class, $response);
     }
 
     // TODO:
@@ -113,6 +113,6 @@ trait ManageCarriersAccounts
     public function getCarrierAccountFields(string $carrierCode): array
     {
         $response = $this->get("v1/carrier-account/fields/{$carrierCode}")['data'];
-        return Util::convertToShippiObjectCollection(CarrierAccountFields::class, $response); 
+        return Util::convertToShippiiObjectCollection(CarrierAccountFields::class, $response); 
     }
 }

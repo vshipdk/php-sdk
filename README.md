@@ -297,19 +297,7 @@ Send a request with body to create API resource through the client:
     public int|null $status = null;
     public string|null $created_at = null;
     public string|null $updated_at = null;
-```
-
-### Carrier Owner
-
-```php
-    public string|null $owner_type = null;
-    public string|null $owner_id = null;
-```
-
-### Carrier Settings
-
-```php
-    public string|null $data = null;
+    public string|null $carrier_identification = null;
 ```
 
 <br>
@@ -355,6 +343,8 @@ Send a request with body to create API resource through the client:
     public Owner|null $owner = null;
     public string|null $url = null;
     public string|null $createdAt = null;
+    public string|null $type = null;
+    public string|null $temporary_url = null;
 ```
 
 <br>
@@ -399,25 +389,42 @@ Send a request with body to create API resource through the client:
 #### Shipment
 
 ```php
-    public string $id;
-    public int $type;
-    public string|null $carrierId;
-    public array $sender;
-    public array|null $receiver = null;
-    public array|null $lines = null;
-    public array $carrierOptions;
-    public string $state;
-    public string|null $rateId;
-    public string|null $creatorId;
-    public string|null $creatorType;
-    public string|null $sendableId;
-    public string|null $sendableAddressId;
-    public string|null $receivableId;
-    public string|null $receivableAddressId;
-    public string|null $sendableReference;
-    public string|null $carrierIdentification;
-    public string|null $createdAt;
-    public string|null $updatedAt;
+    public string|null $id = null;
+    public string|null $rate_id = null;
+    public int|null $type = null;
+    public string|null $state = null;
+    /** @var ShipmentMetadata[]|null  */
+    public array|null $metadata = null;
+    /** @var Tag[]|null  */
+    public array|null $tags = null;
+    public string|null $group = null;
+    public string|null $creator_id = null;
+    public string|null $creator_type = null;
+    public string|null $sendable_id = null;
+    public string|null $sendable_address_id = null;
+    public string|null $receivable_id = null;
+    public string|null $receivable_address_id = null;
+    public string|null $sendable_reference = null;
+    public string|null $system_reference = null;
+    public Address|null $receivable_address = null;
+    public User|null $receivable = null;
+    public Address|null $sendable_address = null;
+    public OrganisationObject|null $organisation_object = null;
+    public string|null $carrier_identification = null;
+    public Carrier|null $carrier = null;
+    public User|null $creator = null;
+    /** @var Line[]|null  */
+    public array|null $items = null;
+    /** @var ActivityLog[]|null  */
+    public array|null $logs = null;
+    public string|null $shipment_carrier_data = null;
+    public string|null $created_at = null;
+    public string|null $updated_at = null;
+    public string|null $reference = null;
+    public ShipmentSendable|null $sendable = null;
+    public Label|null $label = null;
+    /** @var Parcel[]|null */
+    public array|null $parcels = null;
 ```
 
 <br>
@@ -425,19 +432,20 @@ Send a request with body to create API resource through the client:
 #### User
 
 ```php
-    public string|null $id;
-    public string|null $firstName = null;
-    public string|null $lastName = null;
+    public string|null $id = null;
+    public string|null $first_name = null;
+    public string|null $last_name = null;
     public string|null $email = null;
-    public string|null $phone = null;
+    public string|null $mobile_e164 = null;
+    public string|null $mobile_national = null;
+    public string|null $mobile_raw = null;
     public string|null $role = null;
     public string|null $timezone = null;
     public string|null $locale = null;
-    public string|null $mobileRaw;
-    public string|null $mobileE164;
-    public string|null $mobileNational;
-    public string|null $createdAt;
-    public string|null $updateAt;
+    public string|null $created_at = null;
+    public string|null $update_at = null;
+    /** @var Organisation[]|null  */
+    public array|null $organisations = null;
 ```
 
 <br>
@@ -445,10 +453,5 @@ Send a request with body to create API resource through the client:
 #### Invoice
 
 ```php
-    public array $shipments;
-    public float|null $discount;
-    public array $senderData;
-    public array $vatAgent;
-    public string $invoiceLanguage;
-    public string $declarationOfOrigin;
+    public string|null $invoice_url = null;
 ```
