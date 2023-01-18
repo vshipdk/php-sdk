@@ -24,7 +24,7 @@ trait ManageUsers
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("v1/user?{$parameters}")['data'];
 
-        return Util::convertToShippiObjectCollection(User::class, $response);
+        return Util::convertToShippiObject(User::class, $response);
     }
 
     /**
