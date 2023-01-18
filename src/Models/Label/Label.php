@@ -14,4 +14,7 @@ final class Label
     public Owner|null $owner = null;
     public string|null $url = null;
     public string|null $createdAt = null;
+
+    public string|null $type = null;
+    public string|null $temporary_url = null;
 }

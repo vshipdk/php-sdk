@@ -13,6 +13,7 @@ use Shippii\Actions\ManageOrganisationObjects;
 use Shippii\Actions\ManageOrganisations;
 use Shippii\Actions\ManageShipments;
 use Shippii\Actions\ManageUsers;
+use Shippii\Actions\ManageWebhooks;
 
 class Shippii
 {
@@ -25,7 +26,8 @@ class Shippii
         ManageOrganisations,
         ManageLabels,
         ManageOrganisationObjects,
-        ManageInvoices;
+        ManageInvoices,
+        ManageWebhooks;
 
     /**
      * Number of seconds a request is retried.

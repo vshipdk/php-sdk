@@ -5,6 +5,8 @@ namespace Shippii\Resources;
 
 class Shipment extends Resource
 {
+    const OBJECT_NAME = 'shipment';
+    
     public string $id;
     public int $type;
     public string|null $carrierId;

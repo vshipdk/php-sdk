@@ -6,6 +6,7 @@ namespace Shippii\Util;
 class ObjectTypes
 {
     const mapping = [
-        \Shippii\Resources\Carrier::OBJECT_NAME => \Shippii\Resources\Carrier,
+        \Shippii\Models\Carrier\Carrier::OBJECT_NAME => \Shippii\Models\Carrier::class,
+        \Shippii\Resources\Shipment::OBJECT_NAME => \Shippii\Resources\Shipment::class
     ];
 }
