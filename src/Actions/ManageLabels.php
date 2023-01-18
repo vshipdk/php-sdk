@@ -13,17 +13,18 @@ trait ManageLabels
      *
      * @param string $shipmentId
      * @param array $queryParams
-     * @return Label
+     * @return Label[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function fetchPrintShipmentLabel(string $shipmentId, array $queryParams = []): Label
+    public function fetchPrintShipmentLabel(string $shipmentId, array $queryParams = []): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/label/{$shipmentId}?{$parameters}")['data'];
-        return Util::convertToShippiiObject(Label::class, $response);
+
+        return Util::convertToShippiiObjectCollection(Label::class, $response);
     }
 }

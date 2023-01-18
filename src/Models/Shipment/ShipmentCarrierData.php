@@ -9,17 +9,17 @@ use Shippii\Models\Carrier\CarrierAttribute;
 final class ShipmentCarrierData
 {
     public string|null $id = null;
-    public string|null $shipmentId = null;
-    public string|null $carrierId = null;
-    public string|null $carrierState = null;
-    public string|null $previousData = null;
     public string|null $identifier = null;
+    public string|null $carrier_state = null;
     /** @var CarrierAttribute[]|null  */
-    public array|null $carrierAttributes = null;
-    public bool|null $hasMultipleIdentifiers = null;
+    public array|null $carrier_attributes = null;
+    public bool|null $has_multiple_identifiers = null;
     /** @var array<string>|null  */
     public array|null $identifiers = null;
+    public string|null $previous_data = null;
     public Carrier|null $carrier = null;
-    public string|null $createdAt = null;
-    public string|null $updatedAt = null;
+    public string|null $shipment_id = null;
+    public string|null $carrier_id = null;
+    public string|null $created_at = null;
+    public string|null $updated_at = null;
 }

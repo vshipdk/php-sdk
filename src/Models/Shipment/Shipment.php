@@ -12,6 +12,7 @@ use Shippii\Models\Address\Address;
 use Shippii\Models\Carrier\Carrier;
 use Shippii\Models\ActivityLog\ActivityLog;
 use Shippii\Models\OrganisationObject\OrganisationObject;
+use Shippii\Models\Shipment\ShipmentReceivable;
 
 final class Shipment
 {
@@ -35,17 +36,17 @@ final class Shipment
     public string|null $sendable_reference = null;
     public string|null $system_reference = null;
     public Address|null $receivable_address = null;
-    public User|null $receivable = null;
+    public ShipmentReceivable|null $receivable = null;
     public Address|null $sendable_address = null;
     public OrganisationObject|null $organisation_object = null;
     public string|null $carrier_identification = null;
     public Carrier|null $carrier = null;
     public User|null $creator = null;
     /** @var Line[]|null  */
-    public array|null $items = null;
+    public array|null $shipment_lines = null;
     /** @var ActivityLog[]|null  */
     public array|null $logs = null;
-    public string|null $shipment_carrier_data = null;
+    public ShipmentCarrierData|null $shipment_carrier_data = null;
     public string|null $created_at = null;
     public string|null $updated_at = null;
 
