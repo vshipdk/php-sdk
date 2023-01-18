@@ -6,14 +6,14 @@ namespace Shippii\Models\Shipment;
 final class ShipmentReceivable
 {
     public string|null $id = null;
-    public string|null $userId = null;
-    public string|null $firstName = null;
-    public string|null $lastName = null;
+    public string|null $user_id = null;
+    public string|null $first_name = null;
+    public string|null $last_name = null;
     public string|null $email = null;
-    public string|null $mobilePhoneE164 = null;
-    public string|null $mobilePhoneNational = null;
-    public string|null $mobilePhoneRaw = null;
-    public string|null $registeredAt = null;
-    public string|null $createdAt = null;
-    public string|null $updatedAt = null;
+    public string|null $mobile_phone_e164 = null;
+    public string|null $mobile_phone_national = null;
+    public string|null $mobile_phone_raw = null;
+    public string|null $registered_at = null;
+    public string|null $created_at = null;
+    public string|null $updated_at = null;
 }

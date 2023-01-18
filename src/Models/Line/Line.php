@@ -3,18 +3,20 @@ declare(strict_types=1);
 
 namespace Shippii\Models\Line;
 
+use Shippii\Models\Shipment\ShipmentItem;
+
 final class Line
 {
     public string|null $id = null;
-    public string|null $name = null;
-    public string|null $sku = null;
-    public float|null $qty = null;
-    public float|null $weight = null;
-    public float|null $total_weight = null;
-    public float|null $volume = null;
-    public float|null $total_volume = null;
-    public string|null $tariff_code = null;
-    public string|null $harmonization_code = null;
-    public string|null $country_of_origin = null;
-    public string|null $country_of_declaration = null;
+    public string|null $shipment_id = null;
+    public string|null $item_id = null;
+    public int|null $quantity = null;
+    public int|null $total_volume = null;
+    public int|null $total_weight = null;
+    public int|null $total_value = null;
+    public string|null $value_currency = null;
+    public string|null $created_at = null;
+    public string|null $updated_at = null;
+    public ShipmentItem|null $item = null;
+
 }
