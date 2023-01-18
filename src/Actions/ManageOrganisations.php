@@ -23,7 +23,7 @@ trait ManageOrganisations
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/organisation?{$parameters}")['data'];
-        return Util::convertToShippiObjectCollection(Organisation::class, $response);
+        return Util::convertToShippiiObjectCollection(Organisation::class, $response);
     }
 
     /**
@@ -40,7 +40,7 @@ trait ManageOrganisations
     public function getOrganisation(string $organisationId): Organisation
     {
         $response = $this->get("v1/organisation/{$organisationId}")['data'];
-        return Util::convertToShippiObject(Organisation::class, $response);
+        return Util::convertToShippiiObject(Organisation::class, $response);
     }
 
     /**
@@ -57,7 +57,7 @@ trait ManageOrganisations
     public function createOrganisation(array $payload): Organisation
     {
         $response = $this->post('v1/organisation', $payload)['data'];
-        return Util::convertToShippiObject(Organisation::class, $response);
+        return Util::convertToShippiiObject(Organisation::class, $response);
     }
 
     /**
@@ -75,7 +75,7 @@ trait ManageOrganisations
     public function updateOrganisation(string $organisationId, array $payload): Organisation
     {
         $response = $this->patch("v1/organisation/{$organisationId}", $payload)['data'];
-        return Util::convertToShippiObject(Organisation::class, $response);
+        return Util::convertToShippiiObject(Organisation::class, $response);
     }
 
     /**
@@ -92,6 +92,6 @@ trait ManageOrganisations
     public function deleteOrganisation(string $organisationId): Organisation
     {
         $response = $this->delete("v1/organisation/{$organisationId}")['data'];
-        return Util::convertToShippiObject(Organisation::class, $response);
+        return Util::convertToShippiiObject(Organisation::class, $response);
     }
 }

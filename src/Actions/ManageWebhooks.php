@@ -12,6 +12,6 @@ trait ManageWebhooks
     {
         [$class, $data] = Webhook::constructEvent($payload, $headerSignature, $secret);
 
-        return Util::convertToShippiObject($class, $data);
+        return Util::convertToShippiiObject($class, $data);
     }
 }

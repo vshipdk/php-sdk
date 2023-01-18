@@ -14,7 +14,7 @@ abstract class Util
      * @param array $data
      * @return T
      */
-    public static function convertToShippiObject($targetClass, $data): mixed
+    public static function convertToShippiiObject($targetClass, $data): mixed
     {
         try {
             $mapper = (new MapperBuilder)->enableFlexibleCasting()->mapper();
@@ -39,8 +39,9 @@ abstract class Util
      * @param array $data
      * @return array<T>
      */
-    public static function convertToShippiObjectCollection($targetClass, $data): mixed
+    public static function convertToShippiiObjectCollection($targetClass, $data): mixed
     {
+        $result = [];
         try {
             $mapper = (new MapperBuilder)->enableFlexibleCasting()->mapper();
             foreach ($data as $key => $datum) {

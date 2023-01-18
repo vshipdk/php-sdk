@@ -24,7 +24,7 @@ trait ManageShipments
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/shipment?{$parameters}")['data'];
 
-        return Util::convertToShippiObjectCollection(Shipment::class, $response);
+        return Util::convertToShippiiObjectCollection(Shipment::class, $response);
     }
 
     /**
@@ -42,7 +42,7 @@ trait ManageShipments
     {
         $response = $this->get("v1/shipment/{$shipmentId}")['data'];
 
-        return Util::convertToShippiObject(Shipment::class, $response);
+        return Util::convertToShippiiObject(Shipment::class, $response);
     }
 
     /**
@@ -60,7 +60,7 @@ trait ManageShipments
     {
         $response = $this->post('v1/shipment', $payload)['data'];
 
-        return Util::convertToShippiObject(Shipment::class, $response);
+        return Util::convertToShippiiObject(Shipment::class, $response);
     }
 
     /**
@@ -79,7 +79,7 @@ trait ManageShipments
     {
         $response = $this->patch("v1/shipment/{$shipmentId}", $payload)['data'];
 
-        return Util::convertToShippiObject(Shipment::class, $response);
+        return Util::convertToShippiiObject(Shipment::class, $response);
     }
 
     /**
@@ -97,7 +97,7 @@ trait ManageShipments
     public function updateShipmentState(string $shipmentId, string $shipmentState): Shipment
     {
         $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}");
-        return Util::convertToShippiObject(Shipment::class, $response);
+        return Util::convertToShippiiObject(Shipment::class, $response);
     }
 
     /**
@@ -114,6 +114,6 @@ trait ManageShipments
     public function archiveShipment(string $shipmentId): Shipment
     {
         $response = $this->patch("v1/shipment/archive/{$shipmentId}");
-        return Util::convertToShippiObject(Shipment::class, $response);
+        return Util::convertToShippiiObject(Shipment::class, $response);
     }
 }

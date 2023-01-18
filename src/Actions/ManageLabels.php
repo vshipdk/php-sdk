@@ -24,6 +24,6 @@ trait ManageLabels
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/label/{$shipmentId}?{$parameters}")['data'];
-        return Util::convertToShippiObject(Label::class, $response);
+        return Util::convertToShippiiObject(Label::class, $response);
     }
 }

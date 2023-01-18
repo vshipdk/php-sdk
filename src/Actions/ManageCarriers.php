@@ -23,7 +23,7 @@ trait ManageCarriers
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/carrier?{$parameters}")['data'];
-        return Util::convertToShippiObjectCollection(Carrier::class, $response);
+        return Util::convertToShippiiObjectCollection(Carrier::class, $response);
     }
 
     /**
@@ -40,7 +40,7 @@ trait ManageCarriers
     public function getCarrier(string $carrierId): Carrier
     {
         $response = $this->get("v1/carrier/{$carrierId}")['data'];
-        return Util::convertToShippiObject(Carrier::class, $response);
+        return Util::convertToShippiiObject(Carrier::class, $response);
     }
 
     /**
@@ -57,7 +57,7 @@ trait ManageCarriers
     public function createCarrier(array $payload): Carrier
     {
         $response = $this->post("v1/carrier", $payload)['data'];
-        return Util::convertToShippiObject(Carrier::class, $response);
+        return Util::convertToShippiiObject(Carrier::class, $response);
     }
 
     /**
@@ -75,7 +75,7 @@ trait ManageCarriers
     public function updateCarrier(string $carrierId, array $payload): Carrier
     {
         $response = $this->patch("v1/carrier/{$carrierId}", $payload)['data'];
-        return Util::convertToShippiObject(Carrier::class, $response);
+        return Util::convertToShippiiObject(Carrier::class, $response);
     }
 
     /**
@@ -93,6 +93,6 @@ trait ManageCarriers
     {
         $response = $this->delete("v1/carrier/{$carrierId}")['data'];
 
-        return Util::convertToShippiObject(Carrier::class, $response);
+        return Util::convertToShippiiObject(Carrier::class, $response);
     }
 }
