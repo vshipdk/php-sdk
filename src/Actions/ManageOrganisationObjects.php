@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\OrganisationObject;
+use Shippii\Util\Util;
+use Shippii\Models\OrganisationObject\OrganisationObject;
 
 trait ManageOrganisationObjects
 {
@@ -11,7 +12,7 @@ trait ManageOrganisationObjects
      * Get All Organisation Objects
      *
      * @param array $parameters
-     * @return array
+     * @return OrganisationObject[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
@@ -21,13 +22,8 @@ trait ManageOrganisationObjects
     public function getOrganisationObjects(array $parameters = []): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
-        $response = $this->get("v1/organisation-object?{$parameters}");
-
-        return $this->transformCollection(
-            collection: $response['data'],
-            class: OrganisationObject::class,
-            meta: $response['meta'],
-        );
+        $response = $this->get("v1/organisation-object?{$parameters}")['data'];
+        return Util::convertToShippiObjectCollection(OrganisationObject::class, $response);
     }
 
     /**
@@ -43,26 +39,26 @@ trait ManageOrganisationObjects
      */
     public function getOrganisationObject(string $organisationObjectId): OrganisationObject
     {
-        return new OrganisationObject(
-            $this->get("v1/organisation-object/{$organisationObjectId}")['data'], 
-            $this
-        );
+        $response = $this->get("v1/organisation-object/{$organisationObjectId}")['data'];
+
+        return Util::convertToShippiObject(OrganisationObject::class, $response);
     }
 
     /**
      * Create Organisation Object
      *
      * @param array $payload
-     * @return array
+     * @return OrganisationObject
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function createOrganisationObject(array $payload): array
+    public function createOrganisationObject(array $payload): OrganisationObject
     {
-        return $this->post('v1/organisation-object', $payload);
+        $response = $this->post('v1/organisation-object', $payload)['data'];
+        return Util::convertToShippiObject(OrganisationObject::class, $response);
     }
 
     /**
@@ -70,31 +66,33 @@ trait ManageOrganisationObjects
      *
      * @param string $organisationObjectId
      * @param array $payload
-     * @return array
+     * @return OrganisationObject
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function updateOrganisationObject(string $organisationObjectId, array $payload): array
+    public function updateOrganisationObject(string $organisationObjectId, array $payload): OrganisationObject
     {
-        return $this->patch("v1/organisation-object/{$organisationObjectId}", $payload)['data'];
+        $response = $this->patch("v1/organisation-object/{$organisationObjectId}", $payload)['data'];
+        return Util::convertToShippiObject(OrganisationObject::class, $response);
     }
 
     /**
      * Delete Organisation Object
      *
      * @param string $organisationObjectId
-     * @return array
+     * @return OrganisationObject
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function deleteOrganisationObject(string $organisationObjectId): array
+    public function deleteOrganisationObject(string $organisationObjectId): OrganisationObject
     {
-        return $this->delete("v1/organisation-object/{$organisationObjectId}");
+        $response = $this->delete("v1/organisation-object/{$organisationObjectId}")['data'];
+        return Util::convertToShippiObject(OrganisationObject::class, $response);
     }
 }

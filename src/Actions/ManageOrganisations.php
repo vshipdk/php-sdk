@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Organisation;
+use Shippii\Models\Organisation\Organisation;
+use Shippii\Util\Util;
 
 trait ManageOrganisations
 {
@@ -11,7 +12,7 @@ trait ManageOrganisations
      * Get All Organisations
      *
      * @param array $queryParams
-     * @return array
+     * @return Organisation[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
@@ -21,13 +22,8 @@ trait ManageOrganisations
     public function getOrganisations(array $queryParams = []): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
-        $response = $this->get("v1/organisation?{$parameters}");
-
-        return $this->transformCollection(
-            collection: $response['data'],
-            class: Organisation::class,
-            meta: $response['meta'],
-        );
+        $response = $this->get("v1/organisation?{$parameters}")['data'];
+        return Util::convertToShippiObjectCollection(Organisation::class, $response);
     }
 
     /**
@@ -43,26 +39,25 @@ trait ManageOrganisations
      */
     public function getOrganisation(string $organisationId): Organisation
     {
-        return new Organisation(
-            $this->get("v1/organisation/{$organisationId}")['data'], 
-            $this
-        );
+        $response = $this->get("v1/organisation/{$organisationId}")['data'];
+        return Util::convertToShippiObject(Organisation::class, $response);
     }
 
     /**
      * Create Organisation
      *
      * @param array $payload
-     * @return array
+     * @return Organisation
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function createOrganisation(array $payload): array
+    public function createOrganisation(array $payload): Organisation
     {
-        return $this->post('v1/organisation', $payload);
+        $response = $this->post('v1/organisation', $payload)['data'];
+        return Util::convertToShippiObject(Organisation::class, $response);
     }
 
     /**
@@ -70,31 +65,33 @@ trait ManageOrganisations
      *
      * @param string $organisationId
      * @param array $payload
-     * @return array
+     * @return Organisation
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function updateOrganisation(string $organisationId, array $payload): array
+    public function updateOrganisation(string $organisationId, array $payload): Organisation
     {
-        return $this->patch("v1/organisation/{$organisationId}", $payload);
+        $response = $this->patch("v1/organisation/{$organisationId}", $payload)['data'];
+        return Util::convertToShippiObject(Organisation::class, $response);
     }
 
     /**
      * Delete Organisation
      *
      * @param string $organisationId
-     * @return array
+     * @return Organisation
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function deleteOrganisation(string $organisationId): array
+    public function deleteOrganisation(string $organisationId): Organisation
     {
-        return $this->delete("v1/organisation/{$organisationId}");
+        $response = $this->delete("v1/organisation/{$organisationId}")['data'];
+        return Util::convertToShippiObject(Organisation::class, $response);
     }
 }

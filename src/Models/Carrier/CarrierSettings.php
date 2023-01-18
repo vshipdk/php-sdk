@@ -2,7 +2,7 @@
 
 namespace Shippii\Models\Carrier;
 
-class CarrierSettings
+final class CarrierSettings
 {
     public string|null $data = null;
 }

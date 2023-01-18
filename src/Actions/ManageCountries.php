@@ -11,14 +11,14 @@ trait ManageCountries
     /**
      * Get Countries
      *
-     * @return mixed
+     * @return Country[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getCountries(): mixed
+    public function getCountries(): array
     {
         $response = $this->get('v1/country')['data'];
         return Util::convertToShippiObjectCollection(Country::class, $response);

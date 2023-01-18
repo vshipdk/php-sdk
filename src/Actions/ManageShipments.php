@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\Shipment;
+use Shippii\Models\Shipment\Shipment;
+use Shippii\Util\Util;
 
 trait ManageShipments
 {
@@ -21,13 +22,27 @@ trait ManageShipments
     public function getShipments(array $queryParams = []): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
-        $response = $this->get("v1/shipment?{$parameters}");
+        $response = $this->get("v1/shipment?{$parameters}")['data'];
 
-        return $this->transformCollection(
-            collection: $response['data'],
-            class: Shipment::class,
-            meta: $response['meta'],
-        );
+        return Util::convertToShippiObject(Shipment::class, $response);
+    }
+
+    /**
+     * Get Shipments
+     *
+     * @param string $shipmentId
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shippii\Exceptions\FailedActionException
+     * @throws \Shippii\Exceptions\NotFoundException
+     * @throws \Shippii\Exceptions\RateLimitExceededException
+     * @throws \Shippii\Exceptions\ValidationException
+     */
+    public function getShipment(string $shipmentId): array
+    {
+        $response = $this->get("v1/shipment/{$shipmentId}")['data'];
+
+        return Util::convertToShippiObject(Shipment::class, $response);
     }
 
     /**
@@ -43,7 +58,9 @@ trait ManageShipments
      */
     public function createShipment(array $payload): array
     {
-        return $this->post('v1/shipment', $payload);
+        $response = $this->post('v1/shipment', $payload)['data'];
+
+        return Util::convertToShippiObject(Shipment::class, $response);
     }
 
     /**
@@ -60,7 +77,9 @@ trait ManageShipments
      */
     public function updateShipment(string $shipmentId, array $payload): array
     {
-        return $this->patch("v1/shipment/{$shipmentId}", $payload);
+        $response = $this->patch("v1/shipment/{$shipmentId}", $payload)['data'];
+
+        return Util::convertToShippiObject(Shipment::class, $response);
     }
 
     /**
@@ -77,7 +96,8 @@ trait ManageShipments
      */
     public function updateShipmentState(string $shipmentId, string $shipmentState): array
     {
-        return $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}");
+        $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}");
+        return Util::convertToShippiObject(Shipment::class, $response);
     }
 
     /**
@@ -93,6 +113,7 @@ trait ManageShipments
      */
     public function archiveShipment(string $shipmentId): array
     {
-        return $this->patch("v1/shipment/archive/{$shipmentId}");
+        $response = $this->patch("v1/shipment/archive/{$shipmentId}");
+        return Util::convertToShippiObject(Shipment::class, $response);
     }
 }
