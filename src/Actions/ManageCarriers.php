@@ -12,14 +12,14 @@ trait ManageCarriers
      * Get All Carriers
      *
      * @param array $queryParams
-     * @return Carrier
+     * @return Carrier[]
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getCarriers(array $queryParams = []): Carrier
+    public function getCarriers(array $queryParams = []): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/carrier?{$parameters}")['data'];
@@ -82,14 +82,14 @@ trait ManageCarriers
      * Delete Carrier by ID
      *
      * @param string $carrierId
-     * @return mixed
+     * @return Carrier
      * @throws \Shippii\Exceptions\FailedActionException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Shippii\Exceptions\NotFoundException
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function deleteCarrier(string $carrierId): mixed
+    public function deleteCarrier(string $carrierId): Carrier
     {
         $response = $this->delete("v1/carrier/{$carrierId}")['data'];
 
