@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Shippii\Actions;
 
-use Shippii\Resources\User;
+use Shippii\Models\User\User;
+use Shippii\Util\Util;
 
 trait ManageUsers
 {
@@ -21,13 +22,9 @@ trait ManageUsers
     public function getUsers(array $parameters = []): array
     {
         $parameters = $this->prepareRequestParameters($parameters);
-        $response = $this->get("v1/user?{$parameters}");
+        $response = $this->get("v1/user?{$parameters}")['data'];
 
-        return $this->transformCollection(
-            collection: $response['data'],
-            class: User::class,
-            meta: $response['meta'],
-        );
+        return Util::convertToShippiObjectCollection(User::class, $response);
     }
 
     /**
@@ -41,8 +38,10 @@ trait ManageUsers
      * @throws \Shippii\Exceptions\RateLimitExceededException
      * @throws \Shippii\Exceptions\ValidationException
      */
-    public function getUser(string $userId): User
+    public function getUser(string $userId): array
     {
-        return new User($this->get("v1/user/{$userId}")['data'], $this);
+        $response = $this->get("v1/user/{$userId}")['data'];
+
+        return Util::convertToShippiObject(User::class, $response);
     }
 }

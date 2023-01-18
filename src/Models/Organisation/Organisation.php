@@ -16,5 +16,5 @@ final class Organisation
     public array|null $settings = null;
     public string|null $createdAt = null;
     public string|null $updatedAt = null;
-    public string|null $addresses = null
+    public string|null $addresses = null;
 }
