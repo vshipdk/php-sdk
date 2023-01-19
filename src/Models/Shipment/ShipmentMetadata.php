@@ -5,6 +5,6 @@ namespace Shippii\Models\Shipment;
 
 final class ShipmentMetadata
 {
-    public string|null $key = null;
-    public string|null $value = null;
+    /** @var string|null|bool|int */
+    public string|bool|int|null $key = null;
 }
