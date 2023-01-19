@@ -96,7 +96,7 @@ trait ManageShipments
      */
     public function updateShipmentState(string $shipmentId, string $shipmentState): Shipment
     {
-        $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}");
+        $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}")['data'];
         return Util::convertToShippiiObject(Shipment::class, $response);
     }
 

@@ -98,7 +98,6 @@ trait ManageCarriersAccounts
         return Util::convertToShippiiObject(CarrierAccount::class, $response);
     }
 
-    // TODO:
     /**
      * Get Carrier Account Fields
      *

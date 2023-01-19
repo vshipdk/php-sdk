@@ -12,8 +12,10 @@ final class CarrierAccountFields
     public string|null $type = null;
     public string|null $placeholder = null;
     public string|null $description = null;
-    public CarrierAccountFieldsOptions|null $options = null; // TODO:
-    public CarrierAccountFieldsOptions|null $selectOptions = null; // TODO:
+    /** @var array<string>|null  */
+    public array|null $options = null;
+    /** @var array<string>|null  */
+    public array|null $selectOptions = null;
     public bool|null $isMultiple = null;
     public string|null $value = null;
 }

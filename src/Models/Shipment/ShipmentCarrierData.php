@@ -11,8 +11,7 @@ final class ShipmentCarrierData
     public string|null $id = null;
     public string|null $identifier = null;
     public string|null $carrier_state = null;
-    /** @var CarrierAttribute[]|null  */
-    public array|null $carrier_attributes = null;
+    public CarrierAttribute|null $carrier_attributes = null;
     public bool|null $has_multiple_identifiers = null;
     /** @var array<string>|null  */
     public array|null $identifiers = null;
