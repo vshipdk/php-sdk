@@ -1,23 +1,29 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Actions;
 
+use GuzzleHttp\Exception\GuzzleException;
+use Shippii\Exceptions\FailedActionException;
+use Shippii\Exceptions\NotFoundException;
+use Shippii\Exceptions\RateLimitExceededException;
+use Shippii\Exceptions\ValidationException;
 use Shippii\Models\Shipment\Shipment;
 use Shippii\Util\Util;
 
 trait ManageShipments
 {
     /**
-     * Get Shipments
+     * Get Shipments.
      *
-     * @param array $queryParams
      * @return Shipment[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     *
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getShipments(array $queryParams = []): array
     {
@@ -28,15 +34,13 @@ trait ManageShipments
     }
 
     /**
-     * Get Shipments
+     * Get Shipments.
      *
-     * @param string $shipmentId
-     * @return Shipment
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getShipment(string $shipmentId): Shipment
     {
@@ -46,15 +50,13 @@ trait ManageShipments
     }
 
     /**
-     * Create shipment
+     * Create shipment.
      *
-     * @param array $payload
-     * @return Shipment
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function createShipment(array $payload): Shipment
     {
@@ -64,16 +66,13 @@ trait ManageShipments
     }
 
     /**
-     * Update shipment
+     * Update shipment.
      *
-     * @param string $shipmentId
-     * @param array $payload
-     * @return Shipment
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function updateShipment(string $shipmentId, array $payload): Shipment
     {
@@ -85,31 +84,27 @@ trait ManageShipments
     /**
      * Update the state of a shipment.
      *
-     * @param string $shipmentId
-     * @param string $shipmentState
-     * @return Shipment
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function updateShipmentState(string $shipmentId, string $shipmentState): Shipment
     {
         $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}")['data'];
+
         return Util::convertToShippiiObject(Shipment::class, $response);
     }
 
     /**
-     * Archive shipment
+     * Archive shipment.
      *
-     * @param string $shipmentId
-     * @return void
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function archiveShipment(string $shipmentId): void
     {

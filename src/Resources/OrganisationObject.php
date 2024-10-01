@@ -1,29 +1,43 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Resources;
 
+use GuzzleHttp\Exception\GuzzleException;
+use Shippii\Exceptions\FailedActionException;
+use Shippii\Exceptions\NotFoundException;
+use Shippii\Exceptions\RateLimitExceededException;
+use Shippii\Exceptions\ValidationException;
+
 class OrganisationObject extends Resource
 {
     public string $id;
-    public string|null $name = null;
+
+    public ?string $name = null;
+
     public string $organisationId;
+
     public array $organisation;
-    public string|null $currency = null;
-    public string|null $timezone = null;
-    public array|null $settings = null;
-    public string|null $createdAt;
-    public string|null $updatedAt;
+
+    public ?string $currency = null;
+
+    public ?string $timezone = null;
+
+    public ?array $settings = null;
+
+    public ?string $createdAt;
+
+    public ?string $updatedAt;
 
     /**
-     * Create Organisation Object
+     * Create Organisation Object.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function create(): array
     {
@@ -33,14 +47,13 @@ class OrganisationObject extends Resource
     }
 
     /**
-     * Update organisation object
+     * Update organisation object.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function update(): array
     {
@@ -50,14 +63,13 @@ class OrganisationObject extends Resource
     }
 
     /**
-     * Delete Organisation Object
+     * Delete Organisation Object.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function delete(): array
     {

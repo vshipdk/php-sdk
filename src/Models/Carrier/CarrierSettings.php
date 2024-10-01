@@ -4,5 +4,5 @@ namespace Shippii\Models\Carrier;
 
 final class CarrierSettings
 {
-    public string|null $data = null;
+    public ?string $data = null;
 }

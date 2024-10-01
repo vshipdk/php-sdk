@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Resources;
@@ -9,13 +10,12 @@ class Resource
 {
     /**
      * The resource attributes.
-     *
-     * @var array
      */
     public array $attributes;
 
     /**
-     * Shippii attribute
+     * Shippii attribute.
+     *
      * @var Shippii|null
      */
     protected Shippii $shippii;
@@ -23,13 +23,11 @@ class Resource
     /**
      * Create a new resource instance.
      *
-     * @param  array       $attributes
-     * @param Shippii|null $shippii
      * @return void
      */
     public function __construct(
         array $attributes,
-        Shippii|null $shippii = null
+        ?Shippii $shippii = null,
     ) {
         $this->attributes = $attributes;
         $this->shippii = $shippii;
@@ -39,8 +37,6 @@ class Resource
 
     /**
      * Fill the resource with the array of attributes.
-     *
-     * @return void
      */
     protected function fill(): void
     {
@@ -52,10 +48,7 @@ class Resource
     }
 
     /**
-     * Prepare a payload data
-     *
-     * @param array $columns
-     * @return array
+     * Prepare a payload data.
      */
     protected function preparePayload(array $columns): array
     {
@@ -72,9 +65,6 @@ class Resource
 
     /**
      * Convert the key name to camel case.
-     *
-     * @param  string  $key
-     * @return string
      */
     protected function camelCase(string $key): string
     {

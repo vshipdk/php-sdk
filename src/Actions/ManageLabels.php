@@ -1,24 +1,29 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Actions;
 
-use Shippii\Util\Util;
+use GuzzleHttp\Exception\GuzzleException;
+use Shippii\Exceptions\FailedActionException;
+use Shippii\Exceptions\NotFoundException;
+use Shippii\Exceptions\RateLimitExceededException;
+use Shippii\Exceptions\ValidationException;
 use Shippii\Models\Label\Label;
+use Shippii\Util\Util;
 
 trait ManageLabels
 {
     /**
-     * Fetch labels for shipment
+     * Fetch labels for shipment.
      *
-     * @param string $shipmentId
-     * @param array $queryParams
      * @return Label[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     *
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function fetchPrintShipmentLabel(string $shipmentId, array $queryParams = []): array
     {

@@ -1,24 +1,35 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Resources;
 
+use GuzzleHttp\Exception\GuzzleException;
+use Shippii\Exceptions\FailedActionException;
+use Shippii\Exceptions\NotFoundException;
+use Shippii\Exceptions\RateLimitExceededException;
+use Shippii\Exceptions\ValidationException;
+
 class Invoice extends Resource
 {
     public array $shipments;
-    public float|null $discount;
+
+    public ?float $discount;
+
     public array $senderData;
+
     public array $vatAgent;
+
     public string $invoiceLanguage;
+
     public string $declarationOfOrigin;
 
     /**
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function create(): array
     {

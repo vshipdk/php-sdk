@@ -1,32 +1,49 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Resources;
 
+use GuzzleHttp\Exception\GuzzleException;
+use Shippii\Exceptions\FailedActionException;
+use Shippii\Exceptions\NotFoundException;
+use Shippii\Exceptions\RateLimitExceededException;
+use Shippii\Exceptions\ValidationException;
+
 class CarrierAccount extends Resource
 {
     public string $id;
-    public string|null $carrierCode = null;
-    public string|null $name = null;
-    public string|null $purpose = null;
-    public string|null $status = null;
+
+    public ?string $carrierCode = null;
+
+    public ?string $name = null;
+
+    public ?string $purpose = null;
+
+    public ?string $status = null;
+
     public string $organisationId;
-    public array|null $data = null;
-    public string|null $expiresAt = null;
-    public array|null $fields;
-    public array|null $carriers;
-    public string|null $createdAt;
-    public string|null $updatedAt;
+
+    public ?array $data = null;
+
+    public ?string $expiresAt = null;
+
+    public ?array $fields;
+
+    public ?array $carriers;
+
+    public ?string $createdAt;
+
+    public ?string $updatedAt;
 
     /**
-     * Create carrier account
+     * Create carrier account.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function create(): array
     {
@@ -36,14 +53,13 @@ class CarrierAccount extends Resource
     }
 
     /**
-     * Update Carrier account
+     * Update Carrier account.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function update(): array
     {
@@ -53,14 +69,13 @@ class CarrierAccount extends Resource
     }
 
     /**
-     * Delete carrier account
+     * Delete carrier account.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function delete(): array
     {

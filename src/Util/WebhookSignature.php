@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Util;
@@ -10,12 +11,12 @@ abstract class WebhookSignature
     public static function verifyHeader(string $payload, string $headerSignature, string $secret)
     {
         if (empty($headerSignature)) {
-            throw new SignatureVerificationException("No signatures found.");
+            throw new SignatureVerificationException('No signatures found.');
         }
 
         $expectedSignature = self::verifySignature($payload, $secret, $headerSignature);
 
-        if (!$expectedSignature) {
+        if (! $expectedSignature) {
             throw new SignatureVerificationException('No signatures found matching the expeced signature for payload.');
         }
     }

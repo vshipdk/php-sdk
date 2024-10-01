@@ -2,16 +2,17 @@
 
 namespace Shippii\Util;
 
-use CuyZ\Valinor\MapperBuilder;
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Tree\Message\Messages;
+use CuyZ\Valinor\MapperBuilder;
 
 abstract class Util
 {
     /**
      * @template T
-     * @param class-string<T> $targetClass, the class to map to
-     * @param array $data
+     *
+     * @param  class-string<T>  $targetClass  , the class to map to
+     * @param  array  $data
      * @return T
      */
     public static function convertToShippiiObject($targetClass, $data): mixed
@@ -35,8 +36,9 @@ abstract class Util
 
     /**
      * @template T
-     * @param class-string<T> $targetClass, the class to map to
-     * @param array $data
+     *
+     * @param  class-string<T>  $targetClass  , the class to map to
+     * @param  array  $data
      * @return array<T>
      */
     public static function convertToShippiiObjectCollection($targetClass, $data): mixed

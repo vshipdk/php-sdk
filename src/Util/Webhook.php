@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Util;
 
 use Shippii\Exceptions\FailedActionException;
-
 
 abstract class Webhook
 {
@@ -16,9 +16,9 @@ abstract class Webhook
 
         $jsonError = \json_last_error();
 
-        if ($payloadArr === null && \JSON_ERROR_NONE !== $jsonError) {
+        if ($payloadArr === null && $jsonError !== \JSON_ERROR_NONE) {
             $msg = "Invalid payload: {$payload} "
-                . "(json_last_error() was {$jsonError})";
+                ."(json_last_error() was {$jsonError})";
 
             throw new FailedActionException($msg);
         }

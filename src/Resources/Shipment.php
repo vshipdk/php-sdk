@@ -1,41 +1,65 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Shippii\Resources;
 
+use GuzzleHttp\Exception\GuzzleException;
+use Shippii\Exceptions\FailedActionException;
+use Shippii\Exceptions\NotFoundException;
+use Shippii\Exceptions\RateLimitExceededException;
+use Shippii\Exceptions\ValidationException;
+
 class Shipment extends Resource
 {
-    const OBJECT_NAME = 'shipment';
-    
+    public const OBJECT_NAME = 'shipment';
+
     public string $id;
+
     public int $type;
-    public string|null $carrierId;
+
+    public ?string $carrierId;
+
     public array $sender;
-    public array|null $receiver = null;
-    public array|null $lines = null;
+
+    public ?array $receiver = null;
+
+    public ?array $lines = null;
+
     public array $carrierOptions;
+
     public string $state;
-    public string|null $rateId;
-    public string|null $creatorId;
-    public string|null $creatorType;
-    public string|null $sendableId;
-    public string|null $sendableAddressId;
-    public string|null $receivableId;
-    public string|null $receivableAddressId;
-    public string|null $sendableReference;
-    public string|null $carrierIdentification;
-    public string|null $createdAt;
-    public string|null $updatedAt;
+
+    public ?string $rateId;
+
+    public ?string $creatorId;
+
+    public ?string $creatorType;
+
+    public ?string $sendableId;
+
+    public ?string $sendableAddressId;
+
+    public ?string $receivableId;
+
+    public ?string $receivableAddressId;
+
+    public ?string $sendableReference;
+
+    public ?string $carrierIdentification;
+
+    public ?string $createdAt;
+
+    public ?string $updatedAt;
 
     /**
-     * Create shipment
+     * Create shipment.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function create(): array
     {
@@ -45,14 +69,13 @@ class Shipment extends Resource
     }
 
     /**
-     * Update Shipment
+     * Update Shipment.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function update(): array
     {
@@ -62,14 +85,13 @@ class Shipment extends Resource
     }
 
     /**
-     * Update the state of a shipment
+     * Update the state of a shipment.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function updateState(): array
     {
@@ -77,14 +99,13 @@ class Shipment extends Resource
     }
 
     /**
-     * Archive shipment
+     * Archive shipment.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function archive(): array
     {
