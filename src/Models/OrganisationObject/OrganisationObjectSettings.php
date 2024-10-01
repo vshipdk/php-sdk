@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\OrganisationObject;
+namespace Vship\SDK\Models\OrganisationObject;
 
 final class OrganisationObjectSettings
 {

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Shipment;
+namespace Vship\SDK\Models\Shipment;
 
-use Shippii\Models\ActivityLog\ActivityLog;
-use Shippii\Models\Address\Address;
-use Shippii\Models\Carrier\Carrier;
-use Shippii\Models\Label\Label;
-use Shippii\Models\Line\Line;
-use Shippii\Models\OrganisationObject\OrganisationObject;
-use Shippii\Models\Parcel\Parcel;
-use Shippii\Models\Tag\Tag;
-use Shippii\Models\User\User;
+use Vship\SDK\Models\ActivityLog\ActivityLog;
+use Vship\SDK\Models\Address\Address;
+use Vship\SDK\Models\Carrier\Carrier;
+use Vship\SDK\Models\Label\Label;
+use Vship\SDK\Models\Line\Line;
+use Vship\SDK\Models\OrganisationObject\OrganisationObject;
+use Vship\SDK\Models\Parcel\Parcel;
+use Vship\SDK\Models\Tag\Tag;
+use Vship\SDK\Models\User\User;
 
 final class Shipment
 {

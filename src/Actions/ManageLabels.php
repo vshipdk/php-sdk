@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\SDK\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
-use Shippii\Models\Label\Label;
-use Shippii\Util\Util;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
+use Vship\SDK\Models\Label\Label;
+use Vship\SDK\Util\Util;
 
 trait ManageLabels
 {
@@ -30,6 +30,6 @@ trait ManageLabels
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/label/{$shipmentId}?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(Label::class, $response);
+        return Util::convertToVshipObjectCollection(Label::class, $response);
     }
 }

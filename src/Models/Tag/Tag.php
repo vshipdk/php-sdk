@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Tag;
+namespace Vship\SDK\Models\Tag;
 
 final class Tag
 {

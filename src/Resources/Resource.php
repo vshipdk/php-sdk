@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Resources;
+namespace Vship\SDK\Resources;
 
-use Shippii\Shippii;
+use Vship\SDK\Client;
 
 class Resource
 {
@@ -14,11 +14,11 @@ class Resource
     public array $attributes;
 
     /**
-     * Shippii attribute.
+     * Client attribute.
      *
-     * @var Shippii|null
+     * @var Client|null
      */
-    protected Shippii $shippii;
+    protected Client $client;
 
     /**
      * Create a new resource instance.
@@ -27,10 +27,10 @@ class Resource
      */
     public function __construct(
         array $attributes,
-        ?Shippii $shippii = null,
+        ?Client $client = null,
     ) {
         $this->attributes = $attributes;
-        $this->shippii = $shippii;
+        $this->client = $client;
 
         $this->fill();
     }

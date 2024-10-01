@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Parcel;
+namespace Vship\SDK\Models\Parcel;
 
-use Shippii\Models\Label\Label;
+use Vship\SDK\Models\Label\Label;
 
 final class Parcel
 {

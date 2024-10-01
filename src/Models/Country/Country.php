@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Country;
+namespace Vship\SDK\Models\Country;
 
 final class Country
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Resources;
+namespace Vship\SDK\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
 
 class Shipment extends Resource
 {
@@ -65,7 +65,7 @@ class Shipment extends Resource
     {
         $payload = $this->preparePayload(['type', 'carrier_id', 'sender', 'receiver', 'lines', 'carrier_options']);
 
-        return $this->shippii->createShipment($payload);
+        return $this->client->createShipment($payload);
     }
 
     /**
@@ -81,7 +81,7 @@ class Shipment extends Resource
     {
         $payload = $this->preparePayload(['receiver', 'lines']);
 
-        return $this->shippii->updateShipment($this->id, $payload);
+        return $this->client->updateShipment($this->id, $payload);
     }
 
     /**
@@ -95,7 +95,7 @@ class Shipment extends Resource
      */
     public function updateState(): array
     {
-        return $this->shippii->updateShipmentState($this->id, $this->state);
+        return $this->client->updateShipmentState($this->id, $this->state);
     }
 
     /**
@@ -109,6 +109,6 @@ class Shipment extends Resource
      */
     public function archive(): array
     {
-        return $this->shippii->archiveShipment($this->id);
+        return $this->client->archiveShipment($this->id);
     }
 }

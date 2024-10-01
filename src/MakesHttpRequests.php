@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Shippii;
+namespace Vship\SDK;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\TimeoutException;
-use Shippii\Exceptions\ValidationException;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\TimeoutException;
+use Vship\SDK\Exceptions\ValidationException;
 
 trait MakesHttpRequests
 {
     /**
-     * Make a GET request to Shippii API and return the response.
+     * Make a GET request to Client API and return the response.
      *
      * @throws FailedActionException
      * @throws GuzzleException
@@ -29,7 +29,7 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make a POST request to Shippii API and return the response.
+     * Make a POST request to Client API and return the response.
      *
      * @throws FailedActionException
      * @throws GuzzleException
@@ -43,7 +43,7 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make a PUT request to Shippii API and return the response.
+     * Make a PUT request to Client API and return the response.
      *
      * @throws FailedActionException
      * @throws GuzzleException
@@ -57,7 +57,7 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make a PATCH request to Shippii API and return the response.
+     * Make a PATCH request to Client API and return the response.
      *
      * @throws FailedActionException
      * @throws GuzzleException
@@ -71,7 +71,7 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make a DELETE request to Shippii API and return the response.
+     * Make a DELETE request to Client API and return the response.
      *
      * @throws FailedActionException
      * @throws GuzzleException
@@ -117,7 +117,7 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make request to Shippii API and return the response.
+     * Make request to Client API and return the response.
      *
      * @throws FailedActionException
      * @throws NotFoundException

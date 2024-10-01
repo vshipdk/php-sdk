@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Line;
+namespace Vship\SDK\Models\Line;
 
-use Shippii\Models\Shipment\ShipmentItem;
+use Vship\SDK\Models\Shipment\ShipmentItem;
 
 final class Line
 {

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\SDK\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
-use Shippii\Models\OrganisationObject\OrganisationObject;
-use Shippii\Util\Util;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
+use Vship\SDK\Models\OrganisationObject\OrganisationObject;
+use Vship\SDK\Util\Util;
 
 trait ManageOrganisationObjects
 {
@@ -30,7 +30,7 @@ trait ManageOrganisationObjects
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("v1/organisation-object?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(OrganisationObject::class, $response);
+        return Util::convertToVshipObjectCollection(OrganisationObject::class, $response);
     }
 
     /**
@@ -46,7 +46,7 @@ trait ManageOrganisationObjects
     {
         $response = $this->get("v1/organisation-object/{$organisationObjectId}")['data'];
 
-        return Util::convertToShippiiObject(OrganisationObject::class, $response);
+        return Util::convertToVshipObject(OrganisationObject::class, $response);
     }
 
     /**
@@ -62,7 +62,7 @@ trait ManageOrganisationObjects
     {
         $response = $this->post('v1/organisation-object', $payload)['data'];
 
-        return Util::convertToShippiiObject(OrganisationObject::class, $response);
+        return Util::convertToVshipObject(OrganisationObject::class, $response);
     }
 
     /**
@@ -78,7 +78,7 @@ trait ManageOrganisationObjects
     {
         $response = $this->patch("v1/organisation-object/{$organisationObjectId}", $payload)['data'];
 
-        return Util::convertToShippiiObject(OrganisationObject::class, $response);
+        return Util::convertToVshipObject(OrganisationObject::class, $response);
     }
 
     /**
@@ -94,6 +94,6 @@ trait ManageOrganisationObjects
     {
         $response = $this->delete("v1/organisation-object/{$organisationObjectId}")['data'];
 
-        return Util::convertToShippiiObject(OrganisationObject::class, $response);
+        return Util::convertToVshipObject(OrganisationObject::class, $response);
     }
 }

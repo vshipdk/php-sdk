@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Organisation;
+namespace Vship\SDK\Models\Organisation;
 
 final class Owner
 {

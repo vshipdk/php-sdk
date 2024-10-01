@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\SDK\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
-use Shippii\Models\User\User;
-use Shippii\Util\Util;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
+use Vship\SDK\Models\User\User;
+use Vship\SDK\Util\Util;
 
 trait ManageUsers
 {
@@ -30,7 +30,7 @@ trait ManageUsers
         $parameters = $this->prepareRequestParameters($parameters);
         $response = $this->get("v1/user?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(User::class, $response);
+        return Util::convertToVshipObjectCollection(User::class, $response);
     }
 
     /**
@@ -46,6 +46,6 @@ trait ManageUsers
     {
         $response = $this->get("v1/user/{$userId}")['data'];
 
-        return Util::convertToShippiiObject(User::class, $response);
+        return Util::convertToVshipObject(User::class, $response);
     }
 }

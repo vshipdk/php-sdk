@@ -1,6 +1,8 @@
 <?php
 
-namespace Shippii\Models\Carrier;
+declare(strict_types=1);
+
+namespace Vship\SDK\Models\Carrier;
 
 final class Owner
 {

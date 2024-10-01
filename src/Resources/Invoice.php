@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Resources;
+namespace Vship\SDK\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
 
 class Invoice extends Resource
 {
@@ -35,6 +35,6 @@ class Invoice extends Resource
     {
         $payload = $this->preparePayload(['shipments', 'discount', 'sender_data', 'vat_agent', 'invoice_language', 'declaration_of_origin']);
 
-        return $this->shippii->createInvoice($payload);
+        return $this->client->createInvoice($payload);
     }
 }

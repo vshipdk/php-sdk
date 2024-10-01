@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\ActivityLog;
+namespace Vship\SDK\Models\ActivityLog;
 
 final class ActivityLog
 {

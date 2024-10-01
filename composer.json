@@ -1,14 +1,8 @@
 {
-    "name": "shippii-tech/php-sdk",
+    "name": "vshipdk/php-sdk",
     "license": "MIT",
-    "description": "SDK For shippii.com",
+    "description": "SDK For vShip API",
     "type": "library",
-    "authors": [
-        {
-            "name": "Stoyan Todorov",
-            "email": "s.todorov@vconnect.dk"
-        }
-    ],
     "require": {
         "php": "~8.1.0 | ~8.2.0 | ~8.3.0",
         "ext-json": "*",
@@ -24,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Shippii\\": "src/"
+            "Vship\\SDK\\": "src/"
         }
     },
     "config": {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Organisation;
+namespace Vship\SDK\Models\Organisation;
 
-use Shippii\Models\Address\Address;
+use Vship\SDK\Models\Address\Address;
 
 final class Organisation
 {

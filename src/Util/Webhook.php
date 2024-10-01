@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Util;
+namespace Vship\SDK\Util;
 
-use Shippii\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\FailedActionException;
 
 abstract class Webhook
 {

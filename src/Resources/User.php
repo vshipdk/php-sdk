@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Resources;
+namespace Vship\SDK\Resources;
 
 class User extends Resource
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Label;
+namespace Vship\SDK\Models\Label;
 
 final class Owner
 {

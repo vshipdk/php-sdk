@@ -17,7 +17,7 @@ grumphp:
       preset: laravel
       # Auto fix Laravel Pint issues
       # Can be false, true, 'run' or 'pre_commit' (default)
-      auto_fix: false
+      auto_fix: pre_commit
       # Auto stage files after auto fix
       # Can be false, true, 'run' or 'pre_commit' (default)
       # Works only if the task has been auto fixed (Without GrumPHP having to ask for it)

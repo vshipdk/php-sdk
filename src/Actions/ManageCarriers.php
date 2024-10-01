@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\SDK\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
-use Shippii\Models\Carrier\Carrier;
-use Shippii\Util\Util;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
+use Vship\SDK\Models\Carrier\Carrier;
+use Vship\SDK\Util\Util;
 
 trait ManageCarriers
 {
@@ -30,7 +30,7 @@ trait ManageCarriers
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/carrier?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(Carrier::class, $response);
+        return Util::convertToVshipObjectCollection(Carrier::class, $response);
     }
 
     /**
@@ -46,7 +46,7 @@ trait ManageCarriers
     {
         $response = $this->get("v1/carrier/{$carrierId}")['data'];
 
-        return Util::convertToShippiiObject(Carrier::class, $response);
+        return Util::convertToVshipObject(Carrier::class, $response);
     }
 
     /**
@@ -62,7 +62,7 @@ trait ManageCarriers
     {
         $response = $this->post('v1/carrier', $payload)['data'];
 
-        return Util::convertToShippiiObject(Carrier::class, $response);
+        return Util::convertToVshipObject(Carrier::class, $response);
     }
 
     /**
@@ -78,7 +78,7 @@ trait ManageCarriers
     {
         $response = $this->patch("v1/carrier/{$carrierId}", $payload)['data'];
 
-        return Util::convertToShippiiObject(Carrier::class, $response);
+        return Util::convertToVshipObject(Carrier::class, $response);
     }
 
     /**
@@ -94,6 +94,6 @@ trait ManageCarriers
     {
         $response = $this->delete("v1/carrier/{$carrierId}")['data'];
 
-        return Util::convertToShippiiObject(Carrier::class, $response);
+        return Util::convertToVshipObject(Carrier::class, $response);
     }
 }

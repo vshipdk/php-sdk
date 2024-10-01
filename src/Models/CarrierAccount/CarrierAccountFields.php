@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\CarrierAccount;
+namespace Vship\SDK\Models\CarrierAccount;
 
 final class CarrierAccountFields
 {

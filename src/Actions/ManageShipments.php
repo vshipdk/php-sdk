@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\SDK\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
-use Shippii\Models\Shipment\Shipment;
-use Shippii\Util\Util;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
+use Vship\SDK\Models\Shipment\Shipment;
+use Vship\SDK\Util\Util;
 
 trait ManageShipments
 {
@@ -30,7 +30,7 @@ trait ManageShipments
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/shipment?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(Shipment::class, $response);
+        return Util::convertToVshipObjectCollection(Shipment::class, $response);
     }
 
     /**
@@ -46,7 +46,7 @@ trait ManageShipments
     {
         $response = $this->get("v1/shipment/{$shipmentId}")['data'];
 
-        return Util::convertToShippiiObject(Shipment::class, $response);
+        return Util::convertToVshipObject(Shipment::class, $response);
     }
 
     /**
@@ -62,7 +62,7 @@ trait ManageShipments
     {
         $response = $this->post('v1/shipment', $payload)['data'];
 
-        return Util::convertToShippiiObject(Shipment::class, $response);
+        return Util::convertToVshipObject(Shipment::class, $response);
     }
 
     /**
@@ -78,7 +78,7 @@ trait ManageShipments
     {
         $response = $this->patch("v1/shipment/{$shipmentId}", $payload)['data'];
 
-        return Util::convertToShippiiObject(Shipment::class, $response);
+        return Util::convertToVshipObject(Shipment::class, $response);
     }
 
     /**
@@ -94,7 +94,7 @@ trait ManageShipments
     {
         $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}")['data'];
 
-        return Util::convertToShippiiObject(Shipment::class, $response);
+        return Util::convertToVshipObject(Shipment::class, $response);
     }
 
     /**

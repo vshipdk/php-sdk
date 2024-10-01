@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Resources;
+namespace Vship\SDK\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
 
 class CarrierAccount extends Resource
 {
@@ -49,7 +49,7 @@ class CarrierAccount extends Resource
     {
         $payload = $this->preparePayload(['carrier_code', 'name', 'purpose', 'status', 'organisation_id', 'data', 'expires_at']);
 
-        return $this->shippii->createCarrierAccount($payload);
+        return $this->client->createCarrierAccount($payload);
     }
 
     /**
@@ -65,7 +65,7 @@ class CarrierAccount extends Resource
     {
         $payload = $this->preparePayload(['carrier_code', 'name', 'purpose', 'status', 'organisation_id', 'data', 'expires_at']);
 
-        return $this->shippii->updateCarrierAccount($this->id, $payload);
+        return $this->client->updateCarrierAccount($this->id, $payload);
     }
 
     /**
@@ -79,6 +79,6 @@ class CarrierAccount extends Resource
      */
     public function delete(): array
     {
-        return $this->shippii->deleteCarrierAccount($this->id);
+        return $this->client->deleteCarrierAccount($this->id);
     }
 }

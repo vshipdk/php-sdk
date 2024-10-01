@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\SDK\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
-use Shippii\Models\Country\Country;
-use Shippii\Util\Util;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
+use Vship\SDK\Models\Country\Country;
+use Vship\SDK\Util\Util;
 
 trait ManageCountries
 {
@@ -29,6 +29,6 @@ trait ManageCountries
     {
         $response = $this->get('v1/country')['data'];
 
-        return Util::convertToShippiiObjectCollection(Country::class, $response);
+        return Util::convertToVshipObjectCollection(Country::class, $response);
     }
 }

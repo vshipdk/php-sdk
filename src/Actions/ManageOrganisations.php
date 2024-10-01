@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\SDK\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
-use Shippii\Models\Organisation\Organisation;
-use Shippii\Util\Util;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
+use Vship\SDK\Models\Organisation\Organisation;
+use Vship\SDK\Util\Util;
 
 trait ManageOrganisations
 {
@@ -30,7 +30,7 @@ trait ManageOrganisations
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/organisation?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(Organisation::class, $response);
+        return Util::convertToVshipObjectCollection(Organisation::class, $response);
     }
 
     /**
@@ -46,7 +46,7 @@ trait ManageOrganisations
     {
         $response = $this->get("v1/organisation/{$organisationId}")['data'];
 
-        return Util::convertToShippiiObject(Organisation::class, $response);
+        return Util::convertToVshipObject(Organisation::class, $response);
     }
 
     /**
@@ -62,7 +62,7 @@ trait ManageOrganisations
     {
         $response = $this->post('v1/organisation', $payload)['data'];
 
-        return Util::convertToShippiiObject(Organisation::class, $response);
+        return Util::convertToVshipObject(Organisation::class, $response);
     }
 
     /**
@@ -78,7 +78,7 @@ trait ManageOrganisations
     {
         $response = $this->patch("v1/organisation/{$organisationId}", $payload)['data'];
 
-        return Util::convertToShippiiObject(Organisation::class, $response);
+        return Util::convertToVshipObject(Organisation::class, $response);
     }
 
     /**
@@ -94,6 +94,6 @@ trait ManageOrganisations
     {
         $response = $this->delete("v1/organisation/{$organisationId}")['data'];
 
-        return Util::convertToShippiiObject(Organisation::class, $response);
+        return Util::convertToVshipObject(Organisation::class, $response);
     }
 }

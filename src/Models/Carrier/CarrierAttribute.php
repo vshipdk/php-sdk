@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\Carrier;
+namespace Vship\SDK\Models\Carrier;
 
 final class CarrierAttribute
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Models\OrganisationObject;
+namespace Vship\SDK\Models\OrganisationObject;
 
-use Shippii\Models\Address\Address;
-use Shippii\Models\Organisation\Organisation;
+use Vship\SDK\Models\Address\Address;
+use Vship\SDK\Models\Organisation\Organisation;
 
 final class OrganisationObject
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Resources;
+namespace Vship\SDK\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
 
 class Organisation extends Resource
 {
@@ -41,7 +41,7 @@ class Organisation extends Resource
     {
         $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
 
-        return $this->shippii->createOrganisation($payload);
+        return $this->client->createOrganisation($payload);
     }
 
     /**
@@ -57,7 +57,7 @@ class Organisation extends Resource
     {
         $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
 
-        return $this->shippii->updateOrganisation($this->id, $payload);
+        return $this->client->updateOrganisation($this->id, $payload);
     }
 
     /**
@@ -71,6 +71,6 @@ class Organisation extends Resource
      */
     public function delete(): array
     {
-        return $this->shippii->deleteOrganisation($this->id);
+        return $this->client->deleteOrganisation($this->id);
     }
 }

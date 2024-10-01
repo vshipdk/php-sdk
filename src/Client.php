@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Shippii;
+namespace Vship\SDK;
 
 use GuzzleHttp\Client as HttpClient;
-use Shippii\Actions\ManageCarriers;
-use Shippii\Actions\ManageCarriersAccounts;
-use Shippii\Actions\ManageCountries;
-use Shippii\Actions\ManageInvoices;
-use Shippii\Actions\ManageLabels;
-use Shippii\Actions\ManageOrganisationObjects;
-use Shippii\Actions\ManageOrganisations;
-use Shippii\Actions\ManageShipments;
-use Shippii\Actions\ManageUsers;
-use Shippii\Actions\ManageWebhooks;
+use Vship\SDK\Actions\ManageCarriers;
+use Vship\SDK\Actions\ManageCarriersAccounts;
+use Vship\SDK\Actions\ManageCountries;
+use Vship\SDK\Actions\ManageInvoices;
+use Vship\SDK\Actions\ManageLabels;
+use Vship\SDK\Actions\ManageOrganisationObjects;
+use Vship\SDK\Actions\ManageOrganisations;
+use Vship\SDK\Actions\ManageShipments;
+use Vship\SDK\Actions\ManageUsers;
+use Vship\SDK\Actions\ManageWebhooks;
 
-class Shippii
+class Client
 {
     use MakesHttpRequests;
     use ManageCarriers;
@@ -36,7 +36,7 @@ class Shippii
     public int $timeout = 30;
 
     /**
-     * The Shippii Key.
+     * The Client Key.
      */
     public string $apiKey;
 
@@ -90,9 +90,8 @@ class Shippii
     public function setApiKey(string $apiKey, $guzzle = null)
     {
         $this->apiKey = $apiKey;
-        $host = 'https://api.shippii.dev/';
         $this->guzzle = $guzzle ?: new HttpClient([
-            'base_uri' => $host,
+            'base_uri' => 'https://api-dev.vship.dev/',
             'http_errors' => false,
             'headers' => [
                 'Authorization' => 'Bearer '.$apiKey,

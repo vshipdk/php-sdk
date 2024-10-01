@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Exceptions;
+namespace Vship\SDK\Exceptions;
 
 use Exception;
 

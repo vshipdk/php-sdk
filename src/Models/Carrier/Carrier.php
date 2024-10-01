@@ -1,8 +1,10 @@
 <?php
 
-namespace Shippii\Models\Carrier;
+declare(strict_types=1);
 
-use Shippii\Models\CarrierAccount\CarrierAccount;
+namespace Vship\SDK\Models\Carrier;
+
+use Vship\SDK\Models\CarrierAccount\CarrierAccount;
 
 final class Carrier
 {

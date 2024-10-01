@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\SDK\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\ValidationException;
-use Shippii\Models\CarrierAccount\CarrierAccount;
-use Shippii\Models\CarrierAccount\CarrierAccountFields;
-use Shippii\Util\Util;
+use Vship\SDK\Exceptions\FailedActionException;
+use Vship\SDK\Exceptions\NotFoundException;
+use Vship\SDK\Exceptions\RateLimitExceededException;
+use Vship\SDK\Exceptions\ValidationException;
+use Vship\SDK\Models\CarrierAccount\CarrierAccount;
+use Vship\SDK\Models\CarrierAccount\CarrierAccountFields;
+use Vship\SDK\Util\Util;
 
 trait ManageCarriersAccounts
 {
@@ -31,7 +31,7 @@ trait ManageCarriersAccounts
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/carrier-account?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(CarrierAccount::class, $response);
+        return Util::convertToVshipObjectCollection(CarrierAccount::class, $response);
     }
 
     /**
@@ -48,7 +48,7 @@ trait ManageCarriersAccounts
         $response = $this->get("v1/carrier-account/{$carrierAccountId}")['data'];
 
         // dd($response);
-        return Util::convertToShippiiObject(CarrierAccount::class, $response);
+        return Util::convertToVshipObject(CarrierAccount::class, $response);
     }
 
     /**
@@ -64,7 +64,7 @@ trait ManageCarriersAccounts
     {
         $response = $this->post('v1/carrier-account', $payload)['data'];
 
-        return Util::convertToShippiiObject(CarrierAccount::class, $response);
+        return Util::convertToVshipObject(CarrierAccount::class, $response);
     }
 
     /**
@@ -80,7 +80,7 @@ trait ManageCarriersAccounts
     {
         $response = $this->patch("v1/carrier-account/{$carrierAccountId}")['data'];
 
-        return Util::convertToShippiiObject(CarrierAccount::class, $response);
+        return Util::convertToVshipObject(CarrierAccount::class, $response);
     }
 
     /**
@@ -96,7 +96,7 @@ trait ManageCarriersAccounts
     {
         $response = $this->delete("v1/carrier-account/{$carrierAccountId}")['data'];
 
-        return Util::convertToShippiiObject(CarrierAccount::class, $response);
+        return Util::convertToVshipObject(CarrierAccount::class, $response);
     }
 
     /**
@@ -114,6 +114,6 @@ trait ManageCarriersAccounts
     {
         $response = $this->get("v1/carrier-account/fields/{$carrierCode}")['data'];
 
-        return Util::convertToShippiiObjectCollection(CarrierAccountFields::class, $response);
+        return Util::convertToVshipObjectCollection(CarrierAccountFields::class, $response);
     }
 }

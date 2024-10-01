@@ -1,6 +1,8 @@
 <?php
 
-namespace Shippii\Models\Address;
+declare(strict_types=1);
+
+namespace Vship\SDK\Models\Address;
 
 final class Address
 {
