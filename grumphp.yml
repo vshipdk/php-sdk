@@ -2,6 +2,15 @@ grumphp:
   extensions:
     - YieldStudio\GrumPHPLaravelPint\ExtensionLoader
   tasks:
+    phpstan:
+      autoload_file: vendor/autoload.php
+      configuration: null
+      level: 0
+      force_patterns: [ ]
+      ignore_patterns: [ ]
+      triggered_by: [ 'php' ]
+      memory_limit: "-1"
+      use_grumphp_paths: true
     laravel_pint:
       # These are all optional and have been set to sensible defaults.
       config: pint.json
