@@ -14,7 +14,6 @@ grumphp:
     laravel_pint:
       # These are all optional and have been set to sensible defaults.
       config: pint.json
-      preset: laravel
       # Auto fix Laravel Pint issues
       # Can be false, true, 'run' or 'pre_commit' (default)
       auto_fix: pre_commit
