@@ -18,7 +18,7 @@ abstract class Webhook
 
         if ($payloadArr === null && $jsonError !== \JSON_ERROR_NONE) {
             $msg = "Invalid payload: {$payload} "
-                ."(json_last_error() was {$jsonError})";
+                . "(json_last_error() was {$jsonError})";
 
             throw new FailedActionException($msg);
         }
