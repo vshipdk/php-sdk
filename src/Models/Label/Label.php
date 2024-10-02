@@ -1,20 +1,26 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Models\Label;
-
-use Shippii\Models\Label\Owner;
+namespace Vship\Models\Label;
 
 final class Label
 {
-    public string|null $id = null;
-    public string|null $format = null;
-    public string|null $type = null;
-    public string|null $metadata = null;
-    public Owner|null $owner = null;
-    public string|null $url = null;
-    public string|null $shipment_id = null;
-    public string|null $created_at = null;
+    public ?string $id = null;
 
-    public string|null $temporary_url = null;
+    public ?string $format = null;
+
+    public ?string $type = null;
+
+    public ?string $metadata = null;
+
+    public ?Owner $owner = null;
+
+    public ?string $url = null;
+
+    public ?string $shipment_id = null;
+
+    public ?string $created_at = null;
+
+    public ?string $temporary_url = null;
 }

@@ -1,8 +1,10 @@
 <?php
 
-namespace Shippii\Models\Carrier;
+declare(strict_types=1);
+
+namespace Vship\Models\Carrier;
 
 final class CarrierSettings
 {
-    public string|null $data = null;
+    public ?string $data = null;
 }

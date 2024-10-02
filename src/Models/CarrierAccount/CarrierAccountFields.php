@@ -1,21 +1,32 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Models\CarrierAccount;
+namespace Vship\Models\CarrierAccount;
 
 final class CarrierAccountFields
 {
-    public string|null $label = null;
-    public string|null $name = null;
-    public bool|null $required = null;
-    public bool|null $isSecret = null;
-    public string|null $type = null;
-    public string|null $placeholder = null;
-    public string|null $description = null;
-    /** @var array<string>|null  */
-    public array|null $options = null;
-    /** @var array<string>|null  */
-    public array|null $selectOptions = null;
-    public bool|null $isMultiple = null;
-    public string|null $value = null;
+    public ?string $label = null;
+
+    public ?string $name = null;
+
+    public ?bool $required = null;
+
+    public ?bool $isSecret = null;
+
+    public ?string $type = null;
+
+    public ?string $placeholder = null;
+
+    public ?string $description = null;
+
+    /** @var array<string>|null */
+    public ?array $options = null;
+
+    /** @var array<string>|null */
+    public ?array $selectOptions = null;
+
+    public ?bool $isMultiple = null;
+
+    public ?string $value = null;
 }

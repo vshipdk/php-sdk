@@ -1,22 +1,32 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Models\Line;
+namespace Vship\Models\Line;
 
-use Shippii\Models\Shipment\ShipmentItem;
+use Vship\Models\Shipment\ShipmentItem;
 
 final class Line
 {
-    public string|null $id = null;
-    public string|null $shipment_id = null;
-    public string|null $item_id = null;
-    public int|null $quantity = null;
-    public int|null $total_volume = null;
-    public int|null $total_weight = null;
-    public int|null $total_value = null;
-    public string|null $value_currency = null;
-    public string|null $created_at = null;
-    public string|null $updated_at = null;
-    public ShipmentItem|null $item = null;
+    public ?string $id = null;
 
+    public ?string $shipment_id = null;
+
+    public ?string $item_id = null;
+
+    public ?int $quantity = null;
+
+    public ?int $total_volume = null;
+
+    public ?int $total_weight = null;
+
+    public ?int $total_value = null;
+
+    public ?string $value_currency = null;
+
+    public ?string $created_at = null;
+
+    public ?string $updated_at = null;
+
+    public ?ShipmentItem $item = null;
 }

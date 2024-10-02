@@ -1,10 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Models\Label;
+namespace Vship\Models\Label;
 
 final class Owner
 {
-    public string|null $type = null;
-    public string|null $id = null;
+    public ?string $type = null;
+
+    public ?string $id = null;
 }

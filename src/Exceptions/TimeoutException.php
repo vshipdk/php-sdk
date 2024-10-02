@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Exceptions;
+namespace Vship\Exceptions;
 
 use Exception;
 
-class TimeoutException extends Exception
+class TimeoutException extends \Exception
 {
     /**
      * The output returned from the operation.
@@ -17,7 +18,6 @@ class TimeoutException extends Exception
     /**
      * Create a new exception instance.
      *
-     * @param  array  $output
      * @return void
      */
     public function __construct(array $output)

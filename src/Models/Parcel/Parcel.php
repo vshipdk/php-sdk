@@ -1,20 +1,30 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Models\Parcel;
+namespace Vship\Models\Parcel;
 
-use Shippii\Models\Label\Label;
+use Vship\Models\Label\Label;
 
 final class Parcel
 {
-    public string|null $id = null;
-    public string|null $sendable_reference = null;
-    public string|null $system_reference = null;
-    public string|null $barcode = null;
-    public string|null $carrier_number = null;
-    public string|null $carrier_tracking_url = null;
-    public int|null $weight = null;
-    public string|null $volume = null;
-    public string|null $volumetric_weight = null;
-    public Label|null $label = null;
+    public ?string $id = null;
+
+    public ?string $sendable_reference = null;
+
+    public ?string $system_reference = null;
+
+    public ?string $barcode = null;
+
+    public ?string $carrier_number = null;
+
+    public ?string $carrier_tracking_url = null;
+
+    public ?int $weight = null;
+
+    public ?string $volume = null;
+
+    public ?string $volumetric_weight = null;
+
+    public ?Label $label = null;
 }

@@ -1,27 +1,32 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\Actions;
 
-use Shippii\Models\Invoice\Invoice;
-use Shippii\Util\Util;
+use GuzzleHttp\Exception\GuzzleException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
+use Vship\Models\Invoice\Invoice;
+use Vship\Util\Util;
 
 trait ManageInvoices
 {
     /**
-     * Create an invoice
+     * Create an invoice.
      *
-     * @param array $payload
-     * @return Invoice
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function createConsolidateInvoice(array $payload): Invoice
     {
         $response = $this->post('v1/invoices/consolidate', $payload)['data'];
-        return Util::convertToShippiObject(Invoice::class, $response);
+
+        return Util::convertToVshipObject(Invoice::class, $response);
     }
 }

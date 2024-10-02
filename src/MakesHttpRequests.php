@@ -1,25 +1,22 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii;
+namespace Vship;
 
-use Exception;
 use GuzzleHttp\Exception\GuzzleException;
-use Shippii\Exceptions\FailedActionException;
-use Shippii\Exceptions\NotFoundException;
-use Shippii\Exceptions\RateLimitExceededException;
-use Shippii\Exceptions\TimeoutException;
-use Shippii\Exceptions\ValidationException;
 use Psr\Http\Message\ResponseInterface;
-use Shippii\Resources\Resource;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\TimeoutException;
+use Vship\Exceptions\ValidationException;
 
 trait MakesHttpRequests
 {
     /**
-     * Make a GET request to Shippii API and return the response.
+     * Make a GET request to Client API and return the response.
      *
-     * @param string $uri
-     * @return mixed
      * @throws FailedActionException
      * @throws GuzzleException
      * @throws NotFoundException
@@ -32,11 +29,8 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make a POST request to Shippii API and return the response.
+     * Make a POST request to Client API and return the response.
      *
-     * @param string $uri
-     * @param array  $payload
-     * @return mixed
      * @throws FailedActionException
      * @throws GuzzleException
      * @throws NotFoundException
@@ -49,11 +43,8 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make a PUT request to Shippii API and return the response.
+     * Make a PUT request to Client API and return the response.
      *
-     * @param string $uri
-     * @param array  $payload
-     * @return mixed
      * @throws FailedActionException
      * @throws GuzzleException
      * @throws NotFoundException
@@ -66,11 +57,8 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make a PATCH request to Shippii API and return the response.
+     * Make a PATCH request to Client API and return the response.
      *
-     * @param string $uri
-     * @param array  $payload
-     * @return mixed
      * @throws FailedActionException
      * @throws GuzzleException
      * @throws NotFoundException
@@ -83,11 +71,8 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make a DELETE request to Shippii API and return the response.
+     * Make a DELETE request to Client API and return the response.
      *
-     * @param string $uri
-     * @param array  $payload
-     * @return mixed
      * @throws FailedActionException
      * @throws GuzzleException
      * @throws NotFoundException
@@ -101,11 +86,6 @@ trait MakesHttpRequests
 
     /**
      * Retry the callback or fail after x seconds.
-     *
-     * @param  int  $timeout
-     * @param  callable  $callback
-     * @param  int  $sleep
-     * @return mixed
      *
      * @throws TimeoutException
      */
@@ -137,12 +117,8 @@ trait MakesHttpRequests
     }
 
     /**
-     * Make request to Shippii API and return the response.
+     * Make request to Client API and return the response.
      *
-     * @param string $verb
-     * @param string $uri
-     * @param array  $payload
-     * @return mixed
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
@@ -173,10 +149,7 @@ trait MakesHttpRequests
     /**
      * Handle the request error.
      *
-     * @param ResponseInterface $response
-     * @return void
-     *
-     * @throws Exception
+     * @throws \Exception
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws ValidationException
@@ -190,7 +163,7 @@ trait MakesHttpRequests
         }
 
         if ($response->getStatusCode() == 404) {
-            throw new NotFoundException();
+            throw new NotFoundException;
         }
 
         if ($response->getStatusCode() == 400) {
@@ -198,13 +171,9 @@ trait MakesHttpRequests
         }
 
         if ($response->getStatusCode() === 429) {
-            throw new RateLimitExceededException(
-                $response->hasHeader('x-ratelimit-reset')
-                    ? (int) $response->getHeader('x-ratelimit-reset')[0]
-                    : null
-            );
+            throw new RateLimitExceededException($response->hasHeader('x-ratelimit-reset') ? (int) $response->getHeader('x-ratelimit-reset')[0] : null);
         }
 
-        throw new Exception((string) $response->getBody());
+        throw new \Exception((string) $response->getBody());
     }
 }

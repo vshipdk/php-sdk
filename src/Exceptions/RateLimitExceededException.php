@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Exceptions;
+namespace Vship\Exceptions;
 
 use Exception;
 
-class RateLimitExceededException extends Exception
+class RateLimitExceededException extends \Exception
 {
     /**
      * The timestamp that the rate limit will be reset.

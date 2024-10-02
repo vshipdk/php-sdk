@@ -1,14 +1,16 @@
 <?php
 
-namespace Shippii\Models\Carrier;
+declare(strict_types=1);
+
+namespace Vship\Models\Carrier;
 
 final class Owner
 {
-    public string|null $owner_type = null;
+    public ?string $owner_type = null;
 
-    public string|null $owner_id = null;
+    public ?string $owner_id = null;
 
-    public string|null $name = null;
+    public ?string $name = null;
 
-    public string|null $email = null;
+    public ?string $email = null;
 }

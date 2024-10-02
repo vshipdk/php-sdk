@@ -1,97 +1,99 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\Actions;
 
-use Shippii\Models\Organisation\Organisation;
-use Shippii\Util\Util;
+use GuzzleHttp\Exception\GuzzleException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
+use Vship\Models\Organisation\Organisation;
+use Vship\Util\Util;
 
 trait ManageOrganisations
 {
     /**
-     * Get All Organisations
+     * Get All Organisations.
      *
-     * @param array $queryParams
      * @return Organisation[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     *
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getOrganisations(array $queryParams = []): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/organisation?{$parameters}")['data'];
-        return Util::convertToShippiiObjectCollection(Organisation::class, $response);
+
+        return Util::convertToVshipObjectCollection(Organisation::class, $response);
     }
 
     /**
-     * Get Single Organisation
+     * Get Single Organisation.
      *
-     * @param string $organisationId
-     * @return Organisation
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getOrganisation(string $organisationId): Organisation
     {
         $response = $this->get("v1/organisation/{$organisationId}")['data'];
-        return Util::convertToShippiiObject(Organisation::class, $response);
+
+        return Util::convertToVshipObject(Organisation::class, $response);
     }
 
     /**
-     * Create Organisation
+     * Create Organisation.
      *
-     * @param array $payload
-     * @return Organisation
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function createOrganisation(array $payload): Organisation
     {
         $response = $this->post('v1/organisation', $payload)['data'];
-        return Util::convertToShippiiObject(Organisation::class, $response);
+
+        return Util::convertToVshipObject(Organisation::class, $response);
     }
 
     /**
-     * Update Organisation
+     * Update Organisation.
      *
-     * @param string $organisationId
-     * @param array $payload
-     * @return Organisation
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function updateOrganisation(string $organisationId, array $payload): Organisation
     {
         $response = $this->patch("v1/organisation/{$organisationId}", $payload)['data'];
-        return Util::convertToShippiiObject(Organisation::class, $response);
+
+        return Util::convertToVshipObject(Organisation::class, $response);
     }
 
     /**
-     * Delete Organisation
+     * Delete Organisation.
      *
-     * @param string $organisationId
-     * @return Organisation
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function deleteOrganisation(string $organisationId): Organisation
     {
         $response = $this->delete("v1/organisation/{$organisationId}")['data'];
-        return Util::convertToShippiiObject(Organisation::class, $response);
+
+        return Util::convertToVshipObject(Organisation::class, $response);
     }
 }

@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Exceptions;
+namespace Vship\Exceptions;
 
 use Exception;
 
-class ValidationException extends Exception
+class ValidationException extends \Exception
 {
     /**
      * The array of errors.
@@ -16,9 +17,6 @@ class ValidationException extends Exception
 
     /**
      * Create a new exception instance.
-     *
-     * @param array  $errors
-     * @param string $body
      */
     public function __construct(array $errors, string $body)
     {

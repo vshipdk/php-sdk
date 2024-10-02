@@ -1,30 +1,35 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\Actions;
 
-use Shippii\Util\Util;
-use Shippii\Models\Label\Label;
+use GuzzleHttp\Exception\GuzzleException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
+use Vship\Models\Label\Label;
+use Vship\Util\Util;
 
 trait ManageLabels
 {
     /**
-     * Fetch labels for shipment
+     * Fetch labels for shipment.
      *
-     * @param string $shipmentId
-     * @param array $queryParams
      * @return Label[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     *
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function fetchPrintShipmentLabel(string $shipmentId, array $queryParams = []): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/label/{$shipmentId}?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(Label::class, $response);
+        return Util::convertToVshipObjectCollection(Label::class, $response);
     }
 }

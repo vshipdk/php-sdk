@@ -1,61 +1,54 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii;
+namespace Vship;
 
 use GuzzleHttp\Client as HttpClient;
-use Shippii\Actions\ManageCarriers;
-use Shippii\Actions\ManageCarriersAccounts;
-use Shippii\Actions\ManageCountries;
-use Shippii\Actions\ManageInvoices;
-use Shippii\Actions\ManageLabels;
-use Shippii\Actions\ManageOrganisationObjects;
-use Shippii\Actions\ManageOrganisations;
-use Shippii\Actions\ManageShipments;
-use Shippii\Actions\ManageUsers;
-use Shippii\Actions\ManageWebhooks;
+use Vship\Actions\ManageCarriers;
+use Vship\Actions\ManageCarriersAccounts;
+use Vship\Actions\ManageCountries;
+use Vship\Actions\ManageInvoices;
+use Vship\Actions\ManageLabels;
+use Vship\Actions\ManageOrganisationObjects;
+use Vship\Actions\ManageOrganisations;
+use Vship\Actions\ManageShipments;
+use Vship\Actions\ManageUsers;
+use Vship\Actions\ManageWebhooks;
 
-class Shippii
+class Client
 {
-    use MakesHttpRequests,
-        ManageCountries,
-        ManageShipments,
-        ManageCarriersAccounts,
-        ManageCarriers,
-        ManageUsers,
-        ManageOrganisations,
-        ManageLabels,
-        ManageOrganisationObjects,
-        ManageInvoices,
-        ManageWebhooks;
+    use MakesHttpRequests;
+    use ManageCarriers;
+    use ManageCarriersAccounts;
+    use ManageCountries;
+    use ManageInvoices;
+    use ManageLabels;
+    use ManageOrganisationObjects;
+    use ManageOrganisations;
+    use ManageShipments;
+    use ManageUsers;
+    use ManageWebhooks;
 
     /**
      * Number of seconds a request is retried.
-     *
-     * @var int
      */
     public int $timeout = 30;
 
     /**
-     * The Shippii Key
-     *
-     * @var string
+     * The Client Key.
      */
     public string $apiKey;
 
     /**
      * The Guzzle HTTP Client instance.
-     *
-     * @var \GuzzleHttp\Client
      */
     public HttpClient $guzzle;
 
     /**
      * Create a new Forge instance.
-     *
-     * @param string|null $apiKey
      */
-    public function __construct(string $apiKey = null, HttpClient $guzzle = null)
+    public function __construct(?string $apiKey = null, ?HttpClient $guzzle = null)
     {
         if ($apiKey !== null) {
             $this->setApiKey($apiKey, $guzzle);
@@ -97,12 +90,11 @@ class Shippii
     public function setApiKey(string $apiKey, $guzzle = null)
     {
         $this->apiKey = $apiKey;
-        $host = 'https://api.shippii.dev/';
         $this->guzzle = $guzzle ?: new HttpClient([
-            'base_uri' => $host,
+            'base_uri' => 'https://api-dev.vship.dev/',
             'http_errors' => false,
             'headers' => [
-                'Authorization' => 'Bearer ' . $apiKey,
+                'Authorization' => 'Bearer '.$apiKey,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
             ],
@@ -114,11 +106,10 @@ class Shippii
     /**
      * Transform the items of the collection to the given class.
      *
-     * @param array  $collection
-     * @param string $class
-     * @param array  $extraData
-     * @param array  $meta
-     * @return array
+     * @param  array  $collection
+     * @param  string  $class
+     * @param  array  $extraData
+     * @param  array  $meta
      */
     protected function transformCollection($collection, $class, $extraData = [], $meta = []): array
     {
@@ -134,16 +125,12 @@ class Shippii
     }
 
     /**
-     * Prepare query parameters string
-     *
-     * @param array $parameters
-     * @return string
+     * Prepare query parameters string.
      */
     protected function prepareRequestParameters(array $parameters): string
     {
         $queryParameters = '';
-        foreach ($parameters as $name => $value)
-        {
+        foreach ($parameters as $name => $value) {
             $queryParameters .= "{$name}={$value}&";
         }
 

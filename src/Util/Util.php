@@ -1,20 +1,23 @@
 <?php
 
-namespace Shippii\Util;
+declare(strict_types=1);
 
-use CuyZ\Valinor\MapperBuilder;
+namespace Vship\Util;
+
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Tree\Message\Messages;
+use CuyZ\Valinor\MapperBuilder;
 
 abstract class Util
 {
     /**
      * @template T
-     * @param class-string<T> $targetClass, the class to map to
-     * @param array $data
+     *
+     * @param  class-string<T>  $targetClass  , the class to map to
+     * @param  array  $data
      * @return T
      */
-    public static function convertToShippiiObject($targetClass, $data): mixed
+    public static function convertToVshipObject($targetClass, $data): mixed
     {
         try {
             $mapper = (new MapperBuilder)->enableFlexibleCasting()->mapper();
@@ -35,11 +38,12 @@ abstract class Util
 
     /**
      * @template T
-     * @param class-string<T> $targetClass, the class to map to
-     * @param array $data
+     *
+     * @param  class-string<T>  $targetClass  , the class to map to
+     * @param  array  $data
      * @return array<T>
      */
-    public static function convertToShippiiObjectCollection($targetClass, $data): mixed
+    public static function convertToVshipObjectCollection($targetClass, $data): mixed
     {
         $result = [];
         try {

@@ -1,66 +1,78 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Resources;
+namespace Vship\Resources;
+
+use GuzzleHttp\Exception\GuzzleException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
 
 class OrganisationObject extends Resource
 {
     public string $id;
-    public string|null $name = null;
+
+    public ?string $name = null;
+
     public string $organisationId;
+
     public array $organisation;
-    public string|null $currency = null;
-    public string|null $timezone = null;
-    public array|null $settings = null;
-    public string|null $createdAt;
-    public string|null $updatedAt;
+
+    public ?string $currency = null;
+
+    public ?string $timezone = null;
+
+    public ?array $settings = null;
+
+    public ?string $createdAt;
+
+    public ?string $updatedAt;
 
     /**
-     * Create Organisation Object
+     * Create Organisation Object.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function create(): array
     {
         $payload = $this->preparePayload(['name', 'organisation_id', 'currency', 'timezone', 'settings']);
 
-        return $this->shippii->createOrganisationObject($payload);
+        return $this->client->createOrganisationObject($payload);
     }
 
     /**
-     * Update organisation object
+     * Update organisation object.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function update(): array
     {
         $payload = $this->preparePayload(['name', 'currency', 'timezone', 'settings']);
 
-        return $this->shippii->updateOrganisationObject($this->id, $payload);
+        return $this->client->updateOrganisationObject($this->id, $payload);
     }
 
     /**
-     * Delete Organisation Object
+     * Delete Organisation Object.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function delete(): array
     {
-        return $this->shippii->deleteOrganisationObject($this->id);
+        return $this->client->deleteOrganisationObject($this->id);
     }
 }

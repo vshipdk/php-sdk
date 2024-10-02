@@ -1,23 +1,32 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Models\CarrierAccount;
+namespace Vship\Models\CarrierAccount;
 
-use Shippii\Models\Organisation\Organisation;
-use Shippii\Models\Carrier\Carrier;
+use Vship\Models\Carrier\Carrier;
 
 final class CarrierAccount
 {
-    public string|null $id = null;
-    public string|null $name = null;
+    public ?string $id = null;
+
+    public ?string $name = null;
+
     /** @var CarrierAccountFields[]|null */
-    public array|null $fields = null;
-    public string|null $carrier_code = null;
-    public string|null $status = null;
-    public string|null $purpose = null;
+    public ?array $fields = null;
+
+    public ?string $carrier_code = null;
+
+    public ?string $status = null;
+
+    public ?string $purpose = null;
+
     /** @var Carrier[]|null */
-    public array|null $carriers = null;
-    public string|null $expires_at = null;
-    public string|null $created_at = null;
-    public string|null $updated_at = null;
+    public ?array $carriers = null;
+
+    public ?string $expires_at = null;
+
+    public ?string $created_at = null;
+
+    public ?string $updated_at = null;
 }

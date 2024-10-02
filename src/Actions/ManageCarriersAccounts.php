@@ -1,117 +1,119 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\Actions;
 
-use Shippii\Util\Util;
-use Shippii\Models\CarrierAccount\CarrierAccount;
-use Shippii\Models\CarrierAccount\CarrierAccountFields;
+use GuzzleHttp\Exception\GuzzleException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
+use Vship\Models\CarrierAccount\CarrierAccount;
+use Vship\Models\CarrierAccount\CarrierAccountFields;
+use Vship\Util\Util;
 
 trait ManageCarriersAccounts
 {
     /**
-     * Get All Carrier Accounts
+     * Get All Carrier Accounts.
      *
-     * @param array $queryParams
      * @return CarrierAccount[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     *
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getCarrierAccounts(array $queryParams = []): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/carrier-account?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(CarrierAccount::class, $response);
+        return Util::convertToVshipObjectCollection(CarrierAccount::class, $response);
     }
 
     /**
-     * Get Single Carrier Account by ID
+     * Get Single Carrier Account by ID.
      *
-     * @param string $carrierAccountId
-     * @return CarrierAccount
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getCarrierAccount(string $carrierAccountId): CarrierAccount
     {
         $response = $this->get("v1/carrier-account/{$carrierAccountId}")['data'];
+
         // dd($response);
-        return Util::convertToShippiiObject(CarrierAccount::class, $response);
+        return Util::convertToVshipObject(CarrierAccount::class, $response);
     }
 
     /**
-     * Create Carrier Account
+     * Create Carrier Account.
      *
-     * @param array $payload
-     * @return CarrierAccount
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function createCarrierAccount(array $payload): CarrierAccount
     {
-        $response = $this->post("v1/carrier-account", $payload)['data'];
-        return Util::convertToShippiiObject(CarrierAccount::class, $response);
+        $response = $this->post('v1/carrier-account', $payload)['data'];
+
+        return Util::convertToVshipObject(CarrierAccount::class, $response);
     }
 
     /**
-     * Update Carrier Account
+     * Update Carrier Account.
      *
-     * @param string $carrierAccountId
-     * @param array $payload
-     * @return CarrierAccount
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function updateCarrierAccount(string $carrierAccountId, array $payload): CarrierAccount
     {
         $response = $this->patch("v1/carrier-account/{$carrierAccountId}")['data'];
-        return Util::convertToShippiiObject(CarrierAccount::class, $response);
+
+        return Util::convertToVshipObject(CarrierAccount::class, $response);
     }
 
     /**
-     * Delete Carrier Account
+     * Delete Carrier Account.
      *
-     * @param string $carrierAccountId
-     * @return CarrierAccount
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function deleteCarrierAccount(string $carrierAccountId): CarrierAccount
     {
         $response = $this->delete("v1/carrier-account/{$carrierAccountId}")['data'];
-        return Util::convertToShippiiObject(CarrierAccount::class, $response);
+
+        return Util::convertToVshipObject(CarrierAccount::class, $response);
     }
 
     /**
-     * Get Carrier Account Fields
+     * Get Carrier Account Fields.
      *
-     * @param string $carrierCode
      * @return CarrierAccountFields[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     *
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getCarrierAccountFields(string $carrierCode): array
     {
         $response = $this->get("v1/carrier-account/fields/{$carrierCode}")['data'];
-        return Util::convertToShippiiObjectCollection(CarrierAccountFields::class, $response); 
+
+        return Util::convertToVshipObjectCollection(CarrierAccountFields::class, $response);
     }
 }

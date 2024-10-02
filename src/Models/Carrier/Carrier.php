@@ -1,23 +1,32 @@
 <?php
 
-namespace Shippii\Models\Carrier;
+declare(strict_types=1);
 
-use Shippii\Models\Carrier\Owner;
-use Shippii\Models\Carrier\CarrierSettings;
-use Shippii\Models\CarrierAccount\CarrierAccount;
+namespace Vship\Models\Carrier;
+
+use Vship\Models\CarrierAccount\CarrierAccount;
 
 final class Carrier
 {
-    const OBJECT_NAME = 'carrier';
-    
-    public string|null $id = null;
-    public Owner|null $owner = null;
-    public string|null $name = null;
-    public CarrierAccount|null $account = null;
-    public string|null $code = null;
-    public CarrierSettings|null $settings = null;
-    public int|null $status = null;
-    public string|null $created_at = null;
-    public string|null $updated_at = null;
-    public string|null $carrier_identification = null;
+    public const OBJECT_NAME = 'carrier';
+
+    public ?string $id = null;
+
+    public ?Owner $owner = null;
+
+    public ?string $name = null;
+
+    public ?CarrierAccount $account = null;
+
+    public ?string $code = null;
+
+    public ?CarrierSettings $settings = null;
+
+    public ?int $status = null;
+
+    public ?string $created_at = null;
+
+    public ?string $updated_at = null;
+
+    public ?string $carrier_identification = null;
 }

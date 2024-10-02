@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Exceptions;
+namespace Vship\Exceptions;
 
 use Exception;
 
-class NotFoundException extends Exception
+class NotFoundException extends \Exception
 {
     /**
      * Create a new exception instance.

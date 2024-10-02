@@ -1,115 +1,110 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\Actions;
 
-use Shippii\Models\Shipment\Shipment;
-use Shippii\Util\Util;
+use GuzzleHttp\Exception\GuzzleException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
+use Vship\Models\Shipment\Shipment;
+use Vship\Util\Util;
 
 trait ManageShipments
 {
     /**
-     * Get Shipments
+     * Get Shipments.
      *
-     * @param array $queryParams
      * @return Shipment[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     *
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getShipments(array $queryParams = []): array
     {
         $parameters = $this->prepareRequestParameters($queryParams);
         $response = $this->get("v1/shipment?{$parameters}")['data'];
 
-        return Util::convertToShippiiObjectCollection(Shipment::class, $response);
+        return Util::convertToVshipObjectCollection(Shipment::class, $response);
     }
 
     /**
-     * Get Shipments
+     * Get Shipments.
      *
-     * @param string $shipmentId
-     * @return Shipment
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function getShipment(string $shipmentId): Shipment
     {
         $response = $this->get("v1/shipment/{$shipmentId}")['data'];
 
-        return Util::convertToShippiiObject(Shipment::class, $response);
+        return Util::convertToVshipObject(Shipment::class, $response);
     }
 
     /**
-     * Create shipment
+     * Create shipment.
      *
-     * @param array $payload
-     * @return Shipment
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function createShipment(array $payload): Shipment
     {
         $response = $this->post('v1/shipment', $payload)['data'];
 
-        return Util::convertToShippiiObject(Shipment::class, $response);
+        return Util::convertToVshipObject(Shipment::class, $response);
     }
 
     /**
-     * Update shipment
+     * Update shipment.
      *
-     * @param string $shipmentId
-     * @param array $payload
-     * @return Shipment
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function updateShipment(string $shipmentId, array $payload): Shipment
     {
         $response = $this->patch("v1/shipment/{$shipmentId}", $payload)['data'];
 
-        return Util::convertToShippiiObject(Shipment::class, $response);
+        return Util::convertToVshipObject(Shipment::class, $response);
     }
 
     /**
      * Update the state of a shipment.
      *
-     * @param string $shipmentId
-     * @param string $shipmentState
-     * @return Shipment
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function updateShipmentState(string $shipmentId, string $shipmentState): Shipment
     {
         $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}")['data'];
-        return Util::convertToShippiiObject(Shipment::class, $response);
+
+        return Util::convertToVshipObject(Shipment::class, $response);
     }
 
     /**
-     * Archive shipment
+     * Archive shipment.
      *
-     * @param string $shipmentId
-     * @return void
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function archiveShipment(string $shipmentId): void
     {

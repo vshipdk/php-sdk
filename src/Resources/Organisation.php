@@ -1,65 +1,76 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Resources;
+namespace Vship\Resources;
+
+use GuzzleHttp\Exception\GuzzleException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
 
 class Organisation extends Resource
 {
     public string $id;
-    public string|null $name = null;
-    public string|null $vatNumber = null;
-    public string|null $companyNumber = null;
-    public bool|null $vatRegistered = null;
-    public string|null $currency = null;
-    public string|null $timezone = null;
-    public array|null $settings = null;
+
+    public ?string $name = null;
+
+    public ?string $vatNumber = null;
+
+    public ?string $companyNumber = null;
+
+    public ?bool $vatRegistered = null;
+
+    public ?string $currency = null;
+
+    public ?string $timezone = null;
+
+    public ?array $settings = null;
 
     /**
-     * Create organisation
+     * Create organisation.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function create(): array
     {
         $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
 
-        return $this->shippii->createOrganisation($payload);
+        return $this->client->createOrganisation($payload);
     }
 
     /**
-     * Update organisation
+     * Update organisation.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function update(): array
     {
         $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
 
-        return $this->shippii->updateOrganisation($this->id, $payload);
+        return $this->client->updateOrganisation($this->id, $payload);
     }
 
     /**
-     * Delete organisation
+     * Delete organisation.
      *
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Shippii\Exceptions\FailedActionException
-     * @throws \Shippii\Exceptions\NotFoundException
-     * @throws \Shippii\Exceptions\RateLimitExceededException
-     * @throws \Shippii\Exceptions\ValidationException
+     * @throws GuzzleException
+     * @throws FailedActionException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws ValidationException
      */
     public function delete(): array
     {
-        return $this->shippii->deleteOrganisation($this->id);
+        return $this->client->deleteOrganisation($this->id);
     }
 }

@@ -1,27 +1,46 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Models\Shipment;
+namespace Vship\Models\Shipment;
 
 final class ShipmentItem
 {
-    public string|null $id = null;
-    public string|null $organisation_id = null;
-    public string|null $name = null;
-    public string|null $sku = null;
-    public string|null $ean = null;
-    public string|null $tariff_code = null;
-    public string|null $harmonization_code = null;
-    public string|null $country_of_origin = null;
-    public string|null $image_url = null;
-    public string|null $country_of_declaration = null;
-    public string|null $value = null;
-    public string|null $weight_in_grams = null;
-    public string|null $volume = null;
-    public string|null $data = null;
-    public string|null $hash = null;
-    public string|null $tariff_description = null;
-    public string|null $last_used_at = null;
-    public string|null $created_at = null;
-    public string|null $updated_at = null;
+    public ?string $id = null;
+
+    public ?string $organisation_id = null;
+
+    public ?string $name = null;
+
+    public ?string $sku = null;
+
+    public ?string $ean = null;
+
+    public ?string $tariff_code = null;
+
+    public ?string $harmonization_code = null;
+
+    public ?string $country_of_origin = null;
+
+    public ?string $image_url = null;
+
+    public ?string $country_of_declaration = null;
+
+    public ?string $value = null;
+
+    public ?string $weight_in_grams = null;
+
+    public ?string $volume = null;
+
+    public ?string $data = null;
+
+    public ?string $hash = null;
+
+    public ?string $tariff_description = null;
+
+    public ?string $last_used_at = null;
+
+    public ?string $created_at = null;
+
+    public ?string $updated_at = null;
 }

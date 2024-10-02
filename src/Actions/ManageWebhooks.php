@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Shippii\Actions;
+namespace Vship\Actions;
 
-use Shippii\Util\Util;
-use Shippii\Util\Webhook;
+use Vship\Util\Util;
+use Vship\Util\Webhook;
 
 trait ManageWebhooks
 {
@@ -12,6 +13,6 @@ trait ManageWebhooks
     {
         [$class, $data] = Webhook::constructEvent($payload, $headerSignature, $secret);
 
-        return Util::convertToShippiiObject($class, $data);
+        return Util::convertToVshipObject($class, $data);
     }
 }
