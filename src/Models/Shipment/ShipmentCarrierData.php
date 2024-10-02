@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Vship\Models\Shipment;
 
 use Vship\Models\Carrier\Carrier;
-use Vship\Models\Carrier\CarrierAttribute;
 
 final class ShipmentCarrierData
 {
@@ -15,7 +14,10 @@ final class ShipmentCarrierData
 
     public ?string $carrier_state = null;
 
-    public ?CarrierAttribute $carrier_attributes = null;
+    /**
+     * @var array<string, ?string>|null
+     */
+    public ?array $carrier_attributes = null;
 
     public ?bool $has_multiple_identifiers = null;
 
