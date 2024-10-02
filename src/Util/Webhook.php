@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Util;
+namespace Vship\Util;
 
-use Vship\SDK\Exceptions\FailedActionException;
+use Vship\Exceptions\FailedActionException;
 
 abstract class Webhook
 {

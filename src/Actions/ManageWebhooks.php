@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Actions;
+namespace Vship\Actions;
 
-use Vship\SDK\Util\Util;
-use Vship\SDK\Util\Webhook;
+use Vship\Util\Util;
+use Vship\Util\Webhook;
 
 trait ManageWebhooks
 {

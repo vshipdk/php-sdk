@@ -23,7 +23,7 @@ composer require vshipdk/php-sdk
 Initialize vShip client:
 
 ```php
-    $client = new \Vship\SDK\Client(
+    $client = new \Vship\Client(
         apiKey: { Your API key }
     );
 ```

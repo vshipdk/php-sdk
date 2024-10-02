@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Exceptions;
+namespace Vship\Exceptions;
 
 class SignatureVerificationException extends \Exception
 {

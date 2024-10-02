@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Organisation;
+namespace Vship\Models\Organisation;
 
-use Vship\SDK\Models\Address\Address;
+use Vship\Models\Address\Address;
 
 final class Organisation
 {

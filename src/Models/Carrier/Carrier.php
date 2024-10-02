@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Carrier;
+namespace Vship\Models\Carrier;
 
-use Vship\SDK\Models\CarrierAccount\CarrierAccount;
+use Vship\Models\CarrierAccount\CarrierAccount;
 
 final class Carrier
 {

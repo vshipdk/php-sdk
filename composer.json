@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Vship\\SDK\\": "src/"
+            "Vship\\": "src/"
         }
     },
     "config": {

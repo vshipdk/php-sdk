@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Shipment;
+namespace Vship\Models\Shipment;
 
-use Vship\SDK\Models\Address\Address;
+use Vship\Models\Address\Address;
 
 final class ShipmentReceivable
 {

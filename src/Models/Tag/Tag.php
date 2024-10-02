@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Tag;
+namespace Vship\Models\Tag;
 
 final class Tag
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Resources;
+namespace Vship\Resources;
 
 class User extends Resource
 {

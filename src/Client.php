@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK;
+namespace Vship;
 
 use GuzzleHttp\Client as HttpClient;
-use Vship\SDK\Actions\ManageCarriers;
-use Vship\SDK\Actions\ManageCarriersAccounts;
-use Vship\SDK\Actions\ManageCountries;
-use Vship\SDK\Actions\ManageInvoices;
-use Vship\SDK\Actions\ManageLabels;
-use Vship\SDK\Actions\ManageOrganisationObjects;
-use Vship\SDK\Actions\ManageOrganisations;
-use Vship\SDK\Actions\ManageShipments;
-use Vship\SDK\Actions\ManageUsers;
-use Vship\SDK\Actions\ManageWebhooks;
+use Vship\Actions\ManageCarriers;
+use Vship\Actions\ManageCarriersAccounts;
+use Vship\Actions\ManageCountries;
+use Vship\Actions\ManageInvoices;
+use Vship\Actions\ManageLabels;
+use Vship\Actions\ManageOrganisationObjects;
+use Vship\Actions\ManageOrganisations;
+use Vship\Actions\ManageShipments;
+use Vship\Actions\ManageUsers;
+use Vship\Actions\ManageWebhooks;
 
 class Client
 {

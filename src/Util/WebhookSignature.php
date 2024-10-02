@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Util;
+namespace Vship\Util;
 
-use Vship\SDK\Exceptions\SignatureVerificationException;
+use Vship\Exceptions\SignatureVerificationException;
 
 abstract class WebhookSignature
 {

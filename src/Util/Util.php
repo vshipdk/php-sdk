@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Util;
+namespace Vship\Util;
 
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Tree\Message\Messages;

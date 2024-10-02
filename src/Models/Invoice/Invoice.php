@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Invoice;
+namespace Vship\Models\Invoice;
 
 final class Invoice
 {

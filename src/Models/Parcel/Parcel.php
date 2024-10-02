@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Parcel;
+namespace Vship\Models\Parcel;
 
-use Vship\SDK\Models\Label\Label;
+use Vship\Models\Label\Label;
 
 final class Parcel
 {

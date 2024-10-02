@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK;
+namespace Vship;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
-use Vship\SDK\Exceptions\FailedActionException;
-use Vship\SDK\Exceptions\NotFoundException;
-use Vship\SDK\Exceptions\RateLimitExceededException;
-use Vship\SDK\Exceptions\TimeoutException;
-use Vship\SDK\Exceptions\ValidationException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\TimeoutException;
+use Vship\Exceptions\ValidationException;
 
 trait MakesHttpRequests
 {

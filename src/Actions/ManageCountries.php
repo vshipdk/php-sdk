@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Actions;
+namespace Vship\Actions;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Vship\SDK\Exceptions\FailedActionException;
-use Vship\SDK\Exceptions\NotFoundException;
-use Vship\SDK\Exceptions\RateLimitExceededException;
-use Vship\SDK\Exceptions\ValidationException;
-use Vship\SDK\Models\Country\Country;
-use Vship\SDK\Util\Util;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
+use Vship\Models\Country\Country;
+use Vship\Util\Util;
 
 trait ManageCountries
 {

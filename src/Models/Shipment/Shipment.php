@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Shipment;
+namespace Vship\Models\Shipment;
 
-use Vship\SDK\Models\ActivityLog\ActivityLog;
-use Vship\SDK\Models\Address\Address;
-use Vship\SDK\Models\Carrier\Carrier;
-use Vship\SDK\Models\Label\Label;
-use Vship\SDK\Models\Line\Line;
-use Vship\SDK\Models\OrganisationObject\OrganisationObject;
-use Vship\SDK\Models\Parcel\Parcel;
-use Vship\SDK\Models\Tag\Tag;
-use Vship\SDK\Models\User\User;
+use Vship\Models\ActivityLog\ActivityLog;
+use Vship\Models\Address\Address;
+use Vship\Models\Carrier\Carrier;
+use Vship\Models\Label\Label;
+use Vship\Models\Line\Line;
+use Vship\Models\OrganisationObject\OrganisationObject;
+use Vship\Models\Parcel\Parcel;
+use Vship\Models\Tag\Tag;
+use Vship\Models\User\User;
 
 final class Shipment
 {

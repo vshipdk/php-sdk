@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Shipment;
+namespace Vship\Models\Shipment;
 
-use Vship\SDK\Models\Carrier\Carrier;
-use Vship\SDK\Models\Carrier\CarrierAttribute;
+use Vship\Models\Carrier\Carrier;
+use Vship\Models\Carrier\CarrierAttribute;
 
 final class ShipmentCarrierData
 {

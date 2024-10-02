@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Util;
+namespace Vship\Util;
 
-use Vship\SDK\Models\Carrier\Carrier;
-use Vship\SDK\Models\Shipment\Shipment;
+use Vship\Models\Carrier\Carrier;
+use Vship\Models\Shipment\Shipment;
 
 class ObjectTypes
 {

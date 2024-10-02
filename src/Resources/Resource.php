@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Resources;
+namespace Vship\Resources;
 
-use Vship\SDK\Client;
+use Vship\Client;
 
 class Resource
 {

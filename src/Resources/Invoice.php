@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Resources;
+namespace Vship\Resources;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Vship\SDK\Exceptions\FailedActionException;
-use Vship\SDK\Exceptions\NotFoundException;
-use Vship\SDK\Exceptions\RateLimitExceededException;
-use Vship\SDK\Exceptions\ValidationException;
+use Vship\Exceptions\FailedActionException;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\ValidationException;
 
 class Invoice extends Resource
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Label;
+namespace Vship\Models\Label;
 
 final class Label
 {

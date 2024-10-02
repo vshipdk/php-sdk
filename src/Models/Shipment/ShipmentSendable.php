@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Shipment;
+namespace Vship\Models\Shipment;
 
 final class ShipmentSendable
 {

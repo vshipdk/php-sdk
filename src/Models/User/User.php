@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\User;
+namespace Vship\Models\User;
 
-use Vship\SDK\Models\Organisation\Organisation;
+use Vship\Models\Organisation\Organisation;
 
 final class User
 {

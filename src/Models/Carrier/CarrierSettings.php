@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Carrier;
+namespace Vship\Models\Carrier;
 
 final class CarrierSettings
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Line;
+namespace Vship\Models\Line;
 
-use Vship\SDK\Models\Shipment\ShipmentItem;
+use Vship\Models\Shipment\ShipmentItem;
 
 final class Line
 {

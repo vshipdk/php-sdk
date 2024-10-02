@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vship\SDK\Models\Country;
+namespace Vship\Models\Country;
 
 final class Country
 {
