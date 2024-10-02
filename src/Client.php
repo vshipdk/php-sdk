@@ -94,7 +94,7 @@ class Client
             'base_uri' => 'https://api-dev.vship.dev/',
             'http_errors' => false,
             'headers' => [
-                'Authorization' => 'Bearer '.$apiKey,
+                'Authorization' => 'Bearer ' . $apiKey,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
             ],

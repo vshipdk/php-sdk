@@ -22,7 +22,7 @@ abstract class Util
     public static function convertToVshipObject(string $targetClass, array $data): object
     {
         try {
-            $mapper = (new MapperBuilder)->enableFlexibleCasting()->mapper();
+            $mapper = (new MapperBuilder())->enableFlexibleCasting()->mapper();
             $data = $mapper->map($targetClass, $data);
         } catch (MappingError $error) {
             throw new UnexpectedResponseSchemaException(previous: $error);
@@ -42,7 +42,7 @@ abstract class Util
     {
         $result = [];
         try {
-            $mapper = (new MapperBuilder)->enableFlexibleCasting()->mapper();
+            $mapper = (new MapperBuilder())->enableFlexibleCasting()->mapper();
             foreach ($data as $key => $datum) {
                 $result[] = $mapper->map($targetClass, $datum);
             }
