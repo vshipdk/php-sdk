@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Vship\Util;
 
 use CuyZ\Valinor\Mapper\MappingError;
-use CuyZ\Valinor\Mapper\Tree\Message\Messages;
 use CuyZ\Valinor\MapperBuilder;
 use Vship\Exceptions\UnexpectedResponseSchemaException;
 
@@ -34,11 +33,12 @@ abstract class Util
     /**
      * @template T
      *
-     * @param  class-string<T>  $targetClass  , the class to map to
-     * @param  array  $data
+     * @param class-string<T> $targetClass , the class to map to
+     * @param array $data
      * @return array<T>
+     * @throws UnexpectedResponseSchemaException
      */
-    public static function convertToVshipObjectCollection($targetClass, $data): mixed
+    public static function convertToVshipObjectCollection(string $targetClass, array $data): array
     {
         $result = [];
         try {
@@ -47,14 +47,7 @@ abstract class Util
                 $result[] = $mapper->map($targetClass, $datum);
             }
         } catch (MappingError $error) {
-            $messages = Messages::flattenFromNode($error->node());
-
-            // If only errors are wanted, they can be filtered
-            $errorMessages = $messages->errors();
-
-            foreach ($errorMessages as $message) {
-                var_dump($message);
-            }
+            throw new UnexpectedResponseSchemaException(previous: $error);
         }
 
         return $result;
