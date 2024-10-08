@@ -69,36 +69,6 @@ class Shipment extends Resource
     }
 
     /**
-     * Update Shipment.
-     *
-     * @throws GuzzleException
-     * @throws FailedActionException
-     * @throws NotFoundException
-     * @throws RateLimitExceededException
-     * @throws ValidationException
-     */
-    public function update(): array
-    {
-        $payload = $this->preparePayload(['receiver', 'lines']);
-
-        return $this->client->updateShipment($this->id, $payload);
-    }
-
-    /**
-     * Update the state of a shipment.
-     *
-     * @throws GuzzleException
-     * @throws FailedActionException
-     * @throws NotFoundException
-     * @throws RateLimitExceededException
-     * @throws ValidationException
-     */
-    public function updateState(): array
-    {
-        return $this->client->updateShipmentState($this->id, $this->state);
-    }
-
-    /**
      * Archive shipment.
      *
      * @throws GuzzleException
