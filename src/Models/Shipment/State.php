@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Vship\Models\Shipment;
@@ -17,8 +18,8 @@ enum State: string
     public function canCancel(): bool
     {
         return match ($this) {
-            self::CANCELLED, self::PRINTED => false,
-            default => true,
+            self::READY_FOR_PRINT, self::ON_HOLD, self::PENDING => true,
+            default => false,
         };
     }
 

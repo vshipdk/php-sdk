@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Vship\Exceptions\FailedActionException;
 use Vship\Exceptions\NotFoundException;
 use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\UnexpectedResponseSchemaException;
 use Vship\Exceptions\ValidationException;
 use Vship\Models\Shipment\Shipment;
 use Vship\Util\Util;
@@ -17,12 +18,14 @@ trait ManageShipments
     /**
      * Get Shipments.
      *
+     * @param array $queryParams
      * @return Shipment[]
      *
-     * @throws GuzzleException
      * @throws FailedActionException
+     * @throws GuzzleException
      * @throws NotFoundException
      * @throws RateLimitExceededException
+     * @throws UnexpectedResponseSchemaException
      * @throws ValidationException
      */
     public function getShipments(array $queryParams = []): array
@@ -36,10 +39,13 @@ trait ManageShipments
     /**
      * Get Shipments.
      *
-     * @throws GuzzleException
+     * @param string $shipmentId
+     * @return Shipment
      * @throws FailedActionException
+     * @throws GuzzleException
      * @throws NotFoundException
      * @throws RateLimitExceededException
+     * @throws UnexpectedResponseSchemaException
      * @throws ValidationException
      */
     public function getShipment(string $shipmentId): Shipment
@@ -52,11 +58,14 @@ trait ManageShipments
     /**
      * Create shipment.
      *
-     * @throws GuzzleException
+     * @param array $payload
+     * @return Shipment
      * @throws FailedActionException
+     * @throws GuzzleException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
+     * @throws UnexpectedResponseSchemaException
      */
     public function createShipment(array $payload): Shipment
     {
@@ -66,36 +75,19 @@ trait ManageShipments
     }
 
     /**
-     * Update shipment.
-     *
-     * @throws GuzzleException
-     * @throws FailedActionException
-     * @throws NotFoundException
-     * @throws RateLimitExceededException
-     * @throws ValidationException
-     */
-    public function updateShipment(string $shipmentId, array $payload): Shipment
+      * Cancel shipment.
+      *
+      * @throws GuzzleException
+      * @throws FailedActionException
+      * @throws NotFoundException
+      * @throws RateLimitExceededException
+      * @throws ValidationException
+      */
+    public function cancelShipment(string $id): void
     {
-        $response = $this->patch("v1/shipment/{$shipmentId}", $payload)['data'];
-
-        return Util::convertToVshipObject(Shipment::class, $response);
+        $this->delete("v1/shipment/{$id}");
     }
 
-    /**
-     * Update the state of a shipment.
-     *
-     * @throws GuzzleException
-     * @throws FailedActionException
-     * @throws NotFoundException
-     * @throws RateLimitExceededException
-     * @throws ValidationException
-     */
-    public function updateShipmentState(string $shipmentId, string $shipmentState): Shipment
-    {
-        $response = $this->post("v1/shipment/{$shipmentId}/update-state/{$shipmentState}")['data'];
-
-        return Util::convertToVshipObject(Shipment::class, $response);
-    }
 
     /**
      * Archive shipment.
