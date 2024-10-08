@@ -24,7 +24,7 @@ final class Shipment
 
     public ?int $type = null;
 
-    public ?string $state = null;
+    public State $state;
 
     /** @var ShipmentMetadata[]|null */
     public ?array $metadata = null;
