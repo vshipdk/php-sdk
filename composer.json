@@ -14,6 +14,7 @@
         "laravel/pint": "^1.18",
         "phpro/grumphp": "^2.8",
         "phpstan/phpstan": "^1.12",
+        "phpunit/phpunit": "^11.4",
         "symfony/var-dumper": "^6.2",
         "yieldstudio/grumphp-laravel-pint": "^1.0"
     },
