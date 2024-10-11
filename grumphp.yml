@@ -23,5 +23,16 @@ grumphp:
       auto_stage: 'pre_commit'
       triggered_by:
         - php
-#      ignore_patterns:
-#        - /^a-patten-to-ignore-files-or-folders\/.*/
+      #      ignore_patterns:
+      #        - /^a-patten-to-ignore-files-or-folders\/.*/
+    phpunit:
+      config_file: phpunit.xml
+      testsuite: ~
+      group: [ ]
+      exclude_group: [ ]
+      always_execute: false
+      order: null
+      coverage-clover: null
+      coverage-html: null
+      coverage-php: null
+      coverage-xml: null
