@@ -13,7 +13,7 @@ abstract class Util
     /**
      * @template T
      *
-     * @param  class-string<T>  $targetClass  , the class to map to
+     * @param class-string<T> $targetClass , the class to map to
      * @return T
      *
      * @throws UnexpectedResponseSchemaException
@@ -24,7 +24,7 @@ abstract class Util
             $mapper = (new MapperBuilder())->enableFlexibleCasting()->mapper();
             $data = $mapper->map($targetClass, $data);
         } catch (MappingError $error) {
-            throw new UnexpectedResponseSchemaException(previous: $error);
+            throw UnexpectedResponseSchemaException::fromMappingError($error);
         }
 
         return $data;
@@ -47,7 +47,7 @@ abstract class Util
                 $result[] = $mapper->map($targetClass, $datum);
             }
         } catch (MappingError $error) {
-            throw new UnexpectedResponseSchemaException(previous: $error);
+            throw UnexpectedResponseSchemaException::fromMappingError($error);
         }
 
         return $result;
