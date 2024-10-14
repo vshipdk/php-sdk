@@ -14,7 +14,7 @@ use Vship\Actions\ManageOrganisationObjects;
 use Vship\Actions\ManageOrganisations;
 use Vship\Actions\ManageShipments;
 use Vship\Actions\ManageUsers;
-use Vship\Actions\ManageWebhooks;
+use Vship\Actions\HandleWebhooks;
 
 class Client
 {
@@ -28,7 +28,7 @@ class Client
     use ManageOrganisations;
     use ManageShipments;
     use ManageUsers;
-    use ManageWebhooks;
+    use HandleWebhooks;
 
     /**
      * Number of seconds a request is retried.
