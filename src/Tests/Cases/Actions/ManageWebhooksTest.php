@@ -6,11 +6,12 @@ namespace Cases\Actions;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
-use Vship\Actions\ManageWebhooks;
+use Vship\Actions\HandleWebhooks;
 use Vship\Client;
+use Vship\Models\Shipment\Shipment;
 use Vship\Tests\Traits\TestsWebhooks;
 
-#[CoversClass(ManageWebhooks::class)]
+#[CoversClass(HandleWebhooks::class)]
 
 class ManageWebhooksTest extends TestCase
 {
@@ -24,10 +25,12 @@ class ManageWebhooksTest extends TestCase
         $this->client = new Client('test_secret');
     }
 
-    public function testCorrectPayload()
+    public function testWithCorrectPayload()
     {
         list($payload, $secret, $signature) = $this->getLabelsCreatedWebhook();
-        $shipment = $this->client->handleWebhooks($payload, $signature, $secret);
-        $this->assertInstanceOf(\Vship\Models\Shipment\Shipment::class, $shipment);
+        $webhook = $this->client->handleWebhook($payload, $signature, $secret);
+        $shipment = $webhook->object;
+        $this->assertInstanceOf(Shipment::class, $shipment);
+        $this->assertEquals('shipment', $webhook->type);
     }
 }

@@ -16,8 +16,6 @@ use Vship\Models\User\User;
 
 final class Shipment
 {
-    public const OBJECT_NAME = 'shipment';
-
     public ?string $id = null;
 
     public ?string $rate_id = null;

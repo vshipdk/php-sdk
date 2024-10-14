@@ -8,8 +8,6 @@ use Vship\Models\CarrierAccount\CarrierAccount;
 
 final class Carrier
 {
-    public const OBJECT_NAME = 'carrier';
-
     public ?string $id = null;
 
     public ?Owner $owner = null;
