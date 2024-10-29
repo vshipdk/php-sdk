@@ -23,7 +23,7 @@ trait HandleWebhooks
         $event = WebhookUtil::constructEvent($payload, $headerSignature, $secret);
 
         return new Webhook(
-            type: $event->objectType->value,
+            type: $event->webhookType,
             object: Util::convertToVshipObject(
                 targetClass: $event->objectType->getClass(),
                 data: $event->objectData,

@@ -6,6 +6,7 @@ namespace Vship\Util;
 
 use Vship\DTO\Webhook\Event;
 use Vship\Enum\Webhook\ObjectType;
+use Vship\Enum\WebhookType;
 use Vship\Exceptions\FailedActionException;
 use Vship\Exceptions\SignatureVerificationException;
 
@@ -32,6 +33,10 @@ abstract class Webhook
 
         $objectType = $payloadArr['data']['object_type'];
 
-        return new Event(ObjectType::from($objectType), $payloadArr['data'][$objectType]);
+        return new Event(
+            objectType: ObjectType::from($objectType),
+            webhookType: WebhookType::from($payloadArr['data']['event_type'] ?? ''),
+            objectData: $payloadArr['data'][$objectType],
+        );
     }
 }
