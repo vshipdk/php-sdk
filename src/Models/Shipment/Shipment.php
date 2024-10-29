@@ -84,4 +84,7 @@ final class Shipment
 
     /** @var Parcel[]|null */
     public ?array $parcels = null;
+
+    /** @var Error[]|null  */
+    public ?array $error = null;
 }
