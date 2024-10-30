@@ -16,7 +16,7 @@ use Vship\Models\User\User;
 
 final class Shipment
 {
-    public ?string $id = null;
+    public string $id;
 
     public ?string $rate_id = null;
 
