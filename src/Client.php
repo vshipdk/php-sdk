@@ -46,12 +46,17 @@ class Client
     public HttpClient $guzzle;
 
     /**
+     * Base URL of Client API
+     */
+    public string $baseUrl;
+
+    /**
      * Create a new Forge instance.
      */
-    public function __construct(?string $apiKey = null, ?HttpClient $guzzle = null)
+    public function __construct(?string $apiKey = null, ?HttpClient $guzzle = null, ?string $baseUrl = null)
     {
         if ($apiKey !== null) {
-            $this->setApiKey($apiKey, $guzzle);
+            $this->setApiKey($apiKey, $baseUrl, $guzzle);
         }
 
         if (! is_null($guzzle)) {
@@ -87,11 +92,10 @@ class Client
      *
      * @return $this
      */
-    public function setApiKey(string $apiKey, $guzzle = null)
+    public function setApiKey(string $apiKey, string $baseUrl, $guzzle = null)
     {
-        $this->apiKey = $apiKey;
         $this->guzzle = $guzzle ?: new HttpClient([
-            'base_uri' => 'https://api-dev.vship.dev/',
+            'base_uri' => $baseUrl,
             'http_errors' => false,
             'headers' => [
                 'Authorization' => 'Bearer ' . $apiKey,
