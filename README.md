@@ -234,17 +234,10 @@ Send a request with body to create API resource through the client:
 ```php
     $client->createShipment(array $payload): Shipment
 ```
-
-> [Update Shipment](https://api-dev.vship.dev/docs.html#/paths/v1-shipment-shipment/patch)
-
-```php
-    $client->updateShipment(string $shipmentId, array $payload): Shipment
-```
-
-> [Update Shipment State](https://api-dev.vship.dev/docs.html#/paths/v1-shipment-shipment--update-state--state/post)
+> [Cancel Shipment](https://api-dev.vship.dev/docs.html#/paths/v1-shipment-shipment/delete)
 
 ```php
-    $client->updateShipmentState(string shipmentId, string $shipmentState): Shipment
+    $client->cancelShipment(string $id): void
 ```
 
 > [Archive Shipment](https://api-dev.vship.dev/docs.html#/paths/v1-shipment-archive-shipment/patch)

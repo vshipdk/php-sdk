@@ -1,0 +1,42 @@
+{
+  "data": {
+    "object_type": "shipment",
+    "event_type": "labels.created",
+    "shipment": {
+      "id": "01FAKEID1DHGH5RZ7KTB2P1A93D",
+      "reference": "5009135272589117",
+      "sendable": {
+        "type": "object",
+        "id": "01FAKEIDCVWYNEXQTDPXK538AY",
+        "name": "Demo Object DK"
+      },
+      "carrier": {
+        "id": "01FAKEIDMP79F5JW0N38WC68VD",
+        "name": "Demo Bring",
+        "carrier_identification": "123456789012345678"
+      },
+      "label": {
+        "type": "dispatch",
+        "format": "pdf",
+        "temporary_url": "https://example.com/labels/01FAKEID1DHGH5RZ7KTB2P1A93D/01FAKEID3GT73ZDH3M7E6D4B3G6_shipment_dispatch.pdf"
+      },
+      "parcels": [
+        {
+          "id": "01FAKEID1E25S79R2ZY0TR0RFSD",
+          "sendable_reference": "5009135272589117",
+          "barcode": "01FAKEID1E25S79R2ZY0TR0RFSD",
+          "carrier_number": "123456789012345678",
+          "carrier_tracking_url": "https://example.com/tracking/123456789012345678",
+          "weight": 100,
+          "volume": "100.0000",
+          "volumetric_weight": null,
+          "label": {
+            "type": "dispatch",
+            "format": "pdf",
+            "temporary_url": "https://example.com/labels/01FAKEID1DHGH5RZ7KTB2P1A93D/01FAKEID35PJRRVVRARA97BDGSQ_parcel_dispatch.pdf"
+          }
+        }
+      ]
+    }
+  }
+}

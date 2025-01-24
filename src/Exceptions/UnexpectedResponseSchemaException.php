@@ -8,12 +8,18 @@ use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Tree\Message\Formatter\MessageMapFormatter;
 use CuyZ\Valinor\Mapper\Tree\Message\Formatter\TranslationMessageFormatter;
 use CuyZ\Valinor\Mapper\Tree\Message\Messages;
+use Exception;
 
-class UnexpectedResponseSchemaException extends \Exception
+class UnexpectedResponseSchemaException extends Exception
 {
     public function __construct(string $message = '', int $code = 0, ?MappingError $previous = null)
     {
         parent::__construct($message, $code, $previous);
+    }
+
+    public static function fromMappingError(MappingError $error): self
+    {
+        return new self(message: $error->getMessage(), previous: $error);
     }
 
     public function __toString(): string

@@ -14,7 +14,7 @@ use Vship\Actions\ManageOrganisationObjects;
 use Vship\Actions\ManageOrganisations;
 use Vship\Actions\ManageShipments;
 use Vship\Actions\ManageUsers;
-use Vship\Actions\ManageWebhooks;
+use Vship\Actions\HandleWebhooks;
 
 class Client
 {
@@ -28,7 +28,7 @@ class Client
     use ManageOrganisations;
     use ManageShipments;
     use ManageUsers;
-    use ManageWebhooks;
+    use HandleWebhooks;
 
     /**
      * Number of seconds a request is retried.
@@ -50,10 +50,12 @@ class Client
      */
     public string $baseUrl;
 
+    public const SANDBOX_URL = 'https://api-dev.vship.dev/';
+
     /**
      * Create a new Forge instance.
      */
-    public function __construct(?string $apiKey = null, ?HttpClient $guzzle = null, ?string $baseUrl = null)
+    public function __construct(?string $apiKey = null, ?HttpClient $guzzle = null, ?string $baseUrl = self::SANDBOX_URL)
     {
         if ($apiKey !== null) {
             $this->setApiKey($apiKey, $baseUrl, $guzzle);
@@ -70,7 +72,7 @@ class Client
      * @param  int  $timeout
      * @return $this
      */
-    public function setTimeout($timeout)
+    public function setTimeout($timeout): static
     {
         $this->timeout = $timeout;
 
@@ -82,17 +84,17 @@ class Client
      *
      * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): int
     {
         return $this->timeout;
     }
 
     /**
-     * Set the api key and setup the guzzle request object.
+     * Set the api key and set up the guzzle request object.
      *
      * @return $this
      */
-    public function setApiKey(string $apiKey, string $baseUrl, $guzzle = null)
+    public function setApiKey(string $apiKey, string $baseUrl, HttpClient $guzzle = null): static
     {
         $this->guzzle = $guzzle ?: new HttpClient([
             'base_uri' => $baseUrl,
@@ -108,28 +110,8 @@ class Client
     }
 
     /**
-     * Transform the items of the collection to the given class.
-     *
-     * @param  array  $collection
-     * @param  string  $class
-     * @param  array  $extraData
-     * @param  array  $meta
-     */
-    protected function transformCollection($collection, $class, $extraData = [], $meta = []): array
-    {
-        $collection = array_map(function ($data) use ($class, $extraData) {
-            if (is_array($data)) {
-                return new $class($data + $extraData, $this);
-            }
-        }, $collection);
-
-        $collection['meta'] = $meta;
-
-        return $collection;
-    }
-
-    /**
      * Prepare query parameters string.
+     * @param array<string, int|string|float> $parameters
      */
     protected function prepareRequestParameters(array $parameters): string
     {

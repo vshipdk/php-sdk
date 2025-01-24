@@ -9,11 +9,12 @@
         "cuyz/valinor": "^1.13",
         "guzzlehttp/guzzle": "^7.5.0"
     },
-    "version": "1.0.2",
+    "version": "2.0.0",
     "require-dev": {
         "laravel/pint": "^1.18",
         "phpro/grumphp": "^2.8",
         "phpstan/phpstan": "^1.12",
+        "phpunit/phpunit": "^11.4",
         "symfony/var-dumper": "^6.2",
         "yieldstudio/grumphp-laravel-pint": "^1.0"
     },

@@ -17,7 +17,7 @@ abstract class WebhookSignature
         $expectedSignature = self::verifySignature($payload, $secret, $headerSignature);
 
         if (! $expectedSignature) {
-            throw new SignatureVerificationException('No signatures found matching the expeced signature for payload.');
+            throw new SignatureVerificationException('No signatures found matching the expected signature for payload.');
         }
     }
 

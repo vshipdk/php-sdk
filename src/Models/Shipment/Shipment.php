@@ -16,15 +16,13 @@ use Vship\Models\User\User;
 
 final class Shipment
 {
-    public const OBJECT_NAME = 'shipment';
-
-    public ?string $id = null;
+    public string $id;
 
     public ?string $rate_id = null;
 
     public ?int $type = null;
 
-    public ?string $state = null;
+    public ?State $state;
 
     /** @var ShipmentMetadata[]|null */
     public ?array $metadata = null;
@@ -86,4 +84,7 @@ final class Shipment
 
     /** @var Parcel[]|null */
     public ?array $parcels = null;
+
+    /** @var Error[]|null  */
+    public ?array $error = null;
 }
