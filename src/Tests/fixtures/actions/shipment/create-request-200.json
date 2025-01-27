@@ -1,0 +1,49 @@
+{
+  "type": 2,
+  "carrier": {
+    "id": "01J9B8YDXA1TEQ45JRN2ZM06TK",
+    "attributes": []
+  },
+  "sender": {
+    "object": "01J9B8PVHQ882B7VY2DJ6MDPG3",
+    "reference": "ZZZM2000000003"
+  },
+  "receiver": {
+    "customer": {
+      "data": {
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "email": "zzz@zzz.com",
+        "mobile_phone": "1111111111",
+        "mobile_phone_country": "DKK"
+      }
+    },
+    "address": {
+      "data": {
+        "country_code": "DK",
+        "city": "Silkeborg",
+        "post_code": "8600",
+        "line1": "Nygade 32B",
+        "line2": "",
+        "line3": "",
+        "street_type": null,
+        "street_name": null,
+        "street_number": null,
+        "floor": null,
+        "door": null,
+        "building": null
+      }
+    }
+  },
+  "lines": [
+    {
+      "name": "Simple Product 1",
+      "sku": "product_dynamic_1",
+      "weight": 100,
+      "value": 722,
+      "quantity": 1
+    }
+  ],
+  "tags": [],
+  "metadata": []
+}

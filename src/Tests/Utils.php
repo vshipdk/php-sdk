@@ -10,4 +10,8 @@ class Utils
     {
         return file_get_contents(__DIR__ . '/fixtures/' . $path);
     }
+    public static function getFixtureJson(string $path): array
+    {
+        return json_decode(self::getFixture($path), true);
+    }
 }
