@@ -1,0 +1,15 @@
+{
+  "data": {
+    "message": "Bring rejected the shipment",
+    "errors": [
+      {
+        "carrierMessage": "Danish postal codes must be 3 or 4 digits",
+        "carrierCode": "INVALID_ARGUMENT",
+        "carrierDetails": null
+      }
+    ]
+  },
+  "meta": {
+    "timestamp": 1737995491849
+  }
+}

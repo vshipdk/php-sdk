@@ -4,4 +4,4 @@ declare(strict_types=1);
 
 namespace Vship\Exceptions;
 
-class FailedActionException extends \Exception {}
+class FailedActionException extends ResponseMessagesException {}

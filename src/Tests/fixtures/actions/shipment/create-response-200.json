@@ -1,0 +1,28 @@
+{
+  "data": {
+    "id": "01JJBV2PTE9GSYZTS3CYPYFNJ3",
+    "state": "pending",
+    "receiver": {
+      "type": "customer",
+      "id": "01J98TDFZVB61GBXNQ57MDYS74",
+      "address": {
+        "id": "01J98TDG025GGDP5755KM0VYFG"
+      }
+    },
+    "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JJBV2PTE9GSYZTS3CYPYFNJ3/01JJBV2R6TWWT5VXCS8RD2Q95Q_shipment_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX3USKPFUSDPQQZWU%2F20250124%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250124T094251Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=c811714bdc1843092c01efd94f7b46bd76a849040c4b43c9cadb46c0f837ae0b",
+    "parcels": [
+      {
+        "id": "01JJBV2PV1JFJ14PWB4PCCWRJ5",
+        "sendable_reference": "ZZZM2000000003",
+        "barcode": "01JJBV2PV1JFJ14PWB4PCCWRJ5",
+        "carrier_number": "370722151960973756",
+        "carrier_tracking_url": "https://tracking.bring.dk/tracking/70722151834422464",
+        "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JJBV2PTE9GSYZTS3CYPYFNJ3/01JJBV2QR09HQEWFD4YHV40J7X_parcel_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX3USKPFUSDPQQZWU%2F20250124%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250124T094251Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=2207914c4ab0d7ab7faa9fee3ff12ce3f87d25e49899c0d0956159a8e3ed3807"
+      }
+    ]
+  },
+  "message": "Shipment created successfully",
+  "meta": {
+    "timestamp": 1737711771927
+  }
+}

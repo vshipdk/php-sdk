@@ -167,7 +167,7 @@ trait MakesHttpRequests
         }
 
         if ($response->getStatusCode() == 400) {
-            throw new FailedActionException((string) $response->getBody());
+            throw $this->buildFailedActionException($response);
         }
 
         if ($response->getStatusCode() === 429) {
@@ -175,5 +175,20 @@ trait MakesHttpRequests
         }
 
         throw new \Exception((string) $response->getBody());
+    }
+
+    private function buildFailedActionException(ResponseInterface $response): FailedActionException
+    {
+        $body = (string) $response->getBody();
+        $json = json_decode($body, true);
+        $messages = [];
+        if (isset($json['data']['message'])) {
+            $messages[] = $json['data']['message'];
+        }
+        foreach ($json['data']['errors'] as $error) {
+            $messages[] = $error['carrierMessage'];
+        }
+
+        return new FailedActionException($messages, $body);
     }
 }
