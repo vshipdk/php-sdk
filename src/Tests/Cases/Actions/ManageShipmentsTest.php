@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Vship\Actions\ManageShipments;
 use Vship\Client;
+use Vship\Exceptions\FailedActionException;
 use Vship\Models\Shipment\Shipment;
 use Vship\Models\Shipment\State;
 use Vship\Tests\Traits\TestsWebhooks;
@@ -35,7 +36,7 @@ class ManageShipmentsTest extends TestCase
         $response = Utils::getFixtureJson('actions/shipment/create-response-200.json');
 
         $mock = new MockHandler([
-            new Response(200, [], json_encode($response)),
+            new Response(status: 201, headers: [], body: json_encode($response)),
         ]);
 
         $guzzleClient = new GuzzleClient(['handler' => $mock]);
@@ -57,6 +58,34 @@ class ManageShipmentsTest extends TestCase
             $this->assertEquals($parcel['carrier_number'], $shipment->parcels[$index]->carrier_number);
             $this->assertEquals($parcel['carrier_tracking_url'], $shipment->parcels[$index]->carrier_tracking_url);
             $this->assertEquals($parcel['label_download_url'], $shipment->parcels[$index]->label_download_url);
+        }
+    }
+
+    public function testCreateShipmentBringRejected(): void
+    {
+        $requestPayload = Utils::getFixtureJson('actions/shipment/create-request-200.json');
+        $response = Utils::getFixture('actions/shipment/create-response-400.json');
+
+        $mock = new MockHandler([
+            new Response(status: 400, headers: [], body: $response),
+        ]);
+
+        $guzzleClient = new GuzzleClient(['handler' => $mock]);
+        $this->client->setApiKey('test_secret', Client::SANDBOX_URL, $guzzleClient);
+
+        $this->expectException(FailedActionException::class);
+        try {
+            $this->client->createShipment($requestPayload);
+        } catch (FailedActionException $e) {
+            $this->assertEquals(
+                $response,
+                $e->getMessage(),
+            );
+            $this->assertEquals(
+                "Bring rejected the shipment.\nDanish postal codes must be 3 or 4 digits",
+                implode(".\n", $e->messages),
+            );
+            throw $e;
         }
     }
 }
