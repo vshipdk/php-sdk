@@ -9,7 +9,7 @@
         "cuyz/valinor": "^1.13",
         "guzzlehttp/guzzle": "^7.5.0"
     },
-    "version": "2.1.0",
+    "version": "2.1.1",
     "require-dev": {
         "laravel/pint": "^1.18",
         "phpro/grumphp": "^2.8",
