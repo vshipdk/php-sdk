@@ -1,28 +1,28 @@
 {
   "data": {
-    "id": "01JJBV2PTE9GSYZTS3CYPYFNJ3",
-    "state": "pending",
+    "id": "01JMCF3TXDZFSGPB9FGBAKQ7CS",
+    "state": "ready_for_print",
     "receiver": {
-      "type": "customer",
-      "id": "01J98TDFZVB61GBXNQ57MDYS74",
+      "id": "01JHQ7XAZJEWKS78QAP7R4MTKW",
       "address": {
         "id": "01J98TDG025GGDP5755KM0VYFG"
       }
     },
-    "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JJBV2PTE9GSYZTS3CYPYFNJ3/01JJBV2R6TWWT5VXCS8RD2Q95Q_shipment_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX3USKPFUSDPQQZWU%2F20250124%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250124T094251Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=c811714bdc1843092c01efd94f7b46bd76a849040c4b43c9cadb46c0f837ae0b",
+    "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JMCF3TXDZFSGPB9FGBAKQ7CS/01JMCF3VJNKQTJZDXH51E22TX0_shipment_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX3USKPFUSDPQQZWU%2F20250218%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250218T120423Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=64b69c4b985defb4e0a906eb69eb7b18809d4fb975a681561e235dd1a1163a06",
+    "carrier_tracking_id": null,
     "parcels": [
       {
-        "id": "01JJBV2PV1JFJ14PWB4PCCWRJ5",
-        "sendable_reference": "ZZZM2000000003",
-        "barcode": "01JJBV2PV1JFJ14PWB4PCCWRJ5",
-        "carrier_number": "370722151960973756",
-        "carrier_tracking_url": "https://tracking.bring.dk/tracking/70722151834422464",
-        "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JJBV2PTE9GSYZTS3CYPYFNJ3/01JJBV2QR09HQEWFD4YHV40J7X_parcel_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX3USKPFUSDPQQZWU%2F20250124%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250124T094251Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=2207914c4ab0d7ab7faa9fee3ff12ce3f87d25e49899c0d0956159a8e3ed3807"
+        "id": "01JMCF3TY3P9JXHRR39K3NZJNV",
+        "sendable_reference": "VS000000Z37",
+        "barcode": "043040590520",
+        "carrier_number": "043040590520",
+        "carrier_tracking_url": null,
+        "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JMCF3TXDZFSGPB9FGBAKQ7CS/01JMCF3VC978Q5SAKQ52T5NMSY_parcel_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX3USKPFUSDPQQZWU%2F20250218%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250218T120423Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=f3cd7f24012a1223fa5e4462f766f3a510f1375cd166b291924bb40a05acc8e6"
       }
     ]
   },
   "message": "Shipment created successfully",
   "meta": {
-    "timestamp": 1737711771927
+    "timestamp": 1739880263410
   }
 }
