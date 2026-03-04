@@ -2,6 +2,9 @@ grumphp:
   extensions:
     - YieldStudio\GrumPHPLaravelPint\ExtensionLoader
   tasks:
+    phpcs:
+      standard: phpcs.xml
+      triggered_by: [php]
     phpstan:
       autoload_file: vendor/autoload.php
       configuration: phpstan.neon
