@@ -1,4 +1,4 @@
-# vShip API PHP SDK (1.0.0)
+# vShip API PHP SDK (2.2.0)
 
 <a href="https://packagist.org/packages/vshipdk/php-sdk"><img src="https://img.shields.io/packagist/dt/vshipdk/php-sdk" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/vshipdk/php-sdk"><img src="https://img.shields.io/packagist/v/vshipdk/php-sdk" alt="Latest Stable Version"></a>
@@ -7,6 +7,8 @@
 ## Introduction
 
 This package provides basic interface to interact with the vShip API.
+
+Detailed list of changes can be found in the [CHANGELOG.md](CHANGELOG.md).
 
 ## Documentation
 
