@@ -10,11 +10,11 @@ use Vship\Exceptions\NotFoundException;
 use Vship\Exceptions\RateLimitExceededException;
 use Vship\Exceptions\ValidationException;
 
-class Invoice extends Resource
+class Invoice extends BaseResource
 {
     public array $shipments;
 
-    public ?float $discount;
+    public ?float $discount = null;
 
     public array $senderData;
 

@@ -10,7 +10,7 @@ use Vship\Exceptions\NotFoundException;
 use Vship\Exceptions\RateLimitExceededException;
 use Vship\Exceptions\ValidationException;
 
-class OrganisationObject extends Resource
+class OrganisationObject extends BaseResource
 {
     public string $id;
 
@@ -26,9 +26,9 @@ class OrganisationObject extends Resource
 
     public ?array $settings = null;
 
-    public ?string $createdAt;
+    public ?string $createdAt = null;
 
-    public ?string $updatedAt;
+    public ?string $updatedAt = null;
 
     /**
      * Create Organisation Object.

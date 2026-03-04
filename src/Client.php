@@ -69,10 +69,9 @@ class Client
     /**
      * Set a new timeout.
      *
-     * @param  int  $timeout
      * @return $this
      */
-    public function setTimeout($timeout): static
+    public function setTimeout(int $timeout): static
     {
         $this->timeout = $timeout;
 
@@ -81,8 +80,6 @@ class Client
 
     /**
      * Get the timeout.
-     *
-     * @return int
      */
     public function getTimeout(): int
     {

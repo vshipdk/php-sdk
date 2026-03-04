@@ -9,22 +9,16 @@ use Exception;
 class RateLimitExceededException extends \Exception
 {
     /**
-     * The timestamp that the rate limit will be reset.
-     *
-     * @var int|null
-     */
-    public $rateLimitResetsAt;
-
-    /**
      * Create a new exception instance.
      *
-     * @param  int|null  $rateLimitReset
+     * @param int|null $rateLimitResetsAt
      * @return void
      */
-    public function __construct($rateLimitReset)
-    {
+    public function __construct(/**
+     * The timestamp that the rate limit will be reset.
+     */
+        public $rateLimitResetsAt,
+    ) {
         parent::__construct('Too Many Requests.');
-
-        $this->rateLimitResetsAt = $rateLimitReset;
     }
 }

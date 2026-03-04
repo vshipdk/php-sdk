@@ -10,7 +10,7 @@ use Vship\Exceptions\NotFoundException;
 use Vship\Exceptions\RateLimitExceededException;
 use Vship\Exceptions\ValidationException;
 
-class Shipment extends Resource
+class Shipment extends BaseResource
 {
     public const OBJECT_NAME = 'shipment';
 
@@ -18,7 +18,7 @@ class Shipment extends Resource
 
     public int $type;
 
-    public ?string $carrierId;
+    public ?string $carrierId = null;
 
     public array $sender;
 
@@ -30,27 +30,27 @@ class Shipment extends Resource
 
     public string $state;
 
-    public ?string $rateId;
+    public ?string $rateId = null;
 
-    public ?string $creatorId;
+    public ?string $creatorId = null;
 
-    public ?string $creatorType;
+    public ?string $creatorType = null;
 
-    public ?string $sendableId;
+    public ?string $sendableId = null;
 
-    public ?string $sendableAddressId;
+    public ?string $sendableAddressId = null;
 
-    public ?string $receivableId;
+    public ?string $receivableId = null;
 
-    public ?string $receivableAddressId;
+    public ?string $receivableAddressId = null;
 
-    public ?string $sendableReference;
+    public ?string $sendableReference = null;
 
-    public ?string $carrierIdentification;
+    public ?string $carrierIdentification = null;
 
-    public ?string $createdAt;
+    public ?string $createdAt = null;
 
-    public ?string $updatedAt;
+    public ?string $updatedAt = null;
 
     /**
      * Create shipment.

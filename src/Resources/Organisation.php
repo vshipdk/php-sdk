@@ -10,7 +10,7 @@ use Vship\Exceptions\NotFoundException;
 use Vship\Exceptions\RateLimitExceededException;
 use Vship\Exceptions\ValidationException;
 
-class Organisation extends Resource
+class Organisation extends BaseResource
 {
     public string $id;
 

@@ -8,7 +8,6 @@ class ValidationException extends ResponseMessagesException
 {
     /**
      * @param string[] $messages
-     * @param string $body
      */
     public function __construct(array $messages, string $body)
     {

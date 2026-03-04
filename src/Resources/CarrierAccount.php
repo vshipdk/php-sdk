@@ -10,7 +10,7 @@ use Vship\Exceptions\NotFoundException;
 use Vship\Exceptions\RateLimitExceededException;
 use Vship\Exceptions\ValidationException;
 
-class CarrierAccount extends Resource
+class CarrierAccount extends BaseResource
 {
     public string $id;
 
@@ -28,13 +28,13 @@ class CarrierAccount extends Resource
 
     public ?string $expiresAt = null;
 
-    public ?array $fields;
+    public ?array $fields = null;
 
-    public ?array $carriers;
+    public ?array $carriers = null;
 
-    public ?string $createdAt;
+    public ?string $createdAt = null;
 
-    public ?string $updatedAt;
+    public ?string $updatedAt = null;
 
     /**
      * Create carrier account.

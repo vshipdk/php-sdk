@@ -13,11 +13,11 @@
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "laravel/pint": "^1.18",
-        "phpcompatibility/php-compatibility": "^9.3",
+        "phpcompatibility/php-compatibility": "dev-develop",
         "phpro/grumphp": "^2.8",
         "phpstan/phpstan": "^1.12",
         "phpunit/phpunit": "^11.4",
-        "squizlabs/php_codesniffer": "^3.11",
+        "rector/rector": "^1.2",
         "symfony/var-dumper": "^6.2",
         "yieldstudio/grumphp-laravel-pint": "^1.0"
     },

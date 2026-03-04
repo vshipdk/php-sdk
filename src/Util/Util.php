@@ -47,7 +47,7 @@ abstract class Util
         $result = [];
         try {
             $mapper = self::createMapper();
-            foreach ($data as $key => $datum) {
+            foreach ($data as $datum) {
                 $result[] = $mapper->map($targetClass, $datum);
             }
         } catch (MappingError $error) {

@@ -8,7 +8,7 @@ use Vship\Exceptions\SignatureVerificationException;
 
 abstract class WebhookSignature
 {
-    public static function verifyHeader(string $payload, string $headerSignature, string $secret)
+    public static function verifyHeader(string $payload, string $headerSignature, string $secret): void
     {
         if (empty($headerSignature)) {
             throw new SignatureVerificationException('No signatures found.');
@@ -21,7 +21,7 @@ abstract class WebhookSignature
         }
     }
 
-    private static function verifySignature($payload, $secret, $signature)
+    private static function verifySignature(string $payload, string $secret, string $signature): bool
     {
         return \hash_hmac('sha256', $payload, $secret) === $signature;
     }

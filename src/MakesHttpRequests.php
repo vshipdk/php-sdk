@@ -130,7 +130,7 @@ trait MakesHttpRequests
         if (isset($payload['json'])) {
             $payload = ['json' => $payload['json']];
         } else {
-            $payload = empty($payload) ? [] : ['json' => $payload];
+            $payload = $payload === [] ? [] : ['json' => $payload];
         }
 
         $response = $this->guzzle->request($verb, $uri, $payload);

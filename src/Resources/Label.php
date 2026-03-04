@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Vship\Resources;
 
-class Label extends Resource
+class Label extends BaseResource
 {
-    public ?string $id;
+    public ?string $id = null;
 
     public string $shipmentId;
 
-    public ?string $format;
+    public ?string $format = null;
 
-    public ?string $metadata;
+    public ?string $metadata = null;
 
-    public ?string $owner;
+    public ?string $owner = null;
 
-    public ?string $url;
+    public ?string $url = null;
 
-    public ?string $createdAt;
+    public ?string $createdAt = null;
 }

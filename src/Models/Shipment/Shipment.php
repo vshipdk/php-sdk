@@ -19,7 +19,7 @@ class Shipment
     public string $id;
     public ?string $rate_id = null;
     public ?int $type = null;
-    public ?State $state;
+    public ?State $state = null;
     /** @var ShipmentMetadata[]|null */
     public ?array $metadata = null;
     /** @var Tag[]|null */

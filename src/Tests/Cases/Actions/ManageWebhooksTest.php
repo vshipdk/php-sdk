@@ -26,18 +26,18 @@ class ManageWebhooksTest extends TestCase
         $this->client = new Client('test_secret');
     }
 
-    public function testLabelsCreatedWebhook()
+    public function testLabelsCreatedWebhook(): void
     {
-        list($payload, $secret, $signature) = $this->getLabelsCreatedWebhook();
+        [$payload, $secret, $signature] = $this->getLabelsCreatedWebhook();
         $webhook = $this->client->handleWebhook($payload, $signature, $secret);
         $shipment = $webhook->object;
         $this->assertInstanceOf(Shipment::class, $shipment);
         $this->assertEquals(WebhookType::LABELS_CREATED, $webhook->type);
     }
 
-    public function testLabelsFailedWebhook()
+    public function testLabelsFailedWebhook(): void
     {
-        list($payload, $secret, $signature) = $this->getLabelsFailedWebhook();
+        [$payload, $secret, $signature] = $this->getLabelsFailedWebhook();
         $webhook = $this->client->handleWebhook($payload, $signature, $secret);
         $shipment = $webhook->object;
         $this->assertInstanceOf(Shipment::class, $shipment);

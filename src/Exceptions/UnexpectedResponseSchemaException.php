@@ -40,7 +40,7 @@ class UnexpectedResponseSchemaException extends Exception
             );
             $str = array_reduce(
                 $messages->toArray(),
-                fn(string $carry, string $message) => $carry . $message . PHP_EOL,
+                fn(string $carry, string $message): string => $carry . $message . PHP_EOL,
                 '',
             );
         }

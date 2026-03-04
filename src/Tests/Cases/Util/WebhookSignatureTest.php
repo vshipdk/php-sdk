@@ -15,16 +15,16 @@ class WebhookSignatureTest extends TestCase
 {
     use TestsWebhooks;
 
-    public function testVerifyHeaderValidSignature()
+    public function testVerifyHeaderValidSignature(): void
     {
-        list($payload, $secret, $signature) = $this->getLabelsCreatedWebhook();
+        [$payload, $secret, $signature] = $this->getLabelsCreatedWebhook();
 
         WebhookSignature::verifyHeader($payload, $signature, $secret);
 
         $this->assertTrue(true); // If no exception is thrown, the test passes
     }
 
-    public function testVerifyHeaderEmptySignature()
+    public function testVerifyHeaderEmptySignature(): void
     {
         $this->expectException(SignatureVerificationException::class);
         $this->expectExceptionMessage('No signatures found.');
@@ -32,7 +32,7 @@ class WebhookSignatureTest extends TestCase
         WebhookSignature::verifyHeader('test_payload', '', 'test_secret');
     }
 
-    public function testVerifyHeaderInvalidSignature()
+    public function testVerifyHeaderInvalidSignature(): void
     {
         $this->expectException(SignatureVerificationException::class);
         $this->expectExceptionMessage('No signatures found matching the expected signature for payload.');

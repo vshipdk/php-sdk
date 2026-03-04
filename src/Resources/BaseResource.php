@@ -6,32 +6,23 @@ namespace Vship\Resources;
 
 use Vship\Client;
 
-class Resource
+abstract class BaseResource
 {
-    /**
-     * The resource attributes.
-     */
-    public array $attributes;
-
-    /**
-     * Client attribute.
-     *
-     * @var Client|null
-     */
-    protected Client $client;
-
     /**
      * Create a new resource instance.
      *
      * @return void
      */
     public function __construct(
-        array $attributes,
-        ?Client $client = null,
+        /**
+         * The resource attributes.
+         */
+        public array $attributes,
+        /**
+         * Client attribute.
+         */
+        protected Client $client = null,
     ) {
-        $this->attributes = $attributes;
-        $this->client = $client;
-
         $this->fill();
     }
 
