@@ -10,7 +10,7 @@ use Vship\Exceptions\NotFoundException;
 use Vship\Exceptions\RateLimitExceededException;
 use Vship\Exceptions\ValidationException;
 
-class Shipment extends Resource
+class Shipment extends BaseResource
 {
     public const OBJECT_NAME = 'shipment';
 
@@ -18,42 +18,47 @@ class Shipment extends Resource
 
     public int $type;
 
-    public ?string $carrierId;
+    public ?string $carrierId = null;
 
+    /** @var array<string, mixed> */
     public array $sender;
 
+    /** @var array<string, mixed>|null */
     public ?array $receiver = null;
 
+    /** @var array<int, array<string, mixed>>|null */
     public ?array $lines = null;
 
+    /** @var array<string, mixed> */
     public array $carrierOptions;
 
     public string $state;
 
-    public ?string $rateId;
+    public ?string $rateId = null;
 
-    public ?string $creatorId;
+    public ?string $creatorId = null;
 
-    public ?string $creatorType;
+    public ?string $creatorType = null;
 
-    public ?string $sendableId;
+    public ?string $sendableId = null;
 
-    public ?string $sendableAddressId;
+    public ?string $sendableAddressId = null;
 
-    public ?string $receivableId;
+    public ?string $receivableId = null;
 
-    public ?string $receivableAddressId;
+    public ?string $receivableAddressId = null;
 
-    public ?string $sendableReference;
+    public ?string $sendableReference = null;
 
-    public ?string $carrierIdentification;
+    public ?string $carrierIdentification = null;
 
-    public ?string $createdAt;
+    public ?string $createdAt = null;
 
-    public ?string $updatedAt;
+    public ?string $updatedAt = null;
 
     /**
      * Create shipment.
+     *
      *
      * @throws GuzzleException
      * @throws FailedActionException
@@ -61,7 +66,7 @@ class Shipment extends Resource
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function create(): array
+    public function create(): \Vship\Models\Shipment\Shipment
     {
         $payload = $this->preparePayload(['type', 'carrier_id', 'sender', 'receiver', 'lines', 'carrier_options']);
 
@@ -71,14 +76,15 @@ class Shipment extends Resource
     /**
      * Archive shipment.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function archive(): array
+    public function archive(): void
     {
-        return $this->client->archiveShipment($this->id);
+        $this->client->archiveShipment($this->id);
     }
 }

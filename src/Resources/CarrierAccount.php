@@ -10,7 +10,7 @@ use Vship\Exceptions\NotFoundException;
 use Vship\Exceptions\RateLimitExceededException;
 use Vship\Exceptions\ValidationException;
 
-class CarrierAccount extends Resource
+class CarrierAccount extends BaseResource
 {
     public string $id;
 
@@ -24,20 +24,24 @@ class CarrierAccount extends Resource
 
     public string $organisationId;
 
+    /** @var array<string, mixed>|null */
     public ?array $data = null;
 
     public ?string $expiresAt = null;
 
-    public ?array $fields;
+    /** @var array<string, mixed>|null */
+    public ?array $fields = null;
 
-    public ?array $carriers;
+    /** @var array<string, mixed>|null */
+    public ?array $carriers = null;
 
-    public ?string $createdAt;
+    public ?string $createdAt = null;
 
-    public ?string $updatedAt;
+    public ?string $updatedAt = null;
 
     /**
      * Create carrier account.
+     *
      *
      * @throws GuzzleException
      * @throws FailedActionException
@@ -45,7 +49,7 @@ class CarrierAccount extends Resource
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function create(): array
+    public function create(): \Vship\Models\CarrierAccount\CarrierAccount
     {
         $payload = $this->preparePayload(['carrier_code', 'name', 'purpose', 'status', 'organisation_id', 'data', 'expires_at']);
 
@@ -55,13 +59,14 @@ class CarrierAccount extends Resource
     /**
      * Update Carrier account.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function update(): array
+    public function update(): \Vship\Models\CarrierAccount\CarrierAccount
     {
         $payload = $this->preparePayload(['carrier_code', 'name', 'purpose', 'status', 'organisation_id', 'data', 'expires_at']);
 
@@ -71,13 +76,14 @@ class CarrierAccount extends Resource
     /**
      * Delete carrier account.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function delete(): array
+    public function delete(): \Vship\Models\CarrierAccount\CarrierAccount
     {
         return $this->client->deleteCarrierAccount($this->id);
     }

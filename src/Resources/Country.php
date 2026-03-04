@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Vship\Resources;
 
-class Country extends Resource
+class Country extends BaseResource
 {
-    public ?string $name;
+    public ?string $name = null;
 
-    public ?string $officialStateName;
+    public ?string $officialStateName = null;
 
-    public ?string $alpha2Code;
+    public ?string $alpha2Code = null;
 
-    public ?string $alpha3Code;
+    public ?string $alpha3Code = null;
 
-    public ?string $numericCode;
+    public ?string $numericCode = null;
 }

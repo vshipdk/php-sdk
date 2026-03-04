@@ -69,10 +69,9 @@ class Client
     /**
      * Set a new timeout.
      *
-     * @param  int  $timeout
      * @return $this
      */
-    public function setTimeout($timeout): static
+    public function setTimeout(int $timeout): static
     {
         $this->timeout = $timeout;
 
@@ -81,8 +80,6 @@ class Client
 
     /**
      * Get the timeout.
-     *
-     * @return int
      */
     public function getTimeout(): int
     {
@@ -94,7 +91,7 @@ class Client
      *
      * @return $this
      */
-    public function setApiKey(string $apiKey, string $baseUrl, HttpClient $guzzle = null): static
+    public function setApiKey(string $apiKey, string $baseUrl, ?HttpClient $guzzle = null): static
     {
         $this->guzzle = $guzzle ?: new HttpClient([
             'base_uri' => $baseUrl,
@@ -111,7 +108,7 @@ class Client
 
     /**
      * Prepare query parameters string.
-     * @param array<string, int|string|float> $parameters
+     * @param array<string, mixed> $parameters
      */
     protected function prepareRequestParameters(array $parameters): string
     {

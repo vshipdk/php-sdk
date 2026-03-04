@@ -2,6 +2,9 @@ grumphp:
   extensions:
     - YieldStudio\GrumPHPLaravelPint\ExtensionLoader
   tasks:
+    phpcs:
+      standard: phpcs.xml
+      triggered_by: [ php ]
     phpstan:
       autoload_file: vendor/autoload.php
       configuration: phpstan.neon
@@ -10,6 +13,12 @@ grumphp:
       triggered_by: [ 'php' ]
       memory_limit: "-1"
       use_grumphp_paths: true
+    rector:
+      config: rector.php
+      triggered_by: [ 'php' ]
+      ignore_patterns: [ ]
+      clear_cache: false
+      no_diffs: false
     laravel_pint:
       # These are all optional and have been set to sensible defaults.
       config: pint.json

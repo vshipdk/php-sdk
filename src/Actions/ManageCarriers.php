@@ -17,6 +17,7 @@ trait ManageCarriers
     /**
      * Get All Carriers.
      *
+     * @param  array<string, mixed>  $queryParams
      * @return Carrier[]
      *
      * @throws FailedActionException
@@ -52,6 +53,8 @@ trait ManageCarriers
     /**
      * Create new Carrier.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @throws FailedActionException
      * @throws GuzzleException
      * @throws NotFoundException
@@ -67,6 +70,8 @@ trait ManageCarriers
 
     /**
      * Update Carrier by ID.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @throws FailedActionException
      * @throws GuzzleException

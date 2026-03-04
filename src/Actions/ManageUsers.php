@@ -17,6 +17,7 @@ trait ManageUsers
     /**
      * Get All Users.
      *
+     * @param array<string, mixed> $parameters
      * @return User[]
      *
      * @throws GuzzleException

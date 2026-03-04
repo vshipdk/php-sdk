@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vship\Exceptions;
 
+use CuyZ\Valinor\Mapper\Tree\Message\NodeMessage;
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Tree\Message\Formatter\MessageMapFormatter;
 use CuyZ\Valinor\Mapper\Tree\Message\Formatter\TranslationMessageFormatter;
@@ -25,8 +26,8 @@ class UnexpectedResponseSchemaException extends Exception
     public function __toString(): string
     {
         $str = '';
-        /** @var MappingError $error */
-        if ($error = $this->getPrevious()) {
+        $error = $this->getPrevious();
+        if ($error instanceof MappingError) {
             // Get flatten list of all messages through the whole nodes tree
             $messages = Messages::flattenFromNode(
                 $error->node(),
@@ -40,7 +41,7 @@ class UnexpectedResponseSchemaException extends Exception
             );
             $str = array_reduce(
                 $messages->toArray(),
-                fn(string $carry, string $message) => $carry . $message . PHP_EOL,
+                fn(string $carry, NodeMessage $message): string => $carry . $message . PHP_EOL,
                 '',
             );
         }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Vship\Resources;
 
-class User extends Resource
+class User extends BaseResource
 {
-    public ?string $id;
+    public ?string $id = null;
 
     public ?string $firstName = null;
 
@@ -22,13 +22,13 @@ class User extends Resource
 
     public ?string $locale = null;
 
-    public ?string $mobileRaw;
+    public ?string $mobileRaw = null;
 
-    public ?string $mobileE164;
+    public ?string $mobileE164 = null;
 
-    public ?string $mobileNational;
+    public ?string $mobileNational = null;
 
-    public ?string $createdAt;
+    public ?string $createdAt = null;
 
-    public ?string $updateAt;
+    public ?string $updateAt = null;
 }
