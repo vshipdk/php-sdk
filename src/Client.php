@@ -94,7 +94,7 @@ class Client
      *
      * @return $this
      */
-    public function setApiKey(string $apiKey, string $baseUrl, HttpClient $guzzle = null): static
+    public function setApiKey(string $apiKey, string $baseUrl, ?HttpClient $guzzle = null): static
     {
         $this->guzzle = $guzzle ?: new HttpClient([
             'base_uri' => $baseUrl,
