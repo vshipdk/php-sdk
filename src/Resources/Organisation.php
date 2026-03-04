@@ -26,10 +26,12 @@ class Organisation extends BaseResource
 
     public ?string $timezone = null;
 
+    /** @var array<string, mixed>|null */
     public ?array $settings = null;
 
     /**
      * Create organisation.
+     *
      *
      * @throws GuzzleException
      * @throws FailedActionException
@@ -37,7 +39,7 @@ class Organisation extends BaseResource
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function create(): array
+    public function create(): \Vship\Models\Organisation\Organisation
     {
         $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
 
@@ -47,13 +49,14 @@ class Organisation extends BaseResource
     /**
      * Update organisation.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function update(): array
+    public function update(): \Vship\Models\Organisation\Organisation
     {
         $payload = $this->preparePayload(['name', 'vat_number', 'company_number', 'vat_registered', 'currency', 'timezone', 'settings']);
 
@@ -63,13 +66,14 @@ class Organisation extends BaseResource
     /**
      * Delete organisation.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function delete(): array
+    public function delete(): \Vship\Models\Organisation\Organisation
     {
         return $this->client->deleteOrganisation($this->id);
     }

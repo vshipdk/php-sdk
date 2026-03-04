@@ -19,7 +19,7 @@ return RectorConfig::configure()
     ->withoutParallel()
     ->withImportNames(importShortClasses: false, removeUnusedImports: true)
     ->withPhpVersion(phpVersion: PhpVersion::PHP_81)
-    ->withPaths([__DIR__.'/src'])
+    ->withPaths([__DIR__ . '/src'])
     ->withRules([
         ExplicitNullableParamTypeRector::class,
         FinalPrivateToPrivateVisibilityRector::class,
@@ -36,5 +36,5 @@ return RectorConfig::configure()
             FlipTypeControlToUseExclusiveTypeRector::class,
             DisallowedEmptyRuleFixerRector::class,
             ExplicitBoolCompareRector::class,
-        ]
+        ],
     )->withFluentCallNewLine();

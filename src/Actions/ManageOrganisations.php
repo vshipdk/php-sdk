@@ -17,6 +17,7 @@ trait ManageOrganisations
     /**
      * Get All Organisations.
      *
+     * @param array<string, mixed> $queryParams
      * @return Organisation[]
      *
      * @throws GuzzleException
@@ -52,6 +53,8 @@ trait ManageOrganisations
     /**
      * Create Organisation.
      *
+     * @param array<string, mixed> $payload
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
@@ -67,6 +70,8 @@ trait ManageOrganisations
 
     /**
      * Update Organisation.
+     *
+     * @param array<string, mixed> $payload
      *
      * @throws GuzzleException
      * @throws FailedActionException

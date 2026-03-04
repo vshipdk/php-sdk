@@ -11,14 +11,14 @@ class TimeoutException extends \Exception
     /**
      * The output returned from the operation.
      *
-     * @var array
+     * @var mixed[]
      */
     public $output;
 
     /**
      * Create a new exception instance.
      *
-     * @return void
+     * @param mixed[] $output
      */
     public function __construct(array $output)
     {
@@ -30,7 +30,7 @@ class TimeoutException extends \Exception
     /**
      * The output returned from the operation.
      *
-     * @return array
+     * @return mixed[]
      */
     public function output()
     {

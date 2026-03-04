@@ -24,12 +24,15 @@ class CarrierAccount extends BaseResource
 
     public string $organisationId;
 
+    /** @var array<string, mixed>|null */
     public ?array $data = null;
 
     public ?string $expiresAt = null;
 
+    /** @var array<string, mixed>|null */
     public ?array $fields = null;
 
+    /** @var array<string, mixed>|null */
     public ?array $carriers = null;
 
     public ?string $createdAt = null;
@@ -39,13 +42,14 @@ class CarrierAccount extends BaseResource
     /**
      * Create carrier account.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function create(): array
+    public function create(): \Vship\Models\CarrierAccount\CarrierAccount
     {
         $payload = $this->preparePayload(['carrier_code', 'name', 'purpose', 'status', 'organisation_id', 'data', 'expires_at']);
 
@@ -55,13 +59,14 @@ class CarrierAccount extends BaseResource
     /**
      * Update Carrier account.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function update(): array
+    public function update(): \Vship\Models\CarrierAccount\CarrierAccount
     {
         $payload = $this->preparePayload(['carrier_code', 'name', 'purpose', 'status', 'organisation_id', 'data', 'expires_at']);
 
@@ -71,13 +76,14 @@ class CarrierAccount extends BaseResource
     /**
      * Delete carrier account.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function delete(): array
+    public function delete(): \Vship\Models\CarrierAccount\CarrierAccount
     {
         return $this->client->deleteCarrierAccount($this->id);
     }

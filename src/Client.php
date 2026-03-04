@@ -108,7 +108,7 @@ class Client
 
     /**
      * Prepare query parameters string.
-     * @param array<string, int|string|float> $parameters
+     * @param array<string, mixed> $parameters
      */
     protected function prepareRequestParameters(array $parameters): string
     {

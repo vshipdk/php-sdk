@@ -17,6 +17,7 @@ trait ManageOrganisationObjects
     /**
      * Get All Organisation Objects.
      *
+     * @param array<string, mixed> $parameters
      * @return OrganisationObject[]
      *
      * @throws GuzzleException
@@ -52,6 +53,8 @@ trait ManageOrganisationObjects
     /**
      * Create Organisation Object.
      *
+     * @param array<string, mixed> $payload
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
@@ -67,6 +70,8 @@ trait ManageOrganisationObjects
 
     /**
      * Update Organisation Object.
+     *
+     * @param array<string, mixed> $payload
      *
      * @throws GuzzleException
      * @throws FailedActionException

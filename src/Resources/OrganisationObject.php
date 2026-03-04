@@ -18,12 +18,14 @@ class OrganisationObject extends BaseResource
 
     public string $organisationId;
 
+    /** @var array<string, mixed> */
     public array $organisation;
 
     public ?string $currency = null;
 
     public ?string $timezone = null;
 
+    /** @var array<string, mixed>|null */
     public ?array $settings = null;
 
     public ?string $createdAt = null;
@@ -33,13 +35,14 @@ class OrganisationObject extends BaseResource
     /**
      * Create Organisation Object.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function create(): array
+    public function create(): \Vship\Models\OrganisationObject\OrganisationObject
     {
         $payload = $this->preparePayload(['name', 'organisation_id', 'currency', 'timezone', 'settings']);
 
@@ -49,13 +52,14 @@ class OrganisationObject extends BaseResource
     /**
      * Update organisation object.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function update(): array
+    public function update(): \Vship\Models\OrganisationObject\OrganisationObject
     {
         $payload = $this->preparePayload(['name', 'currency', 'timezone', 'settings']);
 
@@ -65,13 +69,14 @@ class OrganisationObject extends BaseResource
     /**
      * Delete Organisation Object.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function delete(): array
+    public function delete(): \Vship\Models\OrganisationObject\OrganisationObject
     {
         return $this->client->deleteOrganisationObject($this->id);
     }

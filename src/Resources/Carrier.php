@@ -22,12 +22,14 @@ class Carrier extends BaseResource
 
     public string $carrierAccountId;
 
+    /** @var array<string, mixed>|null */
     public ?array $settings = null;
 
     public ?string $ownerType = null;
 
     public ?string $ownerId = null;
 
+    /** @var array<string, mixed>|null */
     public ?array $account = null;
 
     public ?string $createdAt = null;
@@ -37,13 +39,14 @@ class Carrier extends BaseResource
     /**
      * Create new Carrier.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function create(): array
+    public function create(): \Vship\Models\Carrier\Carrier
     {
         $payload = $this->preparePayload(['name', 'code', 'carrier_account_id', 'status', 'settings']);
 
@@ -53,13 +56,14 @@ class Carrier extends BaseResource
     /**
      * Update Carrier.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function update(): array
+    public function update(): \Vship\Models\Carrier\Carrier
     {
         $payload = $this->preparePayload(['name', 'code', 'status', 'settings']);
 
@@ -69,13 +73,14 @@ class Carrier extends BaseResource
     /**
      * Delete Carrier.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function delete(): array
+    public function delete(): \Vship\Models\Carrier\Carrier
     {
         return $this->client->deleteCarrier($this->id);
     }

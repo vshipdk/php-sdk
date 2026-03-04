@@ -28,7 +28,7 @@ abstract class Webhook
             $msg = "Invalid payload: {$payload} "
                 . "(json_last_error() was {$jsonError})";
 
-            throw new FailedActionException($msg);
+            throw new FailedActionException([$msg], $payload);
         }
 
         $objectType = $payloadArr['data']['object_type'];

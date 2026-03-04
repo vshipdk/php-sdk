@@ -31,6 +31,8 @@ trait MakesHttpRequests
     /**
      * Make a POST request to Client API and return the response.
      *
+     * @param array<string, mixed> $payload
+     *
      * @throws FailedActionException
      * @throws GuzzleException
      * @throws NotFoundException
@@ -44,6 +46,8 @@ trait MakesHttpRequests
 
     /**
      * Make a PUT request to Client API and return the response.
+     *
+     * @param array<string, mixed> $payload
      *
      * @throws FailedActionException
      * @throws GuzzleException
@@ -59,6 +63,8 @@ trait MakesHttpRequests
     /**
      * Make a PATCH request to Client API and return the response.
      *
+     * @param array<string, mixed> $payload
+     *
      * @throws FailedActionException
      * @throws GuzzleException
      * @throws NotFoundException
@@ -72,6 +78,8 @@ trait MakesHttpRequests
 
     /**
      * Make a DELETE request to Client API and return the response.
+     *
+     * @param array<string, mixed> $payload
      *
      * @throws FailedActionException
      * @throws GuzzleException
@@ -118,6 +126,8 @@ trait MakesHttpRequests
 
     /**
      * Make request to Client API and return the response.
+     *
+     * @param array<string, mixed> $payload
      *
      * @throws FailedActionException
      * @throws NotFoundException

@@ -17,6 +17,7 @@ trait ManageLabels
     /**
      * Fetch labels for shipment.
      *
+     * @param array<string, mixed> $queryParams
      * @return Label[]
      *
      * @throws GuzzleException

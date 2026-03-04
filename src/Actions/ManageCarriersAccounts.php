@@ -18,6 +18,7 @@ trait ManageCarriersAccounts
     /**
      * Get All Carrier Accounts.
      *
+     * @param  array<string, mixed>  $queryParams
      * @return CarrierAccount[]
      *
      * @throws GuzzleException
@@ -54,6 +55,8 @@ trait ManageCarriersAccounts
     /**
      * Create Carrier Account.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
@@ -69,6 +72,8 @@ trait ManageCarriersAccounts
 
     /**
      * Update Carrier Account.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @throws GuzzleException
      * @throws FailedActionException

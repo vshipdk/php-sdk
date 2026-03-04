@@ -18,6 +18,7 @@ trait ManageShipments
     /**
      * Get Shipments.
      *
+     * @param array<string, mixed> $queryParams
      * @return Shipment[]
      *
      * @throws FailedActionException
@@ -54,6 +55,8 @@ trait ManageShipments
 
     /**
      * Create shipment.
+     *
+     * @param array<string, mixed> $payload
      *
      * @throws FailedActionException
      * @throws GuzzleException

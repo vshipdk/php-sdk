@@ -9,6 +9,9 @@ use Vship\Enum\WebhookType;
 
 class Event
 {
+    /**
+     * @param array<string, mixed> $objectData
+     */
     public function __construct(
         public readonly ObjectType $objectType,
         public readonly WebhookType $webhookType,

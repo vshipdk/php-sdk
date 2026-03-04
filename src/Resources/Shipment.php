@@ -20,12 +20,16 @@ class Shipment extends BaseResource
 
     public ?string $carrierId = null;
 
+    /** @var array<string, mixed> */
     public array $sender;
 
+    /** @var array<string, mixed>|null */
     public ?array $receiver = null;
 
+    /** @var array<int, array<string, mixed>>|null */
     public ?array $lines = null;
 
+    /** @var array<string, mixed> */
     public array $carrierOptions;
 
     public string $state;
@@ -55,13 +59,14 @@ class Shipment extends BaseResource
     /**
      * Create shipment.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function create(): array
+    public function create(): \Vship\Models\Shipment\Shipment
     {
         $payload = $this->preparePayload(['type', 'carrier_id', 'sender', 'receiver', 'lines', 'carrier_options']);
 
@@ -71,14 +76,15 @@ class Shipment extends BaseResource
     /**
      * Archive shipment.
      *
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException
      * @throws RateLimitExceededException
      * @throws ValidationException
      */
-    public function archive(): array
+    public function archive(): void
     {
-        return $this->client->archiveShipment($this->id);
+        $this->client->archiveShipment($this->id);
     }
 }

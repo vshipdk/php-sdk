@@ -12,6 +12,9 @@ enum ObjectType: string
     case CARRIER = 'carrier';
     case SHIPMENT = 'shipment';
 
+    /**
+     * @return class-string
+     */
     public function getClass(): string
     {
         return match ($this) {

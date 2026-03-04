@@ -17,6 +17,8 @@ trait ManageInvoices
     /**
      * Create an invoice.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @throws GuzzleException
      * @throws FailedActionException
      * @throws NotFoundException

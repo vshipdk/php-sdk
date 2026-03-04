@@ -11,7 +11,7 @@ abstract class BaseResource
     /**
      * Create a new resource instance.
      *
-     * @return void
+     * @param array<string, mixed> $attributes
      */
     public function __construct(
         /**
@@ -21,7 +21,7 @@ abstract class BaseResource
         /**
          * Client attribute.
          */
-        protected Client $client = null,
+        protected ?Client $client = null,
     ) {
         $this->fill();
     }
@@ -40,6 +40,9 @@ abstract class BaseResource
 
     /**
      * Prepare a payload data.
+     *
+     * @param string[] $columns
+     * @return array<string, mixed>
      */
     protected function preparePayload(array $columns): array
     {
