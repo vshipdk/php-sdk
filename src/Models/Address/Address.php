@@ -26,7 +26,7 @@ final class Address
 
     public ?string $addressable_id = null;
 
-    public ?string $type = null;
+    public int|string|null $type = null;
 
     public ?string $country_code = null;
 
