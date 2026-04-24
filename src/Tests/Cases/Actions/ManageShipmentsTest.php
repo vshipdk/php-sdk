@@ -61,6 +61,28 @@ class ManageShipmentsTest extends TestCase
         }
     }
 
+    public function testGetShipment(): void
+    {
+        $response = Utils::getFixtureJson('actions/shipment/get-response-200-bc.json');
+
+        $mock = new MockHandler([
+            new Response(status: 200, headers: [], body: json_encode($response)),
+        ]);
+
+        $guzzleClient = new GuzzleClient(['handler' => $mock]);
+        $this->client->setApiKey('test_secret', Client::SANDBOX_URL, $guzzleClient);
+
+        $shipment = $this->client->getShipment('01KPMXSNFCPA3D6VPQGZVHFEX9');
+
+        $this->assertInstanceOf(Shipment::class, $shipment);
+        $this->assertEquals($response['data']['id'], $shipment->id);
+        $this->assertNotNull($shipment->organisation_object);
+        $this->assertCount(1, $shipment->organisation_object->addresses);
+        $address = $shipment->organisation_object->addresses[0];
+        $this->assertEquals('default', $address->type);
+        $this->assertEquals('Main Street 56', $address->line);
+    }
+
     public function testCreateShipmentBringRejected(): void
     {
         $requestPayload = Utils::getFixtureJson('actions/shipment/create-request-200.json');

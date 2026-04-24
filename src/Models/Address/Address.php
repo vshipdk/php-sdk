@@ -26,7 +26,7 @@ final class Address
 
     public ?string $addressable_id = null;
 
-    public ?int $type = null;
+    public ?string $type = null;
 
     public ?string $country_code = null;
 
@@ -41,6 +41,8 @@ final class Address
     public ?string $post_code = null;
 
     public ?string $district = null;
+
+    public ?string $line = null;
 
     public ?string $line1 = null;
 
