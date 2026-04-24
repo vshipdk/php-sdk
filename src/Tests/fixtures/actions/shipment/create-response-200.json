@@ -8,7 +8,7 @@
         "id": "01J98TDG025GGDP5755KM0VYFG"
       }
     },
-    "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JMCF3TXDZFSGPB9FGBAKQ7CS/01JMCF3VJNKQTJZDXH51E22TX0_shipment_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX3USKPFUSDPQQZWU%2F20250218%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250218T120423Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=64b69c4b985defb4e0a906eb69eb7b18809d4fb975a681561e235dd1a1163a06",
+    "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JMCF3TXDZFSGPB9FGBAKQ7CS/01JMCF3VJNKQTJZDXH51E22TX0_shipment_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=XXXXXXXXXXXX%2F20250218%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250218T120423Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=64b69c4b985defb4e0a906eb69eb7b18809d4fb975a681561e235dd1a1163a06",
     "carrier_tracking_id": null,
     "parcels": [
       {
@@ -17,7 +17,7 @@
         "barcode": "043040590520",
         "carrier_number": "043040590520",
         "carrier_tracking_url": null,
-        "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JMCF3TXDZFSGPB9FGBAKQ7CS/01JMCF3VC978Q5SAKQ52T5NMSY_parcel_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAX3USKPFUSDPQQZWU%2F20250218%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250218T120423Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=f3cd7f24012a1223fa5e4462f766f3a510f1375cd166b291924bb40a05acc8e6"
+        "label_download_url": "https://shippii-dev-media.s3.eu-central-1.amazonaws.com/labels/01JMCF3TXDZFSGPB9FGBAKQ7CS/01JMCF3VC978Q5SAKQ52T5NMSY_parcel_dispatch.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=XXXXXXXXXXXX%2F20250218%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250218T120423Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Signature=f3cd7f24012a1223fa5e4462f766f3a510f1375cd166b291924bb40a05acc8e6"
       }
     ]
   },

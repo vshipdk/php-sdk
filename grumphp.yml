@@ -44,3 +44,7 @@ grumphp:
       coverage-html: null
       coverage-php: null
       coverage-xml: null
+    shell:
+      scripts:
+        - ["./security-scan.sh"]
+      triggered_by: [php, lock, json, sh]
