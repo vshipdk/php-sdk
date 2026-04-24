@@ -7,22 +7,23 @@ namespace Cases\Actions;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Psr7\Response;
 use Vship\Actions\ManageShipments;
 use Vship\Client;
 use Vship\Exceptions\FailedActionException;
-use Vship\Models\Shipment\Shipment;
+use Vship\Exceptions\NotFoundException;
+use Vship\Exceptions\RateLimitExceededException;
+use Vship\Exceptions\UnexpectedResponseSchemaException;
+use Vship\Exceptions\ValidationException;
 use Vship\Models\Shipment\State;
-use Vship\Tests\Traits\TestsWebhooks;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Client as GuzzleClient;
 use Vship\Tests\Utils;
 
 #[CoversClass(ManageShipments::class)]
 class ManageShipmentsTest extends TestCase
 {
-    use TestsWebhooks;
-
     private ?Client $client = null;
 
     protected function setUp(): void
@@ -41,6 +42,14 @@ class ManageShipmentsTest extends TestCase
         $this->client->setApiKey('test_secret', Client::SANDBOX_URL, $guzzleClient);
     }
 
+    /**
+     * @throws FailedActionException
+     * @throws GuzzleException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws UnexpectedResponseSchemaException
+     * @throws ValidationException
+     */
     public function testCreateShipment(): void
     {
         $requestPayload = Utils::getFixtureJson('actions/shipment/create-request-200.json');
@@ -50,7 +59,6 @@ class ManageShipmentsTest extends TestCase
 
         $shipment = $this->client->createShipment($requestPayload);
 
-        $this->assertInstanceOf(Shipment::class, $shipment);
         $this->assertEquals($response['data']['id'], $shipment->id);
         $this->assertEquals(State::from($response['data']['state']), $shipment->state);
         $this->assertEquals($response['data']['receiver']['id'], $shipment->receiver->id);
@@ -67,6 +75,14 @@ class ManageShipmentsTest extends TestCase
         }
     }
 
+    /**
+     * @throws FailedActionException
+     * @throws GuzzleException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws UnexpectedResponseSchemaException
+     * @throws ValidationException
+     */
     #[DataProvider('shipmentResponseProvider')]
     public function testGetShipment(string $fixture): void
     {
@@ -76,7 +92,6 @@ class ManageShipmentsTest extends TestCase
 
         $shipment = $this->client->getShipment($response['data']['id']);
 
-        $this->assertInstanceOf(Shipment::class, $shipment);
         $this->assertEquals($response['data']['id'], $shipment->id);
         $this->assertNotNull($shipment->organisation_object);
         $this->assertCount(1, $shipment->organisation_object->addresses);
@@ -93,6 +108,14 @@ class ManageShipmentsTest extends TestCase
         ];
     }
 
+    /**
+     * @throws FailedActionException
+     * @throws GuzzleException
+     * @throws NotFoundException
+     * @throws RateLimitExceededException
+     * @throws UnexpectedResponseSchemaException
+     * @throws ValidationException
+     */
     public function testCreateShipmentBringRejected(): void
     {
         $requestPayload = Utils::getFixtureJson('actions/shipment/create-request-200.json');

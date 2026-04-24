@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-04-24
+
+### Added
+- GitHub Actions CI workflow and dependency/security scan hook.
+- Shipment response fixtures and test coverage for multiple payload variants.
+
+### Removed
+- Removed webhook support, including the public client API, webhook utilities, DTOs, enums, tests, and fixtures.
+
+### Changed
+- `OrganisationObjectSettings.data` is now an array.
+- `Address.type` now accepts `int|string|null`, and `Address.line` is available for API payloads that provide it.
+- `Util` now allows permissive types during object mapping to better match upstream API payloads.
+- `ManageShipmentsTest` now covers `getShipment()` and uses shared mock setup for shipment responses.
+- Downgraded PHPUnit support to `^10.5`.
+- Updated CI and GrumPHP configuration to include PHPStan, PHPUnit, Rector, Pint, and external security checks.
+
 ## [2.2.0] - 2026-03-04
 
 ### Added
