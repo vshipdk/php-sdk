@@ -18,7 +18,7 @@
 - Utils: `Vship\Tests\Utils::getFixtureJson()` for JSON.
 
 ## CI/Check
-- GrumPHP: `vendor/bin/grumphp run`.
+- **Must**: Run PHPStorm inspections first, then GrumPHP.
 - **Note**: GrumPHP checks staged files; `git add` before run.
-- **Tools**: Use PHPStorm MCP for nav/refactor and other things it is capable of if available.
-- **Must**: Check PHPStorm inspections + GrumPHP pass before submit.
+- PHPStorm MCP: use for nav/refactor and inspections if available.
+- GrumPHP: `vendor/bin/grumphp run`.
