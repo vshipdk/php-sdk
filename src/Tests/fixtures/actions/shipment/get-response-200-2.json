@@ -1,0 +1,175 @@
+{
+  "data": {
+    "id": "01JY49A2KVYKRW1PFWBYTYN4GT",
+    "rate_id": null,
+    "type": 2,
+    "state": "ready_for_print",
+    "metadata": [],
+    "tags": [],
+    "group": null,
+    "creator_id": "01HSK2SYS3G19N7KWPRC97D2CB",
+    "creator_type": "user",
+    "sendable_id": "01J9B8PVHQ882B7VY2DJ6MDPG3",
+    "sendable_type": "object",
+    "sendable_reference": "VS000000048",
+    "receivable_address": {
+      "country_code": "DK",
+      "city": "Aarhus",
+      "province": null,
+      "state_code": null,
+      "post_code": "8000",
+      "line1": "Tet 2",
+      "line2": null,
+      "line3": null
+    },
+    "receivable": {
+      "first_name": "Test",
+      "last_name": "Test",
+      "email": "test@test.com",
+      "mobile_phone_e164": "+4532323233"
+    },
+    "sendable_address": {
+      "country_code": "DK",
+      "city": "Aarhus",
+      "province": null,
+      "state_code": null,
+      "post_code": "8000",
+      "line1": "Jægergårdsgade",
+      "line2": null,
+      "line3": null
+    },
+    "organisation_object": {
+      "id": "01J9B8PVHQ882B7VY2DJ6MDPG3",
+      "name": "Magneto Module vConnect",
+      "organisation": {
+        "id": "01J9B8GGHXB0KD9FR2TS95KF6X"
+      },
+      "currency": "EUR",
+      "timezone": "Europe/Sofia",
+      "settings": {
+        "remotePrintOnLabelCreation": false,
+        "ftpServer": null,
+        "ftpHomeDir": null,
+        "ftpUsername": null,
+        "ftpPassword": null,
+        "printProviderChildAccountId": null,
+        "printErrorOnLabel": false,
+        "defaultA4PrintProviderId": null,
+        "allowDuplicateRefences": false,
+        "orderedLabelPlugins": []
+      },
+      "created_at": "2024-10-04T08:00:31.000000Z",
+      "updated_at": "2025-04-28T09:28:04.000000Z",
+      "addresses": [
+        {
+          "type": "default",
+          "country_code": "DK",
+          "city": "Aarhus",
+          "post_code": "8000",
+          "line": "Jægergårdsgade"
+        }
+      ]
+    },
+    "creator": {
+      "id": "01HSK2SYS3G19N7KWPRC97D2CB",
+      "first_name": "Hristo",
+      "last_name": "Hristov",
+      "email": "h.hristov@vconnect.dk",
+      "mobile_raw": "+359888888888",
+      "mobile_e164": "+359888888888",
+      "mobile_national": "088 888 8888",
+      "role": "super admin",
+      "timezone": "Europe/Sofia",
+      "locale": "en",
+      "created_at": "2024-03-22T12:40:07.000000Z",
+      "update_at": "2024-03-22T12:40:07.000000Z",
+      "organisations": null
+    },
+    "parcels": [
+      {
+        "id": "01JY49A2N1EX2R36N00CM6B5HM",
+        "shipment_id": "01JY49A2KVYKRW1PFWBYTYN4GT",
+        "sendable_reference": "VS000000048",
+        "barcode": "01JY49A2N1EX2R36N00CM6B5HM",
+        "carrier_number": "CR217319655NO",
+        "carrier_tracking_url": "https://tracking.bring.dk/tracking/70722152016507894",
+        "weight": 1000,
+        "volume": 0,
+        "comment": null
+      }
+    ],
+    "shipment_lines": [
+      {
+        "id": "01JY49A2M99CSXKMVP260S3W8W",
+        "shipment_id": "01JY49A2KVYKRW1PFWBYTYN4GT",
+        "item_id": "01JY49A2MTSAESW086K109HSY1",
+        "quantity": 1,
+        "total_volume": 0,
+        "total_weight": 1000,
+        "total_value": 500,
+        "value_currency": "EUR",
+        "created_at": "2025-06-19T14:25:58.429565Z",
+        "updated_at": "2025-06-19T14:25:58.429565Z",
+        "item": {
+          "id": "01JY49A2MTSAESW086K109HSY1",
+          "organisation_id": "01J9B8GGHXB0KD9FR2TS95KF6X",
+          "name": "Simple Product 122",
+          "sku": "product_dynamic_122",
+          "ean": null,
+          "tariff_code": null,
+          "harmonization_code": null,
+          "country_of_origin": null,
+          "image_url": null,
+          "country_of_declaration": null,
+          "value": "500.000",
+          "weight_in_grams": 1000,
+          "volume": null,
+          "data": null,
+          "hash": "b4bfa7fa3910dacdb94733789b09250e97a1f6378029b9e6b7d76e3b1515687f",
+          "tariff_description": null,
+          "last_used_at": "2025-06-19 14:25:58",
+          "created_at": "2025-06-19T14:25:58.426887Z",
+          "updated_at": "2025-06-19T14:25:58.426887Z"
+        }
+      }
+    ],
+    "logs": [],
+    "shipment_carrier_data": {
+      "id": "01JY49A2KZ6JQHJ0RM7KB865CB",
+      "identifier": "70722152016507894",
+      "carrier_state": "accepted",
+      "carrier_attributes": {
+        "product_id": "PICKUP_PARCEL",
+        "pickup_point_id": "591161"
+      },
+      "has_multiple_identifiers": false,
+      "identifiers": [],
+      "previous_data": null,
+      "carrier": {
+        "id": "01J9B8YDXA1TEQ45JRN2ZM06TK",
+        "owner": {
+          "owner_type": null,
+          "owner_id": null
+        },
+        "name": "Magento module Test",
+        "account": {
+          "id": "01J9B8XRV39CB3HESRS9B8QCFH",
+          "name": "Magento Module"
+        },
+        "code": "bring",
+        "settings": null,
+        "status": 1,
+        "created_at": "2024-10-04T08:04:39.000000Z",
+        "updated_at": "2024-10-04T08:04:39.000000Z"
+      },
+      "created_at": "2025-06-19T14:25:58.439657Z",
+      "updated_at": "2025-06-19T14:25:59.262767Z"
+    },
+    "created_at": "2025-06-19T14:25:58.419064Z",
+    "updated_at": "2025-06-19T14:25:59.953945Z"
+  },
+  "message": null,
+  "meta": {
+    "timestamp": 1777038475474
+  }
+}

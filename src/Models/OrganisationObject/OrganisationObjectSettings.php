@@ -6,5 +6,6 @@ namespace Vship\Models\OrganisationObject;
 
 final class OrganisationObjectSettings
 {
-    public ?string $data = null;
+    /** @var array<string, mixed>|null */
+    public ?array $data = null;
 }

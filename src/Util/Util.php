@@ -60,6 +60,7 @@ abstract class Util
         return (new MapperBuilder())
             ->enableFlexibleCasting()
             ->allowSuperfluousKeys()
+            ->allowPermissiveTypes()
             ->mapper();
     }
 }
