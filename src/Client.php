@@ -53,7 +53,7 @@ class Client
     /**
      * Create a new Forge instance.
      */
-    public function __construct(?string $apiKey = null, ?HttpClient $guzzle = null, ?string $baseUrl = self::SANDBOX_URL)
+    public function __construct(?string $apiKey = null, ?HttpClient $guzzle = null, string $baseUrl = self::SANDBOX_URL)
     {
         if ($apiKey !== null) {
             $this->setApiKey($apiKey, $baseUrl, $guzzle);
@@ -66,8 +66,6 @@ class Client
 
     /**
      * Set a new timeout.
-     *
-     * @return $this
      */
     public function setTimeout(int $timeout): static
     {
@@ -86,8 +84,6 @@ class Client
 
     /**
      * Set the api key and set up the guzzle request object.
-     *
-     * @return $this
      */
     public function setApiKey(string $apiKey, string $baseUrl, ?HttpClient $guzzle = null): static
     {

@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2026-07-24
+
+### Added
+- PHP 8.5 support.
+
+### Changed
+- Bumped `cuyz/valinor` to `^2.5`; migrated `MapperBuilder` flexible-casting flags and `MappingError` message handling to the 2.x API.
+- Bumped Rector to `^2.0` and PHPStan to `^2.1`, and raised the PHPStan rule level from 6 to 8.
+- `BaseResource::__construct()` now requires a non-nullable `Client $client`; `Client::__construct()` no longer accepts a nullable `$baseUrl` (both were unenforced nullability that PHPStan level 8 caught).
+- Updated `phpcs.xml` testVersion and CI matrix to PHP 8.2–8.5.
+
+### Removed
+- PHP 8.1 support (required by `cuyz/valinor` 2.x, min PHP 8.2).
+
 ## [3.0.0] - 2026-04-24
 
 ### Added

@@ -4,20 +4,20 @@
     "description": "SDK For vShip API",
     "type": "library",
     "require": {
-        "php": "~8.1.0 | ~8.2.0 | ~8.3.0 | ~8.4.0",
+        "php": "~8.2.0 | ~8.3.0 | ~8.4.0 | ~8.5.0",
         "ext-json": "*",
-        "cuyz/valinor": "^1.13",
+        "cuyz/valinor": "^2.5",
         "guzzlehttp/guzzle": "^7.5.0"
     },
-    "version": "3.0.0",
+    "version": "4.0.0",
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "laravel/pint": "^1.18",
         "phpcompatibility/php-compatibility": "dev-develop",
         "phpro/grumphp": "^2.8",
-        "phpstan/phpstan": "^1.12",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^10.5",
-        "rector/rector": "^1.2",
+        "rector/rector": "^2.0",
         "symfony/var-dumper": "^6.2",
         "yieldstudio/grumphp-laravel-pint": "^1.0"
     },

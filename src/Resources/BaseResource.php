@@ -14,14 +14,8 @@ abstract class BaseResource
      * @param array<string, mixed> $attributes
      */
     public function __construct(
-        /**
-         * The resource attributes.
-         */
         public array $attributes,
-        /**
-         * Client attribute.
-         */
-        protected ?Client $client = null,
+        protected Client $client,
     ) {
         $this->fill();
     }
