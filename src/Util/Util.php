@@ -58,7 +58,9 @@ abstract class Util
     private static function createMapper(): TreeMapper
     {
         return (new MapperBuilder())
-            ->enableFlexibleCasting()
+            ->allowScalarValueCasting()
+            ->allowNonSequentialList()
+            ->allowUndefinedValues()
             ->allowSuperfluousKeys()
             ->allowPermissiveTypes()
             ->mapper();

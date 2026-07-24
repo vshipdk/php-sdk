@@ -167,16 +167,16 @@ trait MakesHttpRequests
      */
     protected function handleRequestError(ResponseInterface $response): void
     {
-        if ($response->getStatusCode() == 422) {
+        if ($response->getStatusCode() === 422) {
             $body = (string) $response->getBody();
             throw new ValidationException(json_decode($body, true), $body);
         }
 
-        if ($response->getStatusCode() == 404) {
+        if ($response->getStatusCode() === 404) {
             throw new NotFoundException();
         }
 
-        if ($response->getStatusCode() == 400) {
+        if ($response->getStatusCode() === 400) {
             throw $this->buildFailedActionException($response);
         }
 

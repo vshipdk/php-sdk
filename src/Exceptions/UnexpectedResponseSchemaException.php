@@ -8,7 +8,6 @@ use CuyZ\Valinor\Mapper\Tree\Message\NodeMessage;
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Tree\Message\Formatter\MessageMapFormatter;
 use CuyZ\Valinor\Mapper\Tree\Message\Formatter\TranslationMessageFormatter;
-use CuyZ\Valinor\Mapper\Tree\Message\Messages;
 use Exception;
 
 class UnexpectedResponseSchemaException extends Exception
@@ -29,9 +28,7 @@ class UnexpectedResponseSchemaException extends Exception
         $error = $this->getPrevious();
         if ($error instanceof MappingError) {
             // Get flatten list of all messages through the whole nodes tree
-            $messages = Messages::flattenFromNode(
-                $error->node(),
-            ); // Formatters can be added and will be applied on all messages
+            $messages = $error->messages(); // Formatters can be added and will be applied on all messages
             $messages = $messages->formatWith(
                 new MessageMapFormatter([]),
                 (new TranslationMessageFormatter())

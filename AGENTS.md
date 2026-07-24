@@ -17,6 +17,9 @@
 - Namespace: `Vship\Tests\Cases`.
 - Utils: `Vship\Tests\Utils::getFixtureJson()` for JSON.
 
+## Git
+- Commit subject: `[TICKET-ID] Past-simple-tense summary` (e.g. "Added X", not "Add X"). TICKET-ID = current branch name's leading ticket key (e.g. branch `VSHIP-943-foo` -> `VSHIP-943`). Read it from the branch, don't ask the user.
+
 ## CI/Check
 - **Must**: Run PHPStorm inspections first, then GrumPHP.
 - **Note**: GrumPHP checks staged files; `git add` before run.
