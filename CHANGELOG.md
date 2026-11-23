@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.1] - 2026-11-23
+
+### Fixed
+- `Line::$total_value` accepts decimal amounts (`int|float|null`). Shipments with fractional line values no longer fail mapping with `UnexpectedResponseSchemaException`.
+
+### Changed
+- Excluded tests, CI and tooling config from the dist archive via `.gitattributes` `export-ignore`.
+
 ## [4.0.0] - 2026-07-24
 
 ### Added
