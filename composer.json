@@ -9,7 +9,7 @@
         "cuyz/valinor": "^2.5",
         "guzzlehttp/guzzle": "^7.5.0"
     },
-    "version": "4.0.0",
+    "version": "4.0.1",
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "laravel/pint": "^1.18",

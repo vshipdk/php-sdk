@@ -98,6 +98,7 @@ class ManageShipmentsTest extends TestCase
         $address = $shipment->organisation_object->addresses[0];
         $this->assertEquals($response['data']['organisation_object']['addresses'][0]['type'], $address->type);
         $this->assertEquals($response['data']['organisation_object']['addresses'][0]['line'], $address->line);
+        $this->assertSame($response['data']['shipment_lines'][0]['total_value'], $shipment->shipment_lines[0]->total_value);
     }
 
     public static function shipmentResponseProvider(): array

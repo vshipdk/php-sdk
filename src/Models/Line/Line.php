@@ -20,7 +20,8 @@ final class Line
 
     public ?int $total_weight = null;
 
-    public ?int $total_value = null;
+    /** API may send a decimal amount; int kept in the union so whole values still map to int. */
+    public int|float|null $total_value = null;
 
     public ?string $value_currency = null;
 
